@@ -1,1 +1,1 @@
-This is a test commit done from VSC
+Web Programming Lab 0 test commit
