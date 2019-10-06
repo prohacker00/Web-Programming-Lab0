@@ -31,8 +31,6 @@ function render() {
         gameOver();
         
     }
-   
-    
 }
 
 function gameOver() {
@@ -41,11 +39,3 @@ function gameOver() {
 }
 
 var gameStart = setInterval(render,10)
-
-// canvas.addEventListener("click", function() {
-//     alert("Hello World!");
-// });
-
-// function updateMovement() {
-
-// }
