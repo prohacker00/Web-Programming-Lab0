@@ -5,44 +5,91 @@ const drawRectangle = new drawRect();
 const GAME_WIDTH = canvas.getAttribute('width')
 const GAME_HEIGHT = canvas.getAttribute('height')
 
+var keypressed;
+
+var platform = {
+    x : 0,
+    y: GAME_HEIGHT - 150,
+    width : GAME_WIDTH,
+    height: GAME_HEIGHT,
+    color: "black",
+    
+}
+
 document.addEventListener('keydown', keyDownHandler, false);
+document.addEventListener('keyup', keyUpHandler, false);
 
 //Starting x-coordinates of the policemen and the criminals
-let criminalX = 300;
-let criminalY = 200;
-let policeX = 15;
-let policeY = 200;
+
+var criminal = {
+    x: 300,
+    y: platform.y - 100,
+    width : 100,
+    height : 100,
+    color : 'red'
+    
+}
+
+var police = {
+    x : 15,
+    y: platform.y - 100,
+    width : 100,
+    height : 100,
+    color : 'blue'
+}
 // End of constants 
 
 // Game Start
 
-setInterval(drawPlayers,100);
+drawPlayers();
 
 
-// Methods
+// Method
 
-function keyDownHandler(event) {
+function keyUpHandler(event) {
+    keypressed = false;
     if(event.keyCode == 39) {
-        // rightPressed = true;
-        criminalX += 5; 
-    }
-    else if(event.keyCode == 37) {
-        // leftPressed = true;
-        criminalX -= 5;
-    }
-    if(event.keyCode == 40) {
-        // downPressed = true;
-        criminalY +=5
-    }
-    else if(event.keyCode == 38) {
-        // upPressed = true;
-        criminalY -= 5;
+        alert("released!")
     }
 }
 
+function keyDownHandler(event) {
+    keypressed = true;
+
+    if(event.keyCode == 39) {
+        updateMovement();
+      
+    }
+    
+}
+
 function drawPlayers() {
+
+
 drawRectangle.drawRect(ctx,0,0,GAME_WIDTH,GAME_HEIGHT,'white')
-drawRectangle.drawRect(ctx,criminalX,criminalY,50,50,"red")
-drawRectangle.drawRect(ctx,policeX,policeY,50,50,"blue")
+drawRectangle.drawRect(ctx, platform.x ,platform.y , platform.width , platform.height, platform.color)
+drawRectangle.drawRect(ctx,criminal.x, criminal.y, criminal.width, criminal.height, criminal.color)
+drawRectangle.drawRect(ctx, police.x ,police.y, police.width, police.height, police.color)
+
+if ((police.x + (police.width / 2)) > (criminal.x - (criminal.width / 2)) ) {
+        
+    alert("You have been caught by the police! Refresh to play again!")
+    clearInterval(gameStart)
+    
+}
+}
+
+function updateMovement() {
+
+    if(keypressed) {
+
+    setInterval(() => {
+
+        criminal.x += 0.5
+        drawPlayers();
+        
+    }, 90);
+
+}
 
 }
