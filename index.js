@@ -5,7 +5,7 @@ const drawRectangle = new drawRect();
 const GAME_WIDTH = canvas.getAttribute('width')
 const GAME_HEIGHT = canvas.getAttribute('height')
 
-var keypressed;
+var rightPressed
 
 var platform = {
     x : 0,
@@ -41,23 +41,22 @@ var police = {
 
 // Game Start
 
-drawPlayers();
+var gameStart = setInterval(drawPlayers,10);
 
 
 // Method
 
 function keyUpHandler(event) {
-    keypressed = false;
     if(event.keyCode == 39) {
-        alert("released!")
+        rightPressed = false;
+
     }
+    
 }
 
 function keyDownHandler(event) {
-    keypressed = true;
-
     if(event.keyCode == 39) {
-        updateMovement();
+        rightPressed = true;
       
     }
     
@@ -65,31 +64,20 @@ function keyDownHandler(event) {
 
 function drawPlayers() {
 
+    if(rightPressed) {
+        criminal.x += 0.9;
+    }
 
-drawRectangle.drawRect(ctx,0,0,GAME_WIDTH,GAME_HEIGHT,'white')
-drawRectangle.drawRect(ctx, platform.x ,platform.y , platform.width , platform.height, platform.color)
-drawRectangle.drawRect(ctx,criminal.x, criminal.y, criminal.width, criminal.height, criminal.color)
-drawRectangle.drawRect(ctx, police.x ,police.y, police.width, police.height, police.color)
 
-if ((police.x + (police.width / 2)) > (criminal.x - (criminal.width / 2)) ) {
+    drawRectangle.drawRect(ctx,0,0,GAME_WIDTH,GAME_HEIGHT,'white')
+    drawRectangle.drawRect(ctx, platform.x ,platform.y , platform.width , platform.height, platform.color)
+    drawRectangle.drawRect(ctx,criminal.x, criminal.y, criminal.width, criminal.height, criminal.color)
+    drawRectangle.drawRect(ctx, police.x ,police.y, police.width, police.height, police.color)
+
+        if ((police.x + (police.width / 2)) > (criminal.x - (criminal.width / 2)) ) {
         
-    alert("You have been caught by the police! Refresh to play again!")
-    clearInterval(gameStart)
+            alert("You have been caught by the police! Refresh to play again!")
+            clearInterval(gameStart)
+            clearInterval(moveCriminal)
     
-}
-}
-
-function updateMovement() {
-
-    if(keypressed) {
-
-    setInterval(() => {
-
-        criminal.x += 0.5
-        drawPlayers();
-        
-    }, 90);
-
-}
-
-}
+}}
