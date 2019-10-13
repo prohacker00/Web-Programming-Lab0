@@ -6,7 +6,6 @@ const GAME_WIDTH = canvas.getAttribute('width')
 const GAME_HEIGHT = canvas.getAttribute('height')
 
 document.addEventListener('keydown', keyDownHandler, false);
-// canvas.addEventListener('keyup', keyUpHandler, false);
 
 //Starting x-coordinates of the policemen and the criminals
 let criminalX = 300;
@@ -17,18 +16,15 @@ let policeY = 200;
 
 // Game Start
 
+setInterval(drawPlayers,10);
 
 
-// Event listeners
-
-
-// Methods should go here:
+// Methods
 
 function keyDownHandler(event) {
     if(event.keyCode == 39) {
         // rightPressed = true;
-        criminalX += 5;
-        
+        criminalX += 5; 
     }
     else if(event.keyCode == 37) {
         // leftPressed = true;
@@ -42,7 +38,6 @@ function keyDownHandler(event) {
         // upPressed = true;
         criminalY -= 5;
     }
-    drawPlayers()
 }
 
 function drawPlayers() {
@@ -51,9 +46,3 @@ drawRectangle.drawRect(ctx,criminalX,criminalY,50,50,"red")
 drawRectangle.drawRect(ctx,policeX,policeY,50,50,"blue")
 
 }
-
-function redirect() {
-    window.location.href = "http://www.w3schools.com";
-}
-
-
