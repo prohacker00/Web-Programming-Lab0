@@ -16,7 +16,7 @@ let policeY = 200;
 
 // Game Start
 
-setInterval(drawPlayers,10);
+setInterval(drawPlayers,100);
 
 
 // Methods
