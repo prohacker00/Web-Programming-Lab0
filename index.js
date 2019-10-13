@@ -1,74 +1,59 @@
-var canvas = document.getElementById("canvas")
-var ctx = canvas.getContext("2d")
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+const drawRectangle = new drawRect();
 
-GAME_WIDTH = canvas.getAttribute('width')
-GAME_HEIGHT = canvas.getAttribute('height')
-
-drawRect(300,200,50,50, "red")
-
-drawRect(15,200,50,50,"blue")
-
-let criminalX = 300;
-let PoliceX = 15
-
-function drawRect(x,y,width,height,color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x,y,width,height)
-}
-
-function render() {
-    drawRect(0, 0, GAME_WIDTH, GAME_HEIGHT, 'white')
-
-    drawRect(criminalX,200,50,50, "red")
-
-    drawRect(PoliceX,200,50,50,"blue")
-
-    if(rightPressed) {
-        criminalX += 10
-        drawRect(0, 0, GAME_WIDTH, GAME_HEIGHT, 'white')
-        drawRect(criminalX, 200, 50, 50, "red")
-        rightPressed = false;
-    }
-
-    if ((PoliceX + 25) > (criminalX - 25)) {
-        
-        gameOver();
-        
-    }
-}
-
-function gameOver() {
-    alert("You have been caught by the police! Refresh to play again!")
-    clearInterval(gameStart)
-}
-
-function movement(){
-    PoliceX += 2.0
-}
-
-var gameStart = setInterval(render,10)
+const GAME_WIDTH = canvas.getAttribute('width')
+const GAME_HEIGHT = canvas.getAttribute('height')
 
 document.addEventListener('keydown', keyDownHandler, false);
-document.addEventListener('keyup', keyUpHandler, false);
+// canvas.addEventListener('keyup', keyUpHandler, false);
 
-var rightPressed = false;
-var leftPressed = false;
-var upPressed = false;
-var downPressed = false;
+//Starting x-coordinates of the policemen and the criminals
+let criminalX = 300;
+let criminalY = 200;
+let policeX = 15;
+let policeY = 200;
+// End of constants 
+
+// Game Start
+
+
+
+// Event listeners
+
+
+// Methods should go here:
 
 function keyDownHandler(event) {
     if(event.keyCode == 39) {
-        rightPressed = true;
-        movement();
+        // rightPressed = true;
+        criminalX += 5;
+        
     }
     else if(event.keyCode == 37) {
-        leftPressed = true;
+        // leftPressed = true;
+        criminalX -= 5;
     }
     if(event.keyCode == 40) {
-    	downPressed = true;
+        // downPressed = true;
+        criminalY +=5
     }
     else if(event.keyCode == 38) {
-    	upPressed = true;
+        // upPressed = true;
+        criminalY -= 5;
     }
+    drawPlayers()
 }
+
+function drawPlayers() {
+drawRectangle.drawRect(ctx,0,0,GAME_WIDTH,GAME_HEIGHT,'white')
+drawRectangle.drawRect(ctx,criminalX,criminalY,50,50,"red")
+drawRectangle.drawRect(ctx,policeX,policeY,50,50,"blue")
+
+}
+
+function redirect() {
+    window.location.href = "http://www.w3schools.com";
+}
+
 
