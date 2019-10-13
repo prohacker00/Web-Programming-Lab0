@@ -6,6 +6,9 @@ const GAME_WIDTH = canvas.getAttribute('width')
 const GAME_HEIGHT = canvas.getAttribute('height')
 
 var rightPressed
+var leftPressed
+
+var policeRightPressed;
 
 var platform = {
     x : 0,
@@ -50,7 +53,18 @@ function keyUpHandler(event) {
     if(event.keyCode == 39) {
         rightPressed = false;
 
+    }  else if(event.keyCode == 37) {
+        leftPressed = false;
+
     }
+
+
+    if(event.keyCode == 68) {
+        policeRightPressed = false;
+
+    }
+
+    
     
 }
 
@@ -58,16 +72,31 @@ function keyDownHandler(event) {
     if(event.keyCode == 39) {
         rightPressed = true;
       
+    } else if(event.keyCode == 37) {
+        leftPressed = true;
+
+    }
+
+    if(event.keyCode == 68) {
+        policeRightPressed = true;
+
+    }
+
     }
     
-}
+
 
 function drawPlayers() {
 
     if(rightPressed) {
-        criminal.x += 0.9;
+        criminal.x += 1.89;
+    } else if(leftPressed) {
+        criminal.x -= 1.89;
     }
 
+    if(policeRightPressed) {
+        police.x += 1.89;
+    }
 
     drawRectangle.drawRect(ctx,0,0,GAME_WIDTH,GAME_HEIGHT,'white')
     drawRectangle.drawRect(ctx, platform.x ,platform.y , platform.width , platform.height, platform.color)
