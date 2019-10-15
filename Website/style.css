@@ -1,1 +1,54 @@
-This is the Cascading Style Sheet of our web
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.bigmain {
+    
+}
+
+.mainbod {
+    /* background-image: url(back.png); */
+     background-color: rgb(29, 28, 28);
+  }
+
+#MainHead {
+    color: white;
+    font-family: 'Mansalva', cursive;
+    text-align: center;
+    font-size: 28px;
+    background-image: url(skyline.png);
+}
+
+/* Style the navigation bar */
+.navbar {
+    width: auto;
+    overflow: auto;
+    background-color: black;
+    text-align: center;
+  }
+  
+  /* Navbar links */
+  .navbar a {
+    float: center;
+    text-align: center;
+    padding-left: 50;
+    padding-right: 50;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+  }
+  
+  /* Navbar links on mouse-over */
+  .navbar a:hover {
+    background-color: whitesmoke;
+    color: black;
+  }
+  
+  /* play link */
+  .active {
+    background-color: darkorchid;
+    font-size: 30px;
+  }
+  
+  
