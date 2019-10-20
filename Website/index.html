@@ -1,51 +1,46 @@
 <head>
 
-  <!DOCTYPE html>
-  <html>
+    <!DOCTYPE html>
+    <html>
 
-  <title>Shadow Rise</title>
-  <link rel="stylesheet" href="shadow_rise_style.css">
+    <title>Shadow Rise</title>
+    <link rel="stylesheet" href="style.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
 
 </head>
 
 <header class="bigmain">
 
-  <div id="MainHead">
-      <h1>Shadow Rise</h1>
-  </div>
+    <div id="MainHead">
+        <h1>Shadow Rise</h1>
+    </div>
 
-  <div class="navbar">
-      <a href=""> Contact</a>
-      <a class="active" href="#">Play!</a>
-      <a href="#">About</a>
-  </div>
+    <div class="navbar">
+        <a href="./contactUs.html"> Contact</a>
+        <a class="active" href="#">Play!</a>
+        <a href="#">About</a>
+    </div>
 
-<body>
+</header>
 
-  <div class="contact-title">
-          <h1>We'd love to hear from you</h1>
-          <br>
-          <h2>We're here to help and answer any question you might have. We look forward to hearing from you </j2>
-   </div>
-    
-    <div class="contact-form">
-    	<form id="contact-form" method="post" action="contact-us.php">
-        <input name="name" type="text" class="form-control" placeholder="Your Name" required>
-        <br>
-        <input name="email" type="email" class="form-control" placeholder="Your Email" required><br>
+<body class="MainBod">
+    <div id="canvas-content">
+        <canvas id="canvas" width="1600" height="800" style="border: 2px solid black"></canvas>
+    </div>
 
-          <textarea name="message" class="form-control" placeholder="Message" row="4" required></textarea><br>
-          	
-             
-         <input type="submit" name="form-control" class="submit" value="SEND MESSAGE">
-          
-</form>
-</div>
-        
+    <br>
 
+    <p id="lore">
+        How to play:
+    </p>
 
+    <div id="javascript_sources">
+        <script type="module" src="./index.js"></script>
+        <script src="./drawRect.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="./website-jquery.js"></script>
+    </div>
 
 </body>
-</html>    
