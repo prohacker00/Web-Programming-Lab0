@@ -13,8 +13,7 @@ var upPressed;
 var downPressed;
 
 var policeRightPressed;
-
-var gravity = 2.0;
+var policeLeftPressed;
 
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
@@ -35,7 +34,8 @@ var criminal = {
     y: platform.y - 100,
     width: 100,
     height: 100,
-    color: 'red'
+    color: 'red',
+    gravity: 4.0,
 
 }
 
@@ -72,6 +72,10 @@ function keyUpHandler(event) {
         policeRightPressed = false;
 
     }
+
+    if(event.keyCode == 65) {
+        policeLeftPressed = false;
+    }
 }
 
 // Detects when the key is pressed
@@ -92,6 +96,8 @@ function keyDownHandler(event) {
     if (event.keyCode == 68) {
         policeRightPressed = true;
 
+    } if(event.keyCode == 65) {
+        policeLeftPressed = true;
     }
 
 
@@ -103,24 +109,27 @@ function keyDownHandler(event) {
 function drawPlayers() {
 
     if (rightPressed) {
-        criminal.x += 2.89;
+        criminal.x += 5;
     } else if (leftPressed) {
-        criminal.x -= 1.89;
+        criminal.x -= 5;
     }
 
     if (policeRightPressed) {
         police.x += 3.09;
     }
 
-    if (upPressed) { 
-        criminal.y -= gravity;
-        gravity -= 0.05
-        console.log(criminal.y + ' ' + gravity)
+    if (policeLeftPressed) {
+        police.x -= 3.09;
+    }
 
-        if(criminal.y === 550) {
-            console.log("trued")
+    if (upPressed) { 
+        criminal.y -= criminal.gravity;
+        criminal.gravity -= 0.05
+        console.log(Math.ceil(criminal.y) + ' ' + criminal.gravity)
+
+        if(Math.ceil(criminal.y) >= 550) {
             upPressed = false;
-            gravity = 3.0
+            criminal.gravity = 4.0
             return;
         }
 
@@ -131,28 +140,9 @@ function drawPlayers() {
     drawRectangle.drawRect(ctx, criminal.x, criminal.y, criminal.width, criminal.height, criminal.color)
     drawRectangle.drawRect(ctx, police.x, police.y, police.width, police.height, police.color)
 
-    if ((police.x + (police.width / 2)) > (criminal.x - (criminal.width / 2))) {
+    if  (police.x < (criminal.x + criminal.width) && (police.x + police.width) > criminal.x && (police.y < (criminal.y + criminal.height) && ((police.y + police.height) > criminal.y) ) )  {
 
         alert("You have been caught by the police! Refresh to play again!")
         clearInterval(gameStart)
     }
-}
-
-function jump(yPosition) {
-    var gravity = 0;
-    yPosition -= 1;
-    gravity++;
-    if (gravity === 10) {
-        fall(yPosition,gravity)
-        gravity = 0;
-    }
-}
-
-function fall(yPosition,gravity) {
-    yPosition += 1.00;
-    gravity--;
-    if(gravity === 0)
-    return;
-        
-
 }
