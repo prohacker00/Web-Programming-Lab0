@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.bigmain {}
+
+#canvas-content {
+  width: 100%;
+  text-align: center;
+}
+
+#canvas {
+  /* visibility: hidden; */
+  display: inline;
+  margin: 50px;
+}
+
+#lore {
+  font-size: 50px;
+  color: aliceblue;
+  text-align: center;
+}
+
+.mainbod {
+  /* background-image: url(back.png); */
+  background-color: rgb(29, 28, 28);
+}
+
+#MainHead {
+  color: white;
+  font-family: 'Mansalva', cursive;
+  text-align: center;
+  font-size: 28px;
+  background-image: url(skyline.png);
+}
+
+/* Style the navigation bar */
+.navbar {
+  width: auto;
+  overflow: auto;
+  background-color: black;
+  text-align: center;
+  padding: 5px;;
+
+}
+
+/* Navbar links */
+.navbar a {
+  float: center;
+  text-align: center;
+  padding-left: 50;
+  padding-right: 50;
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  transition: 0.3s;
+  background-color: whitesmoke;
+  color: black;
+}
+
+/* play link */
+.active {
+  background-color: darkorchid;
+  font-size: 30px;
+}
