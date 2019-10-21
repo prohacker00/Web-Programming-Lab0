@@ -7,11 +7,14 @@ const drawRectangle = new drawRect();
 const GAME_WIDTH = canvas.getAttribute('width');
 const GAME_HEIGHT = canvas.getAttribute('height');
 
+
+// Booleans that change the criminal's movement
 var rightPressed;
 var leftPressed;
 var upPressed;
 var downPressed;
 
+// Booleans that change the police's movement
 var policeRightPressed;
 var policeLeftPressed;
 
@@ -48,37 +51,38 @@ var police = {
 }
 
 
-// Starts the game, actively checks for input every 10 milliseconds
+/* Starts the game, actively checks for input every 16.67 milliseconds. Therefore
+ game runs at 60 frames per second */
 
 var gameStart = setInterval(drawPlayers, 16.67);
 console.log(criminal.y)
 
 
-// Detects when the key is released
+// Detects when a key is released
 
 function keyUpHandler(event) {
-
 
     if (event.keyCode == 39) {
         rightPressed = false;
 
-    } else if (event.keyCode == 37) {
+    } 
+    
+    else if (event.keyCode == 37) {
         leftPressed = false;
 
     }
-    
 
     if (event.keyCode == 68) {
         policeRightPressed = false;
 
     }
 
-    if(event.keyCode == 65) {
+    if (event.keyCode == 65) {
         policeLeftPressed = false;
     }
 }
 
-// Detects when the key is pressed
+// Detects when a key is pressed
 
 function keyDownHandler(event) {
     if (event.keyCode == 39) {
@@ -96,7 +100,8 @@ function keyDownHandler(event) {
     if (event.keyCode == 68) {
         policeRightPressed = true;
 
-    } if(event.keyCode == 65) {
+    }
+    if (event.keyCode == 65) {
         policeLeftPressed = true;
     }
 
@@ -104,7 +109,8 @@ function keyDownHandler(event) {
 
 }
 
-// Main function. Draws the player objects
+// Main function. Draws the player objects. Updates 60 times per second
+// 5 and 3.09 are placeholders for the criminals and polices speed respectively
 
 function drawPlayers() {
 
@@ -122,12 +128,14 @@ function drawPlayers() {
         police.x -= 3.09;
     }
 
-    if (upPressed) { 
+
+//Players speed decreases as they jump, hence enabling a gravity like effect
+    if (upPressed) {
         criminal.y -= criminal.gravity;
         criminal.gravity -= 0.05
         console.log(Math.ceil(criminal.y) + ' ' + criminal.gravity)
 
-        if(Math.ceil(criminal.y) >= 550) {
+        if (Math.ceil(criminal.y) >= 550) {
             upPressed = false;
             criminal.gravity = 4.0
             return;
@@ -140,7 +148,8 @@ function drawPlayers() {
     drawRectangle.drawRect(ctx, criminal.x, criminal.y, criminal.width, criminal.height, criminal.color)
     drawRectangle.drawRect(ctx, police.x, police.y, police.width, police.height, police.color)
 
-    if  (police.x < (criminal.x + criminal.width) && (police.x + police.width) > criminal.x && (police.y < (criminal.y + criminal.height) && ((police.y + police.height) > criminal.y) ) )  {
+    //collision detection
+    if (police.x < (criminal.x + criminal.width) && (police.x + police.width) > criminal.x && (police.y < (criminal.y + criminal.height) && ((police.y + police.height) > criminal.y))) {
 
         alert("You have been caught by the police! Refresh to play again!")
         clearInterval(gameStart)
