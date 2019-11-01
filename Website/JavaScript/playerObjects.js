@@ -19,8 +19,6 @@ var criminal = {
 
 }
 
-
-
 var police = {
     x: 15,
     y: (GAME_HEIGHT - 150) - 100,
@@ -28,10 +26,6 @@ var police = {
     height: 100,
     color: 'blue'
 }
-
-
-
-
 
 var platform = {
     x: 0,
@@ -41,10 +35,6 @@ var platform = {
     color: "lightgreen",
 
 }
-
-
-
-
 
 var bullet = {
     x: police.x,
