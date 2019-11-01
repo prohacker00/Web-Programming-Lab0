@@ -1,19 +1,14 @@
-// Declaring constants
+// Still not working, please refer to the drawplayers inside the index
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+class engine {
+    drawPlayers() {
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
 
 const drawRectangle = new drawRect();
 
-// const startGame = new engine();
-
-/* Starts the game, actively checks for input every 16.67 milliseconds. Therefore
- game runs at 60 frames per second */
-
-var gameStart = setInterval(drawPlayers, 16.67);
-
-
-function drawPlayers() {
+        const drawRect = new drawRectangle();
 
     if (rightPressed) {
         criminal.x += 5;
@@ -45,7 +40,6 @@ function drawPlayers() {
     }
 
     //Players speed decreases as they jump, hence enabling a gravity like effect
-    
     if (upPressed) {
         criminal.y -= criminal.gravity;
         criminal.gravity -= 0.2
@@ -59,10 +53,12 @@ function drawPlayers() {
 
     }
 
-    drawRectangle.drawRect(ctx, background)
-    drawRectangle.drawRect(ctx, platform)
-    drawRectangle.drawRect(ctx, criminal)
-    drawRectangle.drawRect(ctx, police)
-    drawRectangle.drawRect(ctx, bullet)
+    drawRectangle.drawRect(ctx, 0, 0, GAME_WIDTH, GAME_HEIGHT, 'white')
+    drawRectangle.drawRect(ctx, platform.x, platform.y, platform.width, platform.height, platform.color)
+    drawRectangle.drawRect(ctx, criminal.x, criminal.y, criminal.width, criminal.height, criminal.color)
+    drawRectangle.drawRect(ctx, police.x, police.y, police.width, police.height, police.color)
+    drawRectangle.drawRect(ctx, bullet.x, bullet.y, 30, 20, 'yellow')
+
+}
 
 }

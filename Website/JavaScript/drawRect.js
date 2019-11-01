@@ -1,8 +1,8 @@
 class drawRect {
 
-drawRect(ctx,x,y,width,height,color) {  
-    ctx.fillStyle = color;
-    ctx.fillRect(x,y,width,height)
+drawRect(ctx, model) {  
+    ctx.fillStyle = model.color;
+    ctx.fillRect(model.x,model.y,model.width,model.height)
     }
 
 }
