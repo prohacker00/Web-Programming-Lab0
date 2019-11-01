@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-.mainbod {
+.MainBod {
   /* background-image: url(back.png); */
   background-color: rgb(29, 28, 28);
 }
@@ -41,7 +41,8 @@
   overflow: auto;
   background-color: black;
   text-align: center;
-  padding: 5px;;
+  padding: 5px;
+  
 
 }
 
@@ -49,8 +50,8 @@
 .navbar a {
   float: center;
   text-align: center;
-  padding-left: 50;
-  padding-right: 50;
+  padding-left: 50px;
+  padding-right: 50px;
   color: white;
   text-decoration: none;
   font-size: 22px;
