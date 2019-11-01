@@ -15,6 +15,7 @@ var gameStart = setInterval(drawPlayers, 16.67);
 
 function drawPlayers() {
 
+
     if (rightPressed) {
         criminal.x += 5;
        
@@ -35,7 +36,6 @@ function drawPlayers() {
         bullet.y = police.y;
 
     }
-
 
     //collision detection
     if (police.x < (criminal.x + criminal.width) && (police.x + police.width) > criminal.x && (police.y < (criminal.y + criminal.height) && ((police.y + police.height) > criminal.y))) {
