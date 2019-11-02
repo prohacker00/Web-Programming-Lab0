@@ -20,9 +20,9 @@ var criminal = {
     height: 45,
     color: 'red',
     xSpeed: 4,
-    ySpeed: 0.25,       //Decreasing this makes the criminal more floaty
-    originalGravity : 9.80865,
-    gravity: 9.80865,       // How far it can jump
+    ySpeed: 0.3,       //Decreasing this makes the criminal more floaty
+    originalGravity : 9,
+    gravity: 9,       // How far it can jump
 
 }
 
