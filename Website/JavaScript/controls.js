@@ -12,6 +12,8 @@ var policeRightPressed;
 var policeLeftPressed;
 var policeSpacePressed;
 
+
+
 function keyDownHandler(event) {
     if (event.keyCode == 39) {
         rightPressed = true;

@@ -3,6 +3,8 @@
 let GAME_WIDTH = canvas.getAttribute('width');
 let GAME_HEIGHT = canvas.getAttribute('height');
 
+const renderSpeed = 16.67;
+
 var background = {
     x : 0,
     y : 0,
@@ -17,7 +19,10 @@ var criminal = {
     width: 100,
     height: 100,
     color: 'red',
-    gravity: 9.80865,
+    xSpeed: 4,
+    ySpeed: 0.25,       //Decreasing this makes the criminal more floaty
+    originalGravity : 9.80865,      
+    gravity: 9.80865,       // How far it can jump
 
 }
 
@@ -26,7 +31,8 @@ var police = {
     y: (GAME_HEIGHT - 150) - 100,
     width: 100,
     height: 100,
-    color: 'blue'
+    color: 'blue',
+    xSpeed: 4,
 }
 
 var platform = {
