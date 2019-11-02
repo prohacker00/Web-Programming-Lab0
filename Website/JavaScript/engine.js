@@ -1,18 +1,17 @@
-// Still not working, please refer to the drawplayers inside the index
+// This file has the engine to start the game, which runs at 60 frames per second
 
-class engine {
-    drawPlayers() {
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
-        var canvas = document.getElementById("canvas");
-        var ctx = canvas.getContext("2d");
+const dr = new drawRect();
 
-const drawRectangle = new drawRect();
+var gameStart = setInterval(drawPlayers, 16.67);
 
-        const drawRect = new drawRectangle();
+function drawPlayers() {
 
     if (rightPressed) {
         criminal.x += 5;
-       
+
     } else if (leftPressed) {
         criminal.x -= 5;
     }
@@ -31,11 +30,11 @@ const drawRectangle = new drawRect();
 
     }
 
-
     //collision detection
     if (police.x < (criminal.x + criminal.width) && (police.x + police.width) > criminal.x && (police.y < (criminal.y + criminal.height) && ((police.y + police.height) > criminal.y))) {
 
         alert("You have been caught by the police! Refresh to play again!")
+        //stop game here
         clearInterval(gameStart)
     }
 
@@ -53,12 +52,10 @@ const drawRectangle = new drawRect();
 
     }
 
-    drawRectangle.drawRect(ctx, 0, 0, GAME_WIDTH, GAME_HEIGHT, 'white')
-    drawRectangle.drawRect(ctx, platform.x, platform.y, platform.width, platform.height, platform.color)
-    drawRectangle.drawRect(ctx, criminal.x, criminal.y, criminal.width, criminal.height, criminal.color)
-    drawRectangle.drawRect(ctx, police.x, police.y, police.width, police.height, police.color)
-    drawRectangle.drawRect(ctx, bullet.x, bullet.y, 30, 20, 'yellow')
-
-}
+    dr.rectangle(ctx, background)
+    dr.rectangle(ctx, platform)
+    dr.rectangle(ctx, criminal)
+    dr.rectangle(ctx, police)
+    dr.rectangle(ctx, bullet)
 
 }

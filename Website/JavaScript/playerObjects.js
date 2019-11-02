@@ -1,3 +1,5 @@
+// Contains information about the objects used in the game
+
 let GAME_WIDTH = canvas.getAttribute('width');
 let GAME_HEIGHT = canvas.getAttribute('height');
 
