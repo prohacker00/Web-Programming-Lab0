@@ -1,4 +1,5 @@
 class objectSpeed {
+    
     updateMovement() {
         if (rightPressed) {
             criminal.x += criminal.xSpeed;
@@ -16,9 +17,9 @@ class objectSpeed {
         }
     
         if (policeSpacePressed) {
-            bullet.x = bullet.x + 20
-            bullet.y = police.y;
-    
+            bullet.color = 'yellow';
+            bullet.x = bullet.x + 20;
+            bullet.y = police.y;    
         }
     
         //Players speed decreases as they jump, hence enabling a gravity like effect
@@ -26,7 +27,7 @@ class objectSpeed {
             criminal.y -= criminal.gravity;
             criminal.gravity -= criminal.ySpeed
     
-            if (Math.ceil(criminal.y) >= 550) {
+            if (Math.ceil(criminal.y) >= 300) {
                 upPressed = false;
                 criminal.gravity = criminal.originalGravity;
                 return;
