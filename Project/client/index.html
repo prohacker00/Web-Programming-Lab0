@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Shadow Rise</title>
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+    <link rel="stylesheet" src="style.css" media = "screen" charset = "utf-8">
+
+</head>
+
+<header class="bigmain">
+
+    <div id="MainHead">
+        <h1>Shadow Rise</h1>
+    </div>
+
+    <div class="navbar">
+        <a href="./contactUs.html"> Contact</a>
+        <a class="active" href="#">Play!</a>
+        <a href="#">About</a>
+    </div>
+
+</header>
+
+<body class="MainBod">
+    <div id="canvas-content">
+        <canvas id="canvas" width="1000" height="450" style="border: 10px solid black"></canvas>
+    </div>
+
+    <br>
+
+    <div id="javascript_sources">
+
+        <script type="module" src="javascript/engine.js"></script>
+        
+        <script src="javascript/controls.js"></script>        
+        <script src="javascript/drawRect.js"></script>
+        <script src="javascript/playerObjects.js"></script>
+        <script src="javascript/collision.js"></script>
+        <script src="javascript/objectSpeed.js"></script>
+
+        <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script> var socket = io(); </script>
+
+    </div>
+
+</body>
+
+</html>
