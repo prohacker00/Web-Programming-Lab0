@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Shadow Rise| Login </title>
-	<link rel="stylesheet"  href="/client/css/signin_style.css">
+	<link rel="stylesheet"  href="signin_style.css">
 
 
 <script type="text/javascript">
 function myFunction() {  
 		var a= document.forms["login"]["user"].value;
 		var b = document.forms["login"]["pass"].value;
-		if(a=="" && b=="")	{	
+		if(a=="" && b=="")	{
 			alert('Please enter your username and password.');
 			return false;
 		}
@@ -30,6 +30,16 @@ function myFunction() {
 }
 	  </script>
 
+	  <div id="MainHead">
+      <h1>Shadow Rise</h1>
+  </div>
+
+  <div class="navbar">
+      <a href=""> Contact</a>
+      <a class="active" href="./">Play!</a>
+      <a href="#">About</a>
+  </div>
+
 
    <ul class="breadcrumb">
   <li><a href="index.html">Home </a></li>
@@ -45,7 +55,7 @@ function myFunction() {
 		</div>
 
 		<div class="textbox">
-			<input type="password" placeholder="Password" name="pass" value="">
+			<input type="password" maxlength="8" placeholder="Password" name="pass" value="">
 		</div>
 
 		<input class="btn" type="submit" name="" value="Sign In" onclick="myFunction()" method="post">
