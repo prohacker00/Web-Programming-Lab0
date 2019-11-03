@@ -8,7 +8,7 @@ app.use(express.static(__dirname));
 app.use(express.static('client'));
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/client/htmlpublic/index.html');
+    res.sendFile(__dirname + '/client/index.html');
 });
 
 var portNumber = (2000);
