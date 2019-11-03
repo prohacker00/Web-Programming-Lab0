@@ -17,6 +17,14 @@ console.log('server connection')
 
 // socket.io import
 var io = require('socket.io') (serv, {});
+var SOCKET_LIST = {};
+
+io.sockets.on('connection', function(socket){
+    socket.id = Math.random();
+    socket.x = 0;
+    socket.y = 0;
+    SOCKET_LIST[socket.id] = socket;
+})
 
 io.sockets.on('connection', function(socket) {
     console.log('socket connection');
