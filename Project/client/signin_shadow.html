@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Shadow Rise| Login </title>
+	<link rel="stylesheet"  href="/client/css/signin_style.css">
+
+
+<script type="text/javascript">
+function myFunction() {  
+		var a= document.forms["login"]["user"].value;
+		var b = document.forms["login"]["pass"].value;
+		if(a=="" && b=="")	{	
+			alert('Please enter your username and password.');
+			return false;
+		}
+		if(b=="")	{
+			alert('Please enter your password.');
+			return false;
+		}
+		if(a=="")	{
+			alert('Please enter your username.');
+			return false;
+		}
+		else
+		{
+			var confirmResult = confirm('Do you want to remember your login details?');
+		}
+}
+	  </script>
+
+
+   <ul class="breadcrumb">
+  <li><a href="index.html">Home </a></li>
+  <li><a href="login.html">Login</a></li>
+  
+</ul>
+	<body>
+	<form name="login" onsubmit="return myFunction">
+	<div class="login-box">
+		<h1>Login</h1>
+		<div class="textbox">
+			<input type="text" placeholder="Username" name="user" value="">
+		</div>
+
+		<div class="textbox">
+			<input type="password" placeholder="Password" name="pass" value="">
+		</div>
+
+		<input class="btn" type="submit" name="" value="Sign In" onclick="myFunction()" method="post">
+	</div>
+</form>
+
+</body>
+
+
+</html>
