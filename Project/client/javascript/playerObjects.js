@@ -16,9 +16,10 @@ var background = {
 var criminal = {
     x: 300,
     y: (GAME_HEIGHT - 145),
-    width: 45,
-    height: 45,
+    width: 50,
+    height: 50,
     color: 'red',
+    xSpeedStill: 0,
     xSpeed: 4,
     ySpeed: 0.3,       //Decreasing this makes the criminal more floaty
     originalGravity : 9,
@@ -41,6 +42,15 @@ var platform = {
     width: GAME_WIDTH,
     height: GAME_HEIGHT,
     color: "lightgreen",
+
+}
+
+var building = {
+    x: 400,
+    y: GAME_HEIGHT - 200,
+    width: 100,
+    height: 100,
+    color: "black",
 
 }
 

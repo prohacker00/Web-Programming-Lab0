@@ -32,6 +32,13 @@ class objectSpeed {
                 criminal.gravity = criminal.originalGravity;
                 return;
             }
+
+            if (Math.ceil(criminal.y) >= building.height + 105 && (criminal.x >= building.x && criminal.x <= building.x + 100)) {
+                upPressed = false;
+                criminal.gravity = criminal.originalGravity;
+
+                return;
+            }
     
         }
     }

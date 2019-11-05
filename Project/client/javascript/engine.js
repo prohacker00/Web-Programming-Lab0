@@ -25,4 +25,7 @@ function drawPlayers() {
     dr.rectangle(ctx, police)
     dr.rectangle(ctx, bullet)
 
+    // Drawing the Map
+    dr.rectangle(ctx, building)
+
 }
