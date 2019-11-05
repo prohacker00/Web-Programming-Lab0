@@ -24,6 +24,7 @@
 </header>
 
 <body class="MainBod">
+
     <div id="canvas-content">
         <canvas id="canvas" width="1000" height="450" style="border: 10px solid black"></canvas>
     </div>
@@ -41,8 +42,26 @@
         <script src="javascript/objectSpeed.js"></script>
 
         <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
-        <script> var socket = io(); </script>
 
+    </div>
+
+    <div id="networkStuff">
+        <script>
+        
+        var ctx = canvas.getContext("2d");
+            
+            var socket = io();
+            
+            socket.on('newPositionPol', function(data) {
+
+                for( var i = 0; i < data.length; i++) {
+                    socketNumber = data[i].socketNumber;
+                }
+
+            });
+            
+            
+        </script>
     </div>
 
 </body>

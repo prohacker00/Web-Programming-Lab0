@@ -17,21 +17,57 @@ console.log('server connection')
 
 // socket.io import
 var io = require('socket.io') (serv, {});
-var SOCKET_LIST = {};
-
-io.sockets.on('connection', function(socket){
-    socket.id = Math.random();
-    socket.x = 0;
-    socket.y = 0;
-    SOCKET_LIST[socket.id] = socket;
-})
+var SOCKET_LIST_POLICE = {};
+var SOCKET_LIST_CRIMINALS = {};
 
 io.sockets.on('connection', function(socket) {
     console.log('socket connection');
-    clients++;
+    
+    socket.id = Math.random();
+    socket.x = 0;
+    socket.y = 0;
+    socket.number = " " + Math.floor(10 * Math.random());
+
+    if (SOCKET_LIST_POLICE == [] || SOCKET_LIST_POLICE.length < SOCKET_LIST_CRIMINALS.length) {
+        SOCKET_LIST_POLICE[socket.id] = socket;    
+    }
+
+    else {
+        SOCKET_LIST_CRIMINALS[socket.id] = socket; 
+    }
 })
 
 io.sockets.on('disconnect', function(socket) {
     console.log('socket disconnection');
-    clients--;
-}) 
+    delete SOCKET_LIST_CRIMINALS[socket.id];
+    delete SOCKET_LIST_POLICE[socket.id];
+})
+
+setInterval(function() {
+
+    var packPol = []
+    for(var i in SOCKET_LIST_POLICE) {
+        var socket = SOCKET_LIST_POLICE[i];
+        
+        packPol.push({
+            number: socket.number
+            });
+    }
+
+    for(var i in SOCKET_LIST_POLICE) {
+        socket.emit('newPositionsPol', packPol)
+    }
+
+
+
+
+    var packCrim = []
+    for(var i in SOCKET_LIST_CRIMINALS) {
+        var socket = SOCKET_LIST_CRIMINALS[i];
+        
+        packCrim.push({
+            
+            });
+    }
+
+}, 1000/60) ;
