@@ -3,42 +3,19 @@
 let GAME_WIDTH = canvas.getAttribute('width');
 let GAME_HEIGHT = canvas.getAttribute('height');
 
-const renderSpeed = 16.67;
+const heightAdjust = 50
 
 var background = {
-    x : 0,
-    y : 0,
-    width : GAME_WIDTH,
-    height : GAME_HEIGHT,
-    color : 'white'
-}
-
-var criminal = {
-    x: 300,
-    y: (GAME_HEIGHT - 145),
-    width: 50,
-    height: 50,
-    color: 'red',
-    xSpeedStill: 0,
-    xSpeed: 4,
-    ySpeed: 0.3,       //Decreasing this makes the criminal more floaty
-    originalGravity : 9,
-    gravity: 9,       // How far it can jump
-
-}
-
-var police = {
-    x: 15,
-    y: (GAME_HEIGHT - 145) ,
-    width: 45,
-    height: 45,
-    color: 'blue',
-    xSpeed: 4,
+    x: 0,
+    y: 0,
+    width: GAME_WIDTH,
+    height: GAME_HEIGHT,
+    color: 'white'
 }
 
 var platform = {
     x: 0,
-    y: GAME_HEIGHT - 100,
+    y: GAME_HEIGHT - heightAdjust,
     width: GAME_WIDTH,
     height: GAME_HEIGHT,
     color: "lightgreen",
@@ -46,19 +23,76 @@ var platform = {
 }
 
 var building = {
-    x: 400,
-    y: GAME_HEIGHT - 200,
-    width: 100,
-    height: 100,
-    color: "black",
+    x: (GAME_WIDTH / 2) - 300/2,
+    y: 330,
+    width : 300,
+    height : 60,
+    color : "red",
+}
 
+var buildingTwo = {
+    x: (GAME_WIDTH / 2) + 150,
+    y: 220,
+    width : 300,
+    height : 60,
+    color : "red",
+}
+
+var criminal = {
+    imageR: document.getElementById("crimR"),
+    imageL: document.getElementById("crimL"),
+    imageS: document.getElementById("crimS"),
+    width: 50,
+    height: 50,
+    x: 300,
+    y: platform.y - 50,
+    color: 'red',
+    xSpeed: 4.5,
+    ySpeed: 0.25,     //Decreasing this makes the criminal more floaty
+    originalGravity: 8,
+    gravity: 8,     // How far it can jump
+    inAir : false,
+    rightPressed : false,
+    leftPressed : false,
+    upPressed : false,
+    falling : 0,
+
+}
+
+var police = {
+    image: document.getElementById("poliR"),
+    x: 15,
+    y: (platform.y - 50),
+    width: 50,
+    height: 50,
+    color: 'blue',
+    xSpeed: 4.5,
+    ySpeed: 0.25,    
+    originalGravity: 8,
+    gravity: 8,     
+    inAir : false,
+    rightPressed : false,
+    leftPressed : false,
+    upPressed : false,
+    spacePressed : false,
+    falling : 0,
 }
 
 var bullet = {
-    x: police.x,
-    y: police.y,
+    x: 0,
+    y: -400,
     width: 45,
     height: 6,
-    color: police.color,
-    speed: 6
+    color: 'black',
+    speed: 20
 }
+
+var bulletTimer = 0;
+
+var bulletAvailable = "A bullet is ready"
+
+var bulletVSCriminal = false;
+
+var newSpeed = criminal.xSpeed / 2
+
+var health = 5;

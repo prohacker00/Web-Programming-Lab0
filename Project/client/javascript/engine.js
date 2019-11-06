@@ -3,11 +3,19 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+const FPS = 60;
+
+const renderSpeed = 1000/FPS;
+
 const dr = new drawRect();
+
+const cd = new cooldown();
 
 const collisionDetecter = new collision();
 
-const myObjectSpeed = new objectSpeed();
+const myObjectSpeed = new updateMovement();
+
+var score = 0;
 
 var gameStart = setInterval(drawPlayers, renderSpeed);
 
@@ -15,17 +23,32 @@ function drawPlayers() {
 
     if (collisionDetecter.collisions()) {
         clearInterval(gameStart)
+    } 
+
+    if (!criminal.leftPressed && !criminal.rightPressed) {
+        criminalImageStatus = criminal.imageS;
     }
 
-    myObjectSpeed.updateMovement();
+    score++;
+
+    document.getElementById("score").innerHTML = Math.floor(score);
+
+    document.getElementById("bullets").innerHTML = bulletAvailable;
+
+    document.getElementById("health").innerHTML = health
+
+    myObjectSpeed.update();
 
     dr.rectangle(ctx, background)
     dr.rectangle(ctx, platform)
-    dr.rectangle(ctx, criminal)
-    dr.rectangle(ctx, police)
+    dr.rectangle(ctx, building)
+    dr.rectangle(ctx, buildingTwo)
     dr.rectangle(ctx, bullet)
 
-    // Drawing the Map
-    dr.rectangle(ctx, building)
+    dr.image(ctx, criminalImageStatus, criminal)
+    dr.image(ctx, police.image, police)
+
+    
+    cd.bulletCooldown()
 
 }

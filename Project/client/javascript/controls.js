@@ -1,66 +1,75 @@
-// 
-
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 
-var rightPressed;
-var leftPressed;
-var upPressed;
-var downPressed;
+var bulletTime = true;
 
-var policeRightPressed;
-var policeLeftPressed;
 var policeSpacePressed;
 
-
+var criminalImageStatus;
 
 function keyDownHandler(event) {
+
+    // Criminal keycodes
+   
     if (event.keyCode == 39) {
-        rightPressed = true;
+        criminal.rightPressed = true;
+        criminalImageStatus = criminal.imageR
 
     } else if (event.keyCode == 37) {
-        leftPressed = true;
+        criminal.leftPressed = true;
+        criminalImageStatus = criminal.imageL
 
     }
 
     if (event.keyCode == 38) {
-        upPressed = true;
+        criminal.upPressed = true;
     }
+
+    // Police event keycodes
 
     if (event.keyCode == 68) {
-        policeRightPressed = true;
+        police.rightPressed = true;
 
     }
+
     if (event.keyCode == 65) {
-        policeLeftPressed = true;
+        police.leftPressed = true;
     }
 
-    if (event.keyCode == 32) {
+    if (event.keyCode == 87) {
+        police.upPressed = true;
+        
+    }
+
+    if (event.keyCode == 32 && bulletTime) {
+        bulletTime = false;
         policeSpacePressed = true;
+        bullet.x = police.x
+        bullet.y = police.y + (police.height/2)
     }
 
 }
 
 function keyUpHandler(event) {
 
+    // Criminal
+
     if (event.keyCode == 39) {
-        rightPressed = false;
+        criminal.rightPressed = false;
 
     } else if (event.keyCode == 37) {
-        leftPressed = false;
+        criminal.leftPressed = false;
 
     }
 
-    if (event.keyCode == 68) {
-        policeRightPressed = false;
+    // Police
 
+    if (event.keyCode == 68) {
+        police.rightPressed = false;
     }
 
     if (event.keyCode == 65) {
-        policeLeftPressed = false;
+        police.leftPressed = false;
     }
 
-    if (event.keyCode == 32) {
-
-    }
 }

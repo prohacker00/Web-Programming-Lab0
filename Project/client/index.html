@@ -25,11 +25,24 @@
 
 <body class="MainBod">
 
+        <img id="crimR" src="./img/crimRight.png" hidden>
+        <img id="crimL" src="./img/crimLeft.png" hidden>
+        <img id="crimS" src="./img/crimStill.png" hidden>
+    
+        <img id="poliR" src="./img/polRight.png" hidden>
+    
+
     <div id="canvas-content">
-        <canvas id="canvas" width="1000" height="450" style="border: 10px solid black"></canvas>
+        <canvas id="canvas" width="1300" height="500" style="border: 10px solid black"></canvas>
     </div>
 
     <br>
+
+    <p>Score : </p>
+    <p id="score">0</p>
+    <p>Health: </p>
+    <p id="health">o</p>
+    <p id="bullets"></p>
 
     <div id="javascript_sources">
 
@@ -39,7 +52,8 @@
         <script src="javascript/drawRect.js"></script>
         <script src="javascript/playerObjects.js"></script>
         <script src="javascript/collision.js"></script>
-        <script src="javascript/objectSpeed.js"></script>
+        <script src="javascript/updateMovement.js"></script>
+        <script src="javascript/cooldown.js"></script>
 
         <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
