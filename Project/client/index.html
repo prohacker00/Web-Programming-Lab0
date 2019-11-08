@@ -51,11 +51,11 @@
         var ctx = canvas.getContext("2d");
             
             var socket = io();
+            const dr = new drawRect();
             
-            socket.on('newPositionPol', function(data) {
-
+            socket.on('newPosition', function(data) {
                 for( var i = 0; i < data.length; i++) {
-                    socketNumber = data[i].socketNumber;
+                dr.rectangle(ctx, object);
                 }
 
             });

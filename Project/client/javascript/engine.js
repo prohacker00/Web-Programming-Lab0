@@ -22,7 +22,6 @@ function drawPlayers() {
     dr.rectangle(ctx, background)
     dr.rectangle(ctx, platform)
     dr.rectangle(ctx, criminal)
-    dr.rectangle(ctx, police)
     dr.rectangle(ctx, bullet)
 
     // Drawing the Map

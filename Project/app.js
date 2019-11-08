@@ -17,9 +17,26 @@ console.log('server connection')
 
 // socket.io import
 var io = require('socket.io') (serv, {});
-var SOCKET_LIST_POLICE = {};
-var SOCKET_LIST_CRIMINALS = {};
 
+// Initialization
+var SOCKET_LIST = {};
+var POLICE_PLAYERS = {};
+var CRIMINAL_PLAYERS = {};
+
+// Police Player
+var police = function(id) {
+    var self = {
+    x: 15,
+    y: 50 ,
+    width: 45,
+    height: 45,
+    color: 'blue',
+    xSpeed: 4,
+    }
+    return self
+}
+
+// On Connection
 io.sockets.on('connection', function(socket) {
     console.log('socket connection');
     
@@ -28,46 +45,44 @@ io.sockets.on('connection', function(socket) {
     socket.y = 0;
     socket.number = " " + Math.floor(10 * Math.random());
 
-    if (SOCKET_LIST_POLICE == [] || SOCKET_LIST_POLICE.length < SOCKET_LIST_CRIMINALS.length) {
-        SOCKET_LIST_POLICE[socket.id] = socket;    
+    SOCKET_LIST[socket.id] = socket;
+
+    if (POLICE_PLAYERS == [] || POLICE_PLAYERS.length < CRIMINAL_PLAYERS.length) {
+        var player = police(socket.id)
+        POLICE_PLAYERS[socket.id] = player;
     }
 
     else {
-        SOCKET_LIST_CRIMINALS[socket.id] = socket; 
+        CRIMINAL_PLAYERS[socket.id] = socket; 
     }
+
 })
 
+// On Disconnect
 io.sockets.on('disconnect', function(socket) {
     console.log('socket disconnection');
-    delete SOCKET_LIST_CRIMINALS[socket.id];
-    delete SOCKET_LIST_POLICE[socket.id];
+    delete SOCKET_LIST[socket.id];
+    delete CRIMINAL_PLAYERS[socket.id];
+    delete POLICE_PLAYERS[socket.id]
 })
 
+// Sending Packs
 setInterval(function() {
 
-    var packPol = []
-    for(var i in SOCKET_LIST_POLICE) {
-        var socket = SOCKET_LIST_POLICE[i];
-        
+    var packPol = [];   
+
+    for(var i in POLICE_PLAYERS) {
+        var player = POLICE_PLAYERS[i];
+        var model = player;
+
         packPol.push({
-            number: socket.number
+            object: model
             });
     }
 
-    for(var i in SOCKET_LIST_POLICE) {
-        socket.emit('newPositionsPol', packPol)
-    }
-
-
-
-
-    var packCrim = []
-    for(var i in SOCKET_LIST_CRIMINALS) {
-        var socket = SOCKET_LIST_CRIMINALS[i];
-        
-        packCrim.push({
-            
-            });
+    for (var i in SOCKET_LIST) {
+        var socket = SOCKET_LIST[i];
+        socket.emit('newPositions', packPol);
     }
 
 }, 1000/60) ;
