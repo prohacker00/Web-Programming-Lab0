@@ -26,14 +26,24 @@ var CRIMINAL_PLAYERS = {};
 // Police Player
 var police = function(id) {
     var self = {
+    image: document.getElementById("poliR"),
     x: 15,
-    y: 50 ,
-    width: 45,
-    height: 45,
+    y: (platform.y - 50),
+    width: 50,
+    height: 50,
     color: 'blue',
-    xSpeed: 4,
+    xSpeed: 4.5,
+    ySpeed: 0.25,    
+    originalGravity: 8,
+    gravity: 8,     
+    inAir : false,
+    rightPressed : false,
+    leftPressed : false,
+    upPressed : false,
+    spacePressed : false,
+    falling : 0,
     }
-    return self
+    return self;
 }
 
 // On Connection
@@ -47,7 +57,7 @@ io.sockets.on('connection', function(socket) {
 
     SOCKET_LIST[socket.id] = socket;
 
-    if (POLICE_PLAYERS == [] || POLICE_PLAYERS.length < CRIMINAL_PLAYERS.length) {
+    if (POLICE_PLAYERS.length == {} || POLICE_PLAYERS.length < CRIMINAL_PLAYERS.length) {
         var player = police(socket.id)
         POLICE_PLAYERS[socket.id] = player;
     }
@@ -73,10 +83,10 @@ setInterval(function() {
 
     for(var i in POLICE_PLAYERS) {
         var player = POLICE_PLAYERS[i];
-        var model = player;
 
         packPol.push({
-            object: model
+            object: player,
+            image: player.image
             });
     }
 

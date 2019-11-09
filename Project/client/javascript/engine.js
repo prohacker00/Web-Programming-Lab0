@@ -41,12 +41,11 @@ function drawPlayers() {
 
     dr.rectangle(ctx, background)
     dr.rectangle(ctx, platform)
-<<<<<<< HEAD
+
     dr.rectangle(ctx, criminal)
-=======
+
     dr.rectangle(ctx, building)
     dr.rectangle(ctx, buildingTwo)
->>>>>>> 70500f3b9fc9b3b925b7366646e30928fe051c5a
     dr.rectangle(ctx, bullet)
 
     dr.image(ctx, criminalImageStatus, criminal)
@@ -54,5 +53,4 @@ function drawPlayers() {
 
     
     cd.bulletCooldown()
-
 }

@@ -28,12 +28,14 @@
         <img id="crimR" src="./img/crimRight.png" hidden>
         <img id="crimL" src="./img/crimLeft.png" hidden>
         <img id="crimS" src="./img/crimStill.png" hidden>
-    
+
         <img id="poliR" src="./img/polRight.png" hidden>
+        <img id="poliL" src="./img/polLeft.png" hidden>
+        <img id="poliS" src="./img/polStill.png" hidden>
     
 
     <div id="canvas-content">
-        <canvas id="canvas" width="1300" height="500" style="border: 10px solid black"></canvas>
+        <canvas id="canvas" width="1150" height= "450" style="border: 10px solid black"></canvas>
     </div>
 
     <br>
@@ -67,9 +69,9 @@
             var socket = io();
             const dr = new drawRect();
             
-            socket.on('newPosition', function(data) {
+            socket.on('newPositions', function(data) {
                 for( var i = 0; i < data.length; i++) {
-                dr.rectangle(ctx, object);
+                dr.image(ctx, data[i].image, data[i].object);
                 }
 
             });
