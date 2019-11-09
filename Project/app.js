@@ -11,9 +11,9 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/client/index.html');
 });
 
-var portNumber = (2000);
+var portNumber = 2000;
 serv.listen(2000);
-console.log('server connection')
+console.log('Server has been initialized at port ' + portNumber)
 
 // socket.io import
 var io = require('socket.io') (serv, {});
@@ -48,7 +48,7 @@ var police = function(id) {
 
 // On Connection
 io.sockets.on('connection', function(socket) {
-    console.log('socket connection');
+    console.log('A player has connected');
     
     socket.id = Math.random();
     socket.x = 0;
