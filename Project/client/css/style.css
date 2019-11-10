@@ -68,4 +68,8 @@
 .active {
   background-color: darkorchid;
   font-size: 30px;
+} 
+
+p {
+  color: aliceblue;
 }

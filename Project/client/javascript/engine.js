@@ -3,6 +3,8 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
+var socket = io.connect('http://localhost:9999')
+
 const FPS = 60;
 
 const renderSpeed = 1000/FPS;
@@ -42,7 +44,7 @@ function drawPlayers() {
     dr.rectangle(ctx, background)
     dr.rectangle(ctx, platform)
 
-    dr.rectangle(ctx, criminal)
+    
 
     dr.rectangle(ctx, building)
     dr.rectangle(ctx, buildingTwo)
@@ -53,4 +55,12 @@ function drawPlayers() {
 
     
     cd.bulletCooldown()
+
+    socket.emit('criminal' , criminal.x);
+
+    socket.on('criminal', function(data) {
+        criminal.x = data
+    })
+
+    
 }

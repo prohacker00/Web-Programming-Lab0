@@ -1,98 +1,60 @@
-// Express import
+/*
 const express = require('express');
 const app = express();
-const serv = require ('http').Server(app);
-var clients = 0;
+
+const http = require('http');
+const path = require('path');
+const socketIO = require('socket.io');
+
+const server = http.Server(app);
+const io = socketIO(server);
+
+const PORT_NUMBER = 1000
+
+app.set('port', PORT_NUMBER);
 
 app.use(express.static(__dirname));
 app.use(express.static('client'));
+*/
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/client/index.html');
+// Ignore the above code, for now. Refer to the code below.
+
+
+
+
+
+
+
+
+
+
+var express = require('express')
+var socket = require('socket.io')
+
+//App setup
+var app = express();
+
+var portNumber = 9999
+
+// Creates a server at the designated port number. When the server
+// is created, then a functionis fired back
+
+var server = app.listen(portNumber, () => {
+    console.log("Listening to requests at port " + portNumber)
 });
 
-var portNumber = 2000;
-serv.listen(2000);
-console.log('Server has been initialized at port ' + portNumber)
+//Static files
+app.use(express.static('client'))
 
-// socket.io import
-var io = require('socket.io') (serv, {});
+// Socket setup
+var io = socket(server);
 
-// Initialization
-var SOCKET_LIST = {};
-var POLICE_PLAYERS = {};
-var CRIMINAL_PLAYERS = {};
+io.on('connection', function(socket) {
+    console.log(console.log("Made socket connection", socket.id))
 
-// Police Player
-var police = function(id) {
-    var self = {
-    image: document.getElementById("poliR"),
-    x: 15,
-    y: (platform.y - 50),
-    width: 50,
-    height: 50,
-    color: 'blue',
-    xSpeed: 4.5,
-    ySpeed: 0.25,    
-    originalGravity: 8,
-    gravity: 8,     
-    inAir : false,
-    rightPressed : false,
-    leftPressed : false,
-    upPressed : false,
-    spacePressed : false,
-    falling : 0,
-    }
-    return self;
-}
-
-// On Connection
-io.sockets.on('connection', function(socket) {
-    console.log('A player has connected');
-    
-    socket.id = Math.random();
-    socket.x = 0;
-    socket.y = 0;
-    socket.number = " " + Math.floor(10 * Math.random());
-
-    SOCKET_LIST[socket.id] = socket;
-
-    if (POLICE_PLAYERS.length == {} || POLICE_PLAYERS.length < CRIMINAL_PLAYERS.length) {
-        var player = police(socket.id)
-        POLICE_PLAYERS[socket.id] = player;
-    }
-
-    else {
-        CRIMINAL_PLAYERS[socket.id] = socket; 
-    }
+    socket.on('criminal', function(data) {
+        console.log(data)
+        io.sockets.emit('criminal', data)
+    })
 
 })
-
-// On Disconnect
-io.sockets.on('disconnect', function(socket) {
-    console.log('socket disconnection');
-    delete SOCKET_LIST[socket.id];
-    delete CRIMINAL_PLAYERS[socket.id];
-    delete POLICE_PLAYERS[socket.id]
-})
-
-// Sending Packs
-setInterval(function() {
-
-    var packPol = [];   
-
-    for(var i in POLICE_PLAYERS) {
-        var player = POLICE_PLAYERS[i];
-
-        packPol.push({
-            object: player,
-            image: player.image
-            });
-    }
-
-    for (var i in SOCKET_LIST) {
-        var socket = SOCKET_LIST[i];
-        socket.emit('newPositions', packPol);
-    }
-
-}, 1000/60) ;
