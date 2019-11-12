@@ -7,7 +7,7 @@ var socket = io.connect('http://localhost:9999')
 
 const FPS = 60;
 
-const renderSpeed = 1000/FPS;
+const renderSpeed = 1000 / FPS;
 
 const dr = new drawRect();
 
@@ -23,12 +23,16 @@ var gameStart = setInterval(drawPlayers, renderSpeed);
 
 function drawPlayers() {
 
-    if (collisionDetecter.collisions()) {
-        clearInterval(gameStart)
-    } 
+    socket.on('send-criminalSpecs' , function(data) {
+        criminal = data
+    })
+
+    // if (collisionDetecter.collisions()) {
+    //     clearInterval(gameStart)
+    // }
 
     if (!criminal.leftPressed && !criminal.rightPressed) {
-        criminalImageStatus = criminal.imageS;
+        criminalImageStatus = criminalSprites.imageS;
     }
 
     score++;
@@ -39,28 +43,26 @@ function drawPlayers() {
 
     document.getElementById("health").innerHTML = health
 
-    myObjectSpeed.update();
+    // myObjectSpeed.update();
 
     dr.rectangle(ctx, background)
     dr.rectangle(ctx, platform)
 
-    
-
     dr.rectangle(ctx, building)
     dr.rectangle(ctx, buildingTwo)
     dr.rectangle(ctx, bullet)
+    // dr.rectangle(ctx, criminal)
 
     dr.image(ctx, criminalImageStatus, criminal)
     dr.image(ctx, police.image, police)
 
-    
-    cd.bulletCooldown()
+    socket.emit('criminalMove' , criminalMove);
 
-    socket.emit('criminal' , criminal.x);
-
-    socket.on('criminal', function(data) {
-        criminal.x = data
+    socket.on('updateUpPressed', function(data) {
+        criminalMove.upPressed = data;
+        console.log(criminal.upPressed)
     })
 
-    
+    cd.bulletCooldown()
+
 }

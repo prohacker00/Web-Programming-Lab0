@@ -1,4 +1,5 @@
 class collision {
+
     collisions() {
         // if (this.collide(criminal, police)) {
 
@@ -75,7 +76,7 @@ class collision {
     
 
     touches(object1, object2) {
-        return ((Math.ceil(object1.y) + object1.height <= object2.y + 20) &&
+        return ((Math.ceil(object1.y) + object1.height <= object2.y + 5) &&
             (object1.x >= object2.x || object1.x <= object2.x)) && this.collide(object1, object2)
              && ((object1.gravity < 0) || object1.inAir)
     }

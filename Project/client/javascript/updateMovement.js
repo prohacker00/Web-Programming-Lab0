@@ -1,62 +1,76 @@
 class updateMovement extends collision {
 
     
-    update() {
-        if (criminal.rightPressed) {
-            criminal.x += criminal.xSpeed;
+    // update() {
+    //     if (criminal.rightPressed) {
+    //         criminal.x += criminal.xSpeed;
 
-        } else if (criminal.leftPressed) {
-            criminal.x -= criminal.xSpeed;
-        } 
+    //     } else if (criminal.leftPressed) {
+            
+    //         criminal.x -= criminal.xSpeed;
+    //        }  
 
-        if (criminal.upPressed) {
-            this.jump(criminal)
-        } 
+    //     if (criminal.rightPressed || criminal.leftPressed) {
+            
+            
+            
+    //     }
 
-        if (criminal.inAir && !criminal.upPressed) {
-        console.log("freefalling")
-        this.fall(criminal, criminal.falling);
-        } 
+    //     if (criminal.upPressed) {
+    //         this.jump(criminal)
+    //     } 
 
-        // Police
+    //     if (criminal.inAir && !criminal.upPressed) {
+    //     console.log("freefalling")
+    //     this.fall(criminal, criminal.falling);
+    //     } 
 
-        if (police.rightPressed) {
-            police.x += police.xSpeed;
+    //     if (criminal.upPressed || criminal.inAir) {
+            
+            
 
-        }
+    //     }
 
-        if (police.leftPressed) {
-            police.x -= police.xSpeed;
+    //     // Police
 
-        }
+    //     if (police.rightPressed) {
+    //         police.x += police.xSpeed;
 
-        if (policeSpacePressed) {
-            bullet.x += bullet.speed;
+    //     }
 
-        }
+    //     if (police.leftPressed) {
+    //         police.x -= police.xSpeed;
 
-        if (police.upPressed) {
-            this.jump(police)
-        } 
-        if (police.inAir && !police.upPressed) {
-            console.log("freefalling")
-            this.fall(police, police.falling);
-            } 
+    //     }
 
-    }
+    //     if (policeSpacePressed) {
+    //         bullet.x += bullet.speed;
 
-    jump(object1) {
-        object1.inAir = false
-        object1.y -= object1.gravity;
-        object1.gravity -= object1.ySpeed
+    //     }
 
-    } 
+    //     if (police.upPressed) {
+    //         this.jump(police)
+    //     } 
+    //     if (police.inAir && !police.upPressed) {
+    //         console.log("freefalling")
+    //         this.fall(police, police.falling);
+    //         }
+    // }
 
-
-    fall(object1) {
+    // jump(object1) {
+    //     object1.inAir = false
+    //     object1.y -= object1.gravity;
+    //     object1.gravity -= object1.ySpeed
         
-        object1.y += object1.falling;
-        object1.falling += object1.ySpeed
+        
 
-    }
+    // } 
+
+
+    // fall(object1) {
+        
+    //     object1.y += object1.falling;
+    //     object1.falling += object1.ySpeed
+
+    // }
 }

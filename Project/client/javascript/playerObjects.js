@@ -1,9 +1,11 @@
 // Contains information about the objects used in the game
 
+
 let GAME_WIDTH = canvas.getAttribute('width');
 let GAME_HEIGHT = canvas.getAttribute('height');
 
 const heightAdjust = 50
+var lastUpdateTime = (new Date()).getTime();
 
 var background = {
     x: 0,
@@ -38,25 +40,39 @@ var buildingTwo = {
     color : "red",
 }
 
-var criminal = {
+// var criminal = {
+//     imageR: document.getElementById("crimR"),
+//     imageL: document.getElementById("crimL"),
+//     imageS: document.getElementById("crimS"),
+//     width: 50,
+//     height: 50,
+//     x: 300,
+//     y: platform.y - 50,
+//     color: 'red',
+//     xSpeed: 4.5,
+//     ySpeed: 0.25,     //Decreasing this makes the criminal more floaty
+//     originalGravity: 8,
+//     gravity: 8,     // How far it can jump
+//     inAir : false,
+//     rightPressed : false,
+//     leftPressed : false,
+//     upPressed : false,
+//     falling : 0,
+
+// }
+
+var criminal = {}
+
+var criminalSprites = {
     imageR: document.getElementById("crimR"),
     imageL: document.getElementById("crimL"),
     imageS: document.getElementById("crimS"),
-    width: 50,
-    height: 50,
-    x: 300,
-    y: platform.y - 50,
-    color: 'red',
-    xSpeed: 4.5,
-    ySpeed: 0.25,     //Decreasing this makes the criminal more floaty
-    originalGravity: 8,
-    gravity: 8,     // How far it can jump
-    inAir : false,
+}
+
+var criminalMove = {
     rightPressed : false,
     leftPressed : false,
     upPressed : false,
-    falling : 0,
-
 }
 
 var police = {

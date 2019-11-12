@@ -62,22 +62,7 @@
     </div>
 
     <div id="networkStuff">
-        <script>
-        
-        var ctx = canvas.getContext("2d");
-            
-            var socket = io();
-            const dr = new drawRect();
-            
-            socket.on('newPositions', function(data) {
-                for( var i = 0; i < data.length; i++) {
-                dr.image(ctx, data[i].image, data[i].object);
-                }
 
-            });
-            
-            
-        </script>
     </div>
 
 </body>

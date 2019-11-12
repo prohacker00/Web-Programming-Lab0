@@ -10,19 +10,23 @@ var criminalImageStatus;
 function keyDownHandler(event) {
 
     // Criminal keycodes
-   
-    if (event.keyCode == 39) {
-        criminal.rightPressed = true;
-        criminalImageStatus = criminal.imageR
 
+
+   // Right
+    if (event.keyCode == 39) {
+        criminalMove.rightPressed = true;
+        criminalImageStatus = criminalSprites.imageR
+
+        // Left
     } else if (event.keyCode == 37) {
-        criminal.leftPressed = true;
-        criminalImageStatus = criminal.imageL
+        criminalMove.leftPressed = true
+        criminalImageStatus = criminalSprites.imageL
 
     }
 
+    // Up
     if (event.keyCode == 38) {
-        criminal.upPressed = true;
+        criminalMove.upPressed = true;
     }
 
     // Police event keycodes
@@ -47,7 +51,6 @@ function keyDownHandler(event) {
         bullet.x = police.x
         bullet.y = police.y + (police.height/2)
     }
-
 }
 
 function keyUpHandler(event) {
@@ -56,10 +59,11 @@ function keyUpHandler(event) {
 
     if (event.keyCode == 39) {
         criminal.rightPressed = false;
+        criminalMove.rightPressed = false
 
     } else if (event.keyCode == 37) {
         criminal.leftPressed = false;
-
+        criminalMove.leftPressed = false;
     }
 
     // Police
@@ -71,5 +75,4 @@ function keyUpHandler(event) {
     if (event.keyCode == 65) {
         police.leftPressed = false;
     }
-
 }
