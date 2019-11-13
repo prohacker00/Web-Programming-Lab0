@@ -112,3 +112,5 @@ var bulletVSCriminal = false;
 var newSpeed = criminal.xSpeed / 2
 
 var health = 5;
+
+var criminalImageStatus;

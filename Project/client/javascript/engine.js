@@ -60,7 +60,6 @@ function drawPlayers() {
 
     socket.on('updateUpPressed', function(data) {
         criminalMove.upPressed = data;
-        console.log(criminal.upPressed)
     })
 
     cd.bulletCooldown()

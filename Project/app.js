@@ -19,7 +19,6 @@ app.use(express.static('client'));
 
 // Ignore the above code, for now. Refer to the code below.
 
-
 let GAME_WIDTH = 1150;
 let GAME_HEIGHT = 450;
 
@@ -27,13 +26,13 @@ const heightAdjust = 50
 
 var checker = true;
 
-var background = {
-    x: 0,
-    y: 0,
-    width: GAME_WIDTH,
-    height: GAME_HEIGHT,
-    color: 'white'
-}
+// var background = {
+//     x: 0,
+//     y: 0,
+//     width: GAME_WIDTH,
+//     height: GAME_HEIGHT,
+//     color: 'white'
+// }
 
 var platform = {
     x: 0,
@@ -68,9 +67,9 @@ var criminal = {
     y: platform.y - heightAdjust,
     color: 'red',
     xSpeed: 4.5,
-    ySpeed: 0.25, //Decreasing this makes the criminal more floaty
+    ySpeed: 0.25,            // Decreasing this makes the criminal more floaty
     originalGravity: 8,
-    gravity: 8, // How far it can jump
+    gravity: 8,              // How far it can jump
     inAir: false,
     falling: 0,
     updateUpPressed : false,
@@ -101,21 +100,21 @@ io.on('connection', function (socket) {
     console.log(console.log("Made socket connection", socket.id))
 
     socket.on('criminalMove', function (data) {
-        
+        io.sockets.emit('send-criminalSpecs', criminal)
         if (data.rightPressed) {
             criminal.x += criminal.xSpeed;
-            console.log(criminal.x)
+            // console.log(criminal.x)
 
         } if (data.leftPressed) {
             criminal.x -= criminal.xSpeed;
-            console.log(criminal.x)
+            // console.log(criminal.x)
 
         }
         if (data.upPressed) {
+            criminal.updateUpPressed = data.upPressed
             jump(criminal)
-            console.log(data.upPressed)
         }
-        io.sockets.emit('send-criminalSpecs', criminal)
+        
         collisions()
     });
 
@@ -157,21 +156,28 @@ function collisions() {
     // Criminal 
 
     if (touches(criminal, platform)) {
-        console.log("soeaszs")
+        console.log("criminal touched the green platform")
         land(criminal, platform)
 
     }
     if (touches(criminal, building)) {
+        console.log("criminal touched the red building")
         land(criminal, building)
 
 
     }
     if (touches(criminal, buildingTwo)) {
+        console.log("criminal touched the second red building")
         land(criminal, buildingTwo)
     }
 
     if (!collide(criminal, building) && !collide(criminal, buildingTwo) && !collide(criminal, platform)) {
         criminal.inAir = true
+        console.log("Not in air!")
+        if (criminal.inAir && !criminal.updateUpPressed) {
+            console.log("freefalling")
+            fall(criminal, criminal.falling);
+            }
     }
 
     // Police
@@ -203,9 +209,10 @@ function collide(object1, object2) {
 
 function land(object1, object2) {
     console.log("Landed!")
-    object1.y = object2.y - object1.width
+    object1.y = object2.y - object1.height;
     object1.gravity = object1.originalGravity;
     object1.upPressed = false;
+    object1.updateUpPressed = !object1.updateUpPressed
     object1.inAir = false;
     object1.falling = 0;
     io.sockets.emit('updateUpPressed', object1.upPressed)
@@ -213,7 +220,14 @@ function land(object1, object2) {
 }
 
 function touches(object1, object2) {
-    return ((Math.ceil(object1.y) + object1.height <= object2.y + 10) &&
+    return ((Math.ceil(object1.y) + object1.height <= object2.y + 20)  &&
             (object1.x >= object2.x || object1.x <= object2.x)) && collide(object1, object2) &&
         ((object1.gravity < 0) || object1.inAir)
+} 
+
+function fall(object1) {
+        
+    object1.y += object1.falling;
+    object1.falling += object1.ySpeed
+
 }
