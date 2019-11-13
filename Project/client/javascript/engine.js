@@ -31,7 +31,7 @@ function drawPlayers() {
     //     clearInterval(gameStart)
     // }
 
-    if (!criminal.leftPressed && !criminal.rightPressed) {
+    if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
         criminalImageStatus = criminalSprites.imageS;
     }
 
