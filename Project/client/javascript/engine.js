@@ -23,6 +23,10 @@ var gameStart = setInterval(drawPlayers, renderSpeed);
 
 function drawPlayers() {
 
+    socket.on('send-policeSpecs' , function(data) {
+        police = data
+    })
+
     socket.on('send-criminalSpecs' , function(data) {
         criminal = data
     })
@@ -33,6 +37,10 @@ function drawPlayers() {
 
     if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
         criminalImageStatus = criminalSprites.imageS;
+    }
+
+    if (!policeMove.leftPressed && !policeMove.rightPressed) {
+        policeImageStatus = policeSprites.imageS;
     }
 
     score++;
@@ -54,12 +62,17 @@ function drawPlayers() {
     // dr.rectangle(ctx, criminal)
 
     dr.image(ctx, criminalImageStatus, criminal)
-    dr.image(ctx, police.image, police)
+    dr.image(ctx, policeImageStatus, police)
 
     socket.emit('criminalMove' , criminalMove);
+    socket.emit('policeMove', policeMove)
 
     socket.on('updateUpPressed', function(data) {
         criminalMove.upPressed = data;
+    })
+
+    socket.on('updateUpPressedPolice', function(data) {
+        policeMove.upPressed = data
     })
 
     cd.bulletCooldown()

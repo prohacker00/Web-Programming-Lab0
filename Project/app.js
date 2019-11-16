@@ -1,14 +1,14 @@
 var {
     platform,
     floating_platforms,
-    criminal
+    criminal,
+    police
 } = require('./playerObjects.json')
 
 var building = floating_platforms[0]
 var buildingTwo = floating_platforms[1]
 
-
-console.log(!criminal.updateUpPressed)
+console.log(police)
 
 const jump = require('./jump')
 const col = require('./collision')
@@ -56,12 +56,39 @@ io.on('connection', function (socket) {
             
         }
         
-        col.collisions(criminal, platform, building, buildingTwo)
+        col.collisions(criminal, police, platform, building, buildingTwo)
         if (criminal.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
             criminal.floating = true;
             criminal.updateUpPressed = false
         }
         
+    });
+
+
+    socket.on('policeMove', function(data) {
+        io.sockets.emit('send-policeSpecs', police)
+
+        if (data.rightPressed) {
+            police.x += police.xSpeed;
+
+        }
+        if (data.leftPressed) {
+            police.x -= police.xSpeed;
+
+        }
+        if (data.upPressed) {
+            police.floating = false
+            jump.jump(police);
+            
+        }
+        
+        col.collisions(criminal,police, platform, building, buildingTwo)
+        if (police.updateUpPressed) {
+            io.sockets.emit('updateUpPressedPolice', false)
+            police.floating = true;
+            police.updateUpPressed = false
+        }
+
     });
 });

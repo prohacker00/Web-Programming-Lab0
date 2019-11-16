@@ -38,6 +38,21 @@
         "inAir": false,
         "falling": 0,
         "updateUpPressed": false,
-        "floating" : false
+        "floating": false
+    },
+    "police": {
+        "x": 15,
+        "y": 350,
+        "width": 50,
+        "height": 50,
+        "color": "blue",
+        "xSpeed": 4.5,
+        "ySpeed": 0.25,
+        "originalGravity": 8,
+        "gravity": 8,
+        "inAir": false,
+        "falling": 0,
+        "updateUpPressed": false,
+        "floating": false
     }
 }

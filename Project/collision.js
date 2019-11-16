@@ -1,11 +1,5 @@
-module.exports.collisions = function (criminal, platform, building, buildingTwo) {
+module.exports.collisions = function (criminal, police, platform, building, buildingTwo) {
 
-    // if (collide(criminal, police)) {
-
-    //     alert("You have been caught by the police! Refresh to play again!")
-    //     return true
-
-    // }
 
     // if (collide(criminal, bullet)) {
 
@@ -46,22 +40,21 @@ module.exports.collisions = function (criminal, platform, building, buildingTwo)
 
     // Police
 
-    // if (touches(police, platform)) {
-    //     land(police, platform)
+    if (touches(police, platform)) {
+        land(police, platform)
 
-    // }
-    // if (touches(police, building)) {
-    //     land(police, building)
+    }
+    if (touches(police, building)) {
+        land(police, building)
 
+    }
+    if (touches(police, buildingTwo)) {
+        land(police, buildingTwo)
+    }
 
-    // }
-    // if (touches(police, buildingTwo)) {
-    //     land(police, buildingTwo)
-    // }
-
-    // if (!collide(police, building) && !collide(police, buildingTwo) && !collide(police, platform)) {
-    //     police.inAir = true
-    // }
+    if (!collide(police, building) && !collide(police, buildingTwo) && !collide(police, platform)) {
+        police.inAir = true
+    }
 
     function touches(object1, object2) {
         return ((Math.ceil(object1.y) + object1.height <= object2.y + 20) &&
