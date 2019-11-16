@@ -37,6 +37,7 @@
         "gravity": 8,
         "inAir": false,
         "falling": 0,
-        "updateUpPressed": false
+        "updateUpPressed": false,
+        "floating" : false
     }
 }
