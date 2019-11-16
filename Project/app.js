@@ -7,14 +7,13 @@ var {
 var building = floating_platforms[0]
 var buildingTwo = floating_platforms[1]
 
-
-var express = require('express')
-var socket = require('socket.io')
+const express = require('express')
+const socket = require('socket.io')
 
 //App setup
-var app = express();
+const app = express();
 
-var portNumber = 9999
+let portNumber = 9999
 
 // Creates a server at the designated port number. When the server
 // is created, then a function is fired back
