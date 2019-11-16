@@ -1,79 +1,12 @@
-/*
-const express = require('express');
-const app = express();
+var {
+    platform,
+    floating_platforms,
+    criminal
+}  = require('./playerObjects.json')
 
-const http = require('http');
-const path = require('path');
-const socketIO = require('socket.io');
+var building = floating_platforms[0]
+var buildingTwo = floating_platforms[1]
 
-const server = http.Server(app);
-const io = socketIO(server);
-
-const PORT_NUMBER = 1000
-
-app.set('port', PORT_NUMBER);
-
-app.use(express.static(__dirname));
-app.use(express.static('client'));
-*/
-
-// Ignore the above code, for now. Refer to the code below.
-
-let GAME_WIDTH = 1150;
-let GAME_HEIGHT = 450;
-
-const heightAdjust = 50
-
-var checker = true;
-
-// var background = {
-//     x: 0,
-//     y: 0,
-//     width: GAME_WIDTH,
-//     height: GAME_HEIGHT,
-//     color: 'white'
-// }
-
-var platform = {
-    x: 0,
-    y: GAME_HEIGHT - heightAdjust,
-    width: GAME_WIDTH,
-    height: GAME_HEIGHT,
-    color: "lightgreen",
-
-}
-
-var building = {
-    x: (GAME_WIDTH / 2) - 300/2,
-    y: 330,
-    width : 300,
-    height : 60,
-    color : "red",
-}
-
-var buildingTwo = {
-    x: (GAME_WIDTH / 2) + 150,
-    y: 220,
-    width : 300,
-    height : 60,
-    color : "red",
-}
-
-
-var criminal = {
-    width: 50,
-    height: 50,
-    x: 300,
-    y: platform.y - heightAdjust,
-    color: 'red',
-    xSpeed: 4.5,
-    ySpeed: 0.25,            // Decreasing this makes the criminal more floaty
-    originalGravity: 8,
-    gravity: 8,              // How far it can jump
-    inAir: false,
-    falling: 0,
-    updateUpPressed : false,
-}
 
 var express = require('express')
 var socket = require('socket.io')
