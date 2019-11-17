@@ -7,7 +7,7 @@ if(!empty($username)){
         $host = "localhost";
         $dbusername = "root";
         $dbscore = "root";
-        $dbname = "Shadow_Rise";
+        $dbname = "sqlshadowrise";
     }
     else{
         echo "Score should not be empty";
