@@ -32,16 +32,18 @@ function keyDownHandler(event) {
     // Police event keycodes
 
     if (event.keyCode == 68) {
-        police.rightPressed = true;
+        policeMove.rightPressed = true;
+        policeImageStatus = policeSprites.imageR
 
     }
 
     if (event.keyCode == 65) {
-        police.leftPressed = true;
+        policeMove.leftPressed = true;
+        policeImageStatus = policeSprites.imageL
     }
 
     if (event.keyCode == 87) {
-        police.upPressed = true;
+        policeMove.upPressed = true;
         
     }
 
@@ -58,21 +60,19 @@ function keyUpHandler(event) {
     // Criminal
 
     if (event.keyCode == 39) {
-        criminal.rightPressed = false;
         criminalMove.rightPressed = false
 
     } else if (event.keyCode == 37) {
-        criminal.leftPressed = false;
         criminalMove.leftPressed = false;
     }
 
     // Police
 
     if (event.keyCode == 68) {
-        police.rightPressed = false;
+        policeMove.rightPressed = false;
     }
 
     if (event.keyCode == 65) {
-        police.leftPressed = false;
+        policeMove.leftPressed = false;
     }
 }

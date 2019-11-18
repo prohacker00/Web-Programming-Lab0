@@ -1,90 +1,28 @@
-/*
-const express = require('express');
-const app = express();
+var {
+    platform,
+    floating_platforms,
+    criminal,
+    police
+} = require('./playerObjects.json')
 
-const http = require('http');
-const path = require('path');
-const socketIO = require('socket.io');
+var building = floating_platforms[0]
+var buildingTwo = floating_platforms[1]
 
-const server = http.Server(app);
-const io = socketIO(server);
+console.log(police)
 
-const PORT_NUMBER = 1000
+const jump = require('./jump')
+const col = require('./collision')
 
-app.set('port', PORT_NUMBER);
-
-app.use(express.static(__dirname));
-app.use(express.static('client'));
-*/
-
-// Ignore the above code, for now. Refer to the code below.
-
-let GAME_WIDTH = 1150;
-let GAME_HEIGHT = 450;
-
-const heightAdjust = 50
-
-var checker = true;
-
-// var background = {
-//     x: 0,
-//     y: 0,
-//     width: GAME_WIDTH,
-//     height: GAME_HEIGHT,
-//     color: 'white'
-// }
-
-var platform = {
-    x: 0,
-    y: GAME_HEIGHT - heightAdjust,
-    width: GAME_WIDTH,
-    height: GAME_HEIGHT,
-    color: "lightgreen",
-
-}
-
-var building = {
-    x: (GAME_WIDTH / 2) - 300/2,
-    y: 330,
-    width : 300,
-    height : 60,
-    color : "red",
-}
-
-var buildingTwo = {
-    x: (GAME_WIDTH / 2) + 150,
-    y: 220,
-    width : 300,
-    height : 60,
-    color : "red",
-}
-
-
-var criminal = {
-    width: 50,
-    height: 50,
-    x: 300,
-    y: platform.y - heightAdjust,
-    color: 'red',
-    xSpeed: 4.5,
-    ySpeed: 0.25,            // Decreasing this makes the criminal more floaty
-    originalGravity: 8,
-    gravity: 8,              // How far it can jump
-    inAir: false,
-    falling: 0,
-    updateUpPressed : false,
-}
-
-var express = require('express')
-var socket = require('socket.io')
+const express = require('express')
+const socket = require('socket.io')
 
 //App setup
-var app = express();
+const app = express();
 
-var portNumber = 9999
+let portNumber = 9999
 
-// Creates a server at the designated port number. When the server
-// is created, then a function is fired back
+/* Creates a server at the designated port number. When the server is created, 
+then a function is fired back */
 
 var server = app.listen(portNumber, () => {
     console.log("Listening to requests at port " + portNumber)
@@ -101,133 +39,56 @@ io.on('connection', function (socket) {
 
     socket.on('criminalMove', function (data) {
         io.sockets.emit('send-criminalSpecs', criminal)
+        
         if (data.rightPressed) {
             criminal.x += criminal.xSpeed;
             // console.log(criminal.x)
 
-        } if (data.leftPressed) {
+        }
+        if (data.leftPressed) {
             criminal.x -= criminal.xSpeed;
             // console.log(criminal.x)
 
         }
         if (data.upPressed) {
-            criminal.updateUpPressed = data.upPressed
-            jump(criminal)
+            criminal.floating = false
+            jump.jump(criminal);
+            
         }
         
-        collisions()
+        col.collisions(criminal, police, platform, building, buildingTwo)
+        if (criminal.updateUpPressed) {
+            io.sockets.emit('updateUpPressed', false)
+            criminal.floating = true;
+            criminal.updateUpPressed = false
+        }
+        
     });
 
-});
 
-// setInterval(function () {
-//     io.sockets.emit('send-criminalSpecs', criminal)
-//     // console.log(criminal.upPressed)
-//     collisions()
-// }, 1000 / 60);
+    socket.on('policeMove', function(data) {
+        io.sockets.emit('send-policeSpecs', police)
 
+        if (data.rightPressed) {
+            police.x += police.xSpeed;
 
-function jump(object1) {
-    object1.inAir = false
-    object1.y -= object1.gravity;
-    object1.gravity -= object1.ySpeed
+        }
+        if (data.leftPressed) {
+            police.x -= police.xSpeed;
 
-}
-
-function collisions() {
-    // if (collide(criminal, police)) {
-
-    //     alert("You have been caught by the police! Refresh to play again!")
-    //     return true
-
-    // }
-
-    // if (collide(criminal, bullet)) {
-
-    //     bullet.y = 4000
-    //     health--;
-    //     if (health <= 0) {
-    //         alert("You have been killed by the police! Refresh to play again!")
-    //         return true
-    //     }
-
-    // }
-
-    // Criminal 
-
-    if (touches(criminal, platform)) {
-        console.log("criminal touched the green platform")
-        land(criminal, platform)
-
-    }
-    if (touches(criminal, building)) {
-        console.log("criminal touched the red building")
-        land(criminal, building)
-
-
-    }
-    if (touches(criminal, buildingTwo)) {
-        console.log("criminal touched the second red building")
-        land(criminal, buildingTwo)
-    }
-
-    if (!collide(criminal, building) && !collide(criminal, buildingTwo) && !collide(criminal, platform)) {
-        criminal.inAir = true
-        console.log("Not in air!")
-        if (criminal.inAir && !criminal.updateUpPressed) {
-            console.log("freefalling")
-            fall(criminal, criminal.falling);
-            }
-    }
-
-    // Police
-
-    // if (touches(police, platform)) {
-    //     land(police, platform)
-
-    // }
-    // if (touches(police, building)) {
-    //     land(police, building)
-
-
-    // }
-    // if (touches(police, buildingTwo)) {
-    //     land(police, buildingTwo)
-    // }
-
-    // if (!collide(police, building) && !collide(police, buildingTwo) && !collide(police, platform)) {
-    //     police.inAir = true
-    // }
-
-}
-
-function collide(object1, object2) {
-    return object2.x <= (object1.x + object1.width) && (object2.x + object2.width) >=
-        object1.x && (object2.y <= (object1.y + object1.height) && ((object2.y + object2.height) >= object1.y))
-}
-
-
-function land(object1, object2) {
-    console.log("Landed!")
-    object1.y = object2.y - object1.height;
-    object1.gravity = object1.originalGravity;
-    object1.upPressed = false;
-    object1.updateUpPressed = !object1.updateUpPressed
-    object1.inAir = false;
-    object1.falling = 0;
-    io.sockets.emit('updateUpPressed', object1.upPressed)
-
-}
-
-function touches(object1, object2) {
-    return ((Math.ceil(object1.y) + object1.height <= object2.y + 20)  &&
-            (object1.x >= object2.x || object1.x <= object2.x)) && collide(object1, object2) &&
-        ((object1.gravity < 0) || object1.inAir)
-} 
-
-function fall(object1) {
+        }
+        if (data.upPressed) {
+            police.floating = false
+            jump.jump(police);
+            
+        }
         
-    object1.y += object1.falling;
-    object1.falling += object1.ySpeed
+        col.collisions(criminal,police, platform, building, buildingTwo)
+        if (police.updateUpPressed) {
+            io.sockets.emit('updateUpPressedPolice', false)
+            police.floating = true;
+            police.updateUpPressed = false
+        }
 
-}
+    });
+});

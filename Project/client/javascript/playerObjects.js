@@ -40,27 +40,6 @@ var buildingTwo = {
     color : "red",
 }
 
-// var criminal = {
-//     imageR: document.getElementById("crimR"),
-//     imageL: document.getElementById("crimL"),
-//     imageS: document.getElementById("crimS"),
-//     width: 50,
-//     height: 50,
-//     x: 300,
-//     y: platform.y - 50,
-//     color: 'red',
-//     xSpeed: 4.5,
-//     ySpeed: 0.25,     //Decreasing this makes the criminal more floaty
-//     originalGravity: 8,
-//     gravity: 8,     // How far it can jump
-//     inAir : false,
-//     rightPressed : false,
-//     leftPressed : false,
-//     upPressed : false,
-//     falling : 0,
-
-// }
-
 var criminal = {}
 
 var criminalSprites = {
@@ -69,29 +48,27 @@ var criminalSprites = {
     imageS: document.getElementById("crimS"),
 }
 
+var policeSprites = {
+    imageR: document.getElementById("poliR"),
+    imageL: document.getElementById("poliL"),
+    imageS: document.getElementById("poliS"),
+}
+
 var criminalMove = {
     rightPressed : false,
     leftPressed : false,
     upPressed : false,
 }
 
-var police = {
-    image: document.getElementById("poliR"),
-    x: 15,
-    y: (platform.y - 50),
-    width: 50,
-    height: 50,
-    color: 'blue',
-    xSpeed: 4.5,
-    ySpeed: 0.25,    
-    originalGravity: 8,
-    gravity: 8,     
-    inAir : false,
+var policeMove = {
     rightPressed : false,
     leftPressed : false,
     upPressed : false,
     spacePressed : false,
-    falling : 0,
+}
+
+var police = {
+    // image: document.getElementById("poliR"),
 }
 
 var bullet = {
@@ -114,3 +91,5 @@ var newSpeed = criminal.xSpeed / 2
 var health = 5;
 
 var criminalImageStatus;
+
+var policeImageStatus;
