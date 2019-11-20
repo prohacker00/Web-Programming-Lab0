@@ -52,7 +52,7 @@ io.on('connection', function (socket) {
         if (criminal.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
             criminal.floating = true;
-            criminal.updateUpPressed = false
+            criminal.updateUpPressed = false;
         }
 
         if (police.updateUpPressed) {
