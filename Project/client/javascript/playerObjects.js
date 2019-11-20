@@ -37,7 +37,7 @@ var middleBuildTwo = {
     y: 120,
     width : 280,
     height : 30,
-    color : "red",
+    color : "blue",
 }
 
 var building = {
@@ -45,7 +45,7 @@ var building = {
     y: 220,
     width : 300,
     height : 60,
-    color : "red",
+    color : "brown",
 }
 
 var buildingTwo = {
@@ -53,7 +53,7 @@ var buildingTwo = {
     y: 220,
     width : 300,
     height : 60,
-    color : "red",
+    color : "yellow",
 }
 
 var edgeOne = {
@@ -84,6 +84,25 @@ var policeSprites = {
     imageR: document.getElementById("poliR"),
     imageL: document.getElementById("poliL"),
     imageS: document.getElementById("poliS"),
+}
+
+
+var platC = {
+    img : document.getElementById("plat"),
+    x : 0,
+    y : platform.y
+}
+
+var floatPlat = {
+    img : document.getElementById("floating"),
+    x : 0,
+    y : 0,
+}
+
+var floatPlatTwo = {
+    img : document.getElementById("floating"),
+    x : 0,
+    y : 0,
 }
 
 var criminalMove = {

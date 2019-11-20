@@ -46,7 +46,6 @@ function drawPlayers() {
     // myObjectSpeed.update();
 
     dr.rectangle(ctx, background)
-    dr.rectangle(ctx, platform)
 
     dr.rectangle(ctx, building)
     dr.rectangle(ctx, middleBuild)
@@ -60,6 +59,25 @@ function drawPlayers() {
 
     dr.image(ctx, criminalImageStatus, criminal)
     dr.image(ctx, policeImageStatus, police)
+
+
+    for (let index = 0; index < platform.width; index += 89) {
+        platC.x = index;
+        dr.image(ctx , platC.img, platC)
+    }
+
+    for (let index = 0; index < building.width; index += 89) {
+        floatPlat.x = building.x + index;
+        floatPlat.y = building.y;
+        dr.image(ctx , floatPlat.img , floatPlat)
+        
+    }
+
+    for (let index = 0; index < buildingTwo.width; index += 89) {
+        floatPlatTwo.x = buildingTwo.x + index;
+        floatPlatTwo.y = buildingTwo.y
+        dr.image(ctx , floatPlatTwo.img , floatPlatTwo)
+    }
 
     socket.emit('playersMove', {
         criminal : criminalMove,
