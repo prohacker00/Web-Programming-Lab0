@@ -13,10 +13,6 @@ const dr = new drawRect();
 
 const cd = new cooldown();
 
-const collisionDetecter = new collision();
-
-const myObjectSpeed = new updateMovement();
-
 var score = 0;
 
 var gameStart = setInterval(drawPlayers, renderSpeed);
