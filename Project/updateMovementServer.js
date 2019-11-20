@@ -29,19 +29,17 @@
 
         // Police
 
-        if (police.rightPressed) {
+        if (police.rightPressed ) {
             police.x += police.xSpeed;
 
         }
 
         if (police.leftPressed) {
             police.x -= police.xSpeed;
-
         }
 
         if (policeSpacePressed) {
             bullet.x += bullet.speed;
-
         }
 
         if (police.upPressed) {

@@ -2,7 +2,8 @@ var {
     platform,
     floating_platforms,
     criminal,
-    police
+    police,
+    bullet
 } = require('./playerObjects.json')
 
 var building = floating_platforms[0]
@@ -54,6 +55,10 @@ io.on('connection', function (socket) {
             criminal.floating = false
             jump.jump(criminal);
             
+        }
+
+        if (data.spacePressed) {
+        
         }
         
         col.collisions(criminal, police, platform, building, buildingTwo)

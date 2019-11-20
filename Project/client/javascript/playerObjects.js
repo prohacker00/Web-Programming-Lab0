@@ -25,10 +25,26 @@ var platform = {
 }
 
 var building = {
-    x: (GAME_WIDTH / 2) - 300/2,
-    y: 330,
+    x: (GAME_WIDTH / 2) - 450,
+    y: 220,
     width : 300,
     height : 60,
+    color : "red",
+}
+
+var middleBuil = {
+    x: (GAME_WIDTH / 2) - 70,
+    y: -120 + platform.y,
+    width : 140,
+    height : 120,
+    color : "black",
+}
+
+var middleBuilTwo = {
+    x: (GAME_WIDTH / 2) - 140,
+    y: 120,
+    width : 280,
+    height : 30,
     color : "red",
 }
 

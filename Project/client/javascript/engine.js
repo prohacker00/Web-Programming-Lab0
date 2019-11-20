@@ -31,10 +31,6 @@ function drawPlayers() {
         criminal = data
     })
 
-    // if (collisionDetecter.collisions()) {
-    //     clearInterval(gameStart)
-    // }
-
     if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
         criminalImageStatus = criminalSprites.imageS;
     }
@@ -57,7 +53,9 @@ function drawPlayers() {
     dr.rectangle(ctx, platform)
 
     dr.rectangle(ctx, building)
+    dr.rectangle(ctx, middleBuil)
     dr.rectangle(ctx, buildingTwo)
+    dr.rectangle(ctx, middleBuilTwo)
     dr.rectangle(ctx, bullet)
 
     dr.rectangle(ctx, edgeOne)

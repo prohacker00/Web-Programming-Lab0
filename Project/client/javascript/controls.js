@@ -28,7 +28,7 @@ function keyDownHandler(event) {
     if (event.keyCode == 38) {
         criminalMove.upPressed = true;
     }
-
+    
     // Police event keycodes
 
     if (event.keyCode == 68) {
