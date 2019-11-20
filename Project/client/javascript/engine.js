@@ -61,8 +61,10 @@ function drawPlayers() {
     dr.image(ctx, criminalImageStatus, criminal)
     dr.image(ctx, policeImageStatus, police)
 
-    socket.emit('criminalMove' , criminalMove);
-    socket.emit('policeMove', policeMove)
+    socket.emit('playersMove', {
+        criminal : criminalMove,
+        police : policeMove
+    })
 
     socket.on('updateUpPressed', function(data) {
         criminalMove.upPressed = data;

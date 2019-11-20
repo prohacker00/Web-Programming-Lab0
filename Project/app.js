@@ -11,10 +11,9 @@ var buildingTwo = floating_platforms[1]
 var middleBuild = floating_platforms[2]
 var middleBuildTwo = floating_platforms[3]
 
-console.log(police)
-
 const jump = require('./jump')
 const col = require('./collision')
+const updater = require('./updateMovementServer.js')
 
 const express = require('express')
 const socket = require('socket.io')
@@ -40,57 +39,22 @@ var io = socket(server);
 io.on('connection', function (socket) {
     console.log(console.log("Made socket connection", socket.id))
 
-    socket.on('criminalMove', function (data) {
+    socket.on('playersMove' , function(data) {
         io.sockets.emit('send-criminalSpecs', criminal)
-        
-        if (data.rightPressed) {
-            criminal.x += criminal.xSpeed;
-            // console.log(criminal.x)
+        io.sockets.emit('send-policeSpecs', police)
+        updater.update(data.criminal , criminal)
+        updater.update(data.police , police)
 
-        }
-        if (data.leftPressed) {
-            criminal.x -= criminal.xSpeed;
-            // console.log(criminal.x)
+        col.collisions(criminal,police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
 
-        }
-        if (data.upPressed) {
-            criminal.floating = false
-            jump.jump(criminal);
-            
-        }
-
-        if (data.spacePressed) {
-        
-        }
-        
-        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
+        // This stops the criminal from bouncing, notifies the client that the 
+        // player has completed their jump
         if (criminal.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
             criminal.floating = true;
             criminal.updateUpPressed = false
         }
-        
-    });
 
-
-    socket.on('policeMove', function(data) {
-        io.sockets.emit('send-policeSpecs', police)
-
-        if (data.rightPressed) {
-            police.x += police.xSpeed;
-
-        }
-        if (data.leftPressed) {
-            police.x -= police.xSpeed;
-
-        }
-        if (data.upPressed) {
-            police.floating = false
-            jump.jump(police);
-            
-        }
-        
-        col.collisions(criminal,police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
         if (police.updateUpPressed) {
             io.sockets.emit('updateUpPressedPolice', false)
             police.floating = true;

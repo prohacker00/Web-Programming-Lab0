@@ -14,6 +14,9 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
     // Criminal 
 
+    // Check if the criminal touches ANY platform, then proceeds to land the criminal
+    // safely
+
     if (touches(criminal, platform)) {
         console.log("criminal touched the green platform")
         land(criminal, platform)
@@ -25,26 +28,32 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
     }
     if (touches(criminal, buildingTwo)) {
-        console.log("criminal touched the second red building")
+        console.log("criminal touched the vv red building")
         land(criminal, buildingTwo)
     }
 
     if (touches(criminal, middleBuild)) {
-        console.log("criminal touched the second red building")
+        console.log("criminal touched the big black building")
         land(criminal, middleBuild)
     }
 
     if (touches(criminal, middleBuildTwo)) {
-        console.log("criminal touched the second red building")
+        console.log("criminal touched the cc red building")
         land(criminal, middleBuildTwo)
     }
 
-    if (!collide(criminal, building) && !collide(criminal, buildingTwo) && !collide(criminal, platform)) {
+    // Checks if the criminal is not colliding with anything, this is to ensure that 
+    // the criminal can freefall safely when it exists the boundaries of any platform
+    // or building
+
+    if (!collide(criminal, building) && !collide(criminal, buildingTwo) &&
+     !collide(criminal, platform) && !collide(criminal,middleBuild) && 
+     !collide(criminal,middleBuildTwo)) {
         criminal.inAir = true
         console.log("Not in air!")
         if (criminal.inAir && criminal.floating) {
             console.log("freefalling")
-            fall(criminal, criminal.falling);
+            fall(criminal);
         }
     }
 
