@@ -27,49 +27,49 @@ var platform = {
 var middleBuild = {
     x: (GAME_WIDTH / 2) - 70,
     y: -120 + platform.y,
-    width : 140,
-    height : 120,
-    color : "black",
+    width: 140,
+    height: 120,
+    color: "black",
 }
 
 var middleBuildTwo = {
     x: (GAME_WIDTH / 2) - 140,
     y: 120,
-    width : 280,
-    height : 30,
-    color : "blue",
+    width: 280,
+    height: 30,
+    color: "blue",
 }
 
 var building = {
     x: (GAME_WIDTH / 2) - 450,
     y: 220,
-    width : 300,
-    height : 60,
-    color : "brown",
+    width: 300,
+    height: 60,
+    color: "brown",
 }
 
 var buildingTwo = {
     x: (GAME_WIDTH / 2) + 150,
     y: 220,
-    width : 300,
-    height : 60,
-    color : "yellow",
+    width: 300,
+    height: 60,
+    color: "yellow",
 }
 
 var edgeOne = {
     x: 0,
     y: 0,
-    width : 10,
-    height : GAME_HEIGHT,
-    color : "black",
+    width: 10,
+    height: GAME_HEIGHT,
+    color: "black",
 }
 
 var edgeTwo = {
     x: GAME_WIDTH - 10,
     y: 0,
-    width : 10,
-    height : GAME_HEIGHT,
-    color : "black",
+    width: 10,
+    height: GAME_HEIGHT,
+    color: "black",
 }
 
 var criminal = {}
@@ -88,34 +88,34 @@ var policeSprites = {
 
 
 var platC = {
-    img : document.getElementById("plat"),
-    x : 0,
-    y : platform.y
+    img: document.getElementById("plat"),
+    x: 0,
+    y: platform.y
 }
 
 var floatPlat = {
-    img : document.getElementById("floating"),
-    x : 0,
-    y : 0,
+    img: document.getElementById("floating"),
+    x: 0,
+    y: 0,
 }
 
 var floatPlatTwo = {
-    img : document.getElementById("floating"),
-    x : 0,
-    y : 0,
+    img: document.getElementById("floating"),
+    x: 0,
+    y: 0,
 }
 
 var criminalMove = {
-    rightPressed : false,
-    leftPressed : false,
-    upPressed : false,
+    rightPressed: false,
+    leftPressed: false,
+    upPressed: false,
 }
 
 var policeMove = {
-    rightPressed : false,
-    leftPressed : false,
-    upPressed : false,
-    spacePressed : false,
+    rightPressed: false,
+    leftPressed: false,
+    upPressed: false,
+    spacePressed: false,
 }
 
 var police = {

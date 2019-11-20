@@ -15,28 +15,28 @@
             "y": 220,
             "width": 300,
             "height": 60,
-            "color": "red"
+            "color": "brown"
         },
         {
             "x": 725,
-            "y": 120,
+            "y": 220,
             "width": 300,
             "height": 60,
-            "color": "red"
+            "color": "yellow"
         },
         {
             "x": 505,
             "y": 280,
-            "width" : 140,
-            "height" : 120,
-            "color" : "black"
+            "width": 140,
+            "height": 120,
+            "color": "black"
         },
         {
-            "x": 465,
+            "x": 435,
             "y": 120,
-            "width" : 280,
-            "height" : 30,
-            "color" : "red"
+            "width": 280,
+            "height": 30,
+            "color": "blue"
         }
     ],
     "criminal": {
@@ -47,14 +47,14 @@
         "color": "red",
         "xSpeed": 4.5,
         "ySpeed": 0.25,
-        "originalGravity": 8,
-        "gravity": 8,
+        "originalGravity": 10,
+        "gravity": 10,
         "inAir": false,
         "falling": 0,
         "updateUpPressed": false,
-        "floating": false
+        "floating": false,
+        "ugh": false
     },
-    
     "bullet": {
         "x": 0,
         "y": -400,
@@ -63,7 +63,6 @@
         "color": "black",
         "speed": 20
     },
-
     "police": {
         "x": 15,
         "y": 350,

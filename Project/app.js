@@ -6,12 +6,13 @@ var {
     bullet
 } = require('./playerObjects.json')
 
-var building = floating_platforms[0]
+// var building = floating_platforms[0];
+var building = floating_platforms[0];
 var buildingTwo = floating_platforms[1]
 var middleBuild = floating_platforms[2]
 var middleBuildTwo = floating_platforms[3]
 
-const jump = require('./jump')
+// const jump = require('./jump')
 const col = require('./collision')
 const updater = require('./updateMovementServer.js')
 
@@ -36,21 +37,23 @@ app.use(express.static('client'))
 // Socket setup
 var io = socket(server);
 
-io.on('connection', function (socket) {
+io.on('connection', async function (socket) {
     console.log(console.log("Made socket connection", socket.id))
 
-    socket.on('playersMove' , function(data) {
+    // Updates the players movement
+    socket.on('playersMove', function (data) {
         io.sockets.emit('send-criminalSpecs', criminal)
         io.sockets.emit('send-policeSpecs', police)
-        updater.update(data.criminal , criminal)
-        updater.update(data.police , police)
+        updater.update(data.criminal, criminal)
+        updater.update(data.police, police)
 
-        col.collisions(criminal,police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
+        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
 
         // This stops the criminal from bouncing, notifies the client that the 
         // player has completed their jump
         if (criminal.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
+            criminal.inAir = false;
             criminal.floating = true;
             criminal.updateUpPressed = false;
         }

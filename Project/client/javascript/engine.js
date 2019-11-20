@@ -15,15 +15,17 @@ const cd = new cooldown();
 
 var score = 0;
 
+// Emits the platforms to the server for collision checking
+
 var gameStart = setInterval(drawPlayers, renderSpeed);
 
 function drawPlayers() {
 
-    socket.on('send-policeSpecs' , function(data) {
+    socket.on('send-policeSpecs', function (data) {
         police = data
     })
 
-    socket.on('send-criminalSpecs' , function(data) {
+    socket.on('send-criminalSpecs', function (data) {
         criminal = data
     })
 
@@ -63,32 +65,32 @@ function drawPlayers() {
 
     for (let index = 0; index < platform.width; index += 89) {
         platC.x = index;
-        dr.image(ctx , platC.img, platC)
+        dr.image(ctx, platC.img, platC)
     }
 
     for (let index = 0; index < building.width; index += 89) {
         floatPlat.x = building.x + index;
         floatPlat.y = building.y;
-        dr.image(ctx , floatPlat.img , floatPlat)
-        
+        dr.image(ctx, floatPlat.img, floatPlat)
+
     }
 
     for (let index = 0; index < buildingTwo.width; index += 89) {
         floatPlatTwo.x = buildingTwo.x + index;
         floatPlatTwo.y = buildingTwo.y
-        dr.image(ctx , floatPlatTwo.img , floatPlatTwo)
+        dr.image(ctx, floatPlatTwo.img, floatPlatTwo)
     }
 
     socket.emit('playersMove', {
-        criminal : criminalMove,
-        police : policeMove
+        criminal: criminalMove,
+        police: policeMove
     })
 
-    socket.on('updateUpPressed', function(data) {
+    socket.on('updateUpPressed', function (data) {
         criminalMove.upPressed = data;
     })
 
-    socket.on('updateUpPressedPolice', function(data) {
+    socket.on('updateUpPressedPolice', function (data) {
         policeMove.upPressed = data
     })
 

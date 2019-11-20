@@ -18,17 +18,17 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     // safely
 
     if (touches(criminal, platform)) {
-        console.log("criminal touched the green platform")
+        console.log("criminal touched the puuuurple platform")
         land(criminal, platform)
 
     }
     if (touches(criminal, building)) {
-        console.log("criminal touched the red building")
+        console.log("criminal touched the brown building")
         land(criminal, building)
 
     }
     if (touches(criminal, buildingTwo)) {
-        console.log("criminal touched the vv red building")
+        console.log("criminal touched the yellow building")
         land(criminal, buildingTwo)
     }
 
@@ -38,7 +38,7 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     }
 
     if (touches(criminal, middleBuildTwo)) {
-        console.log("criminal touched the cc red building")
+        console.log("criminal touched the thin blue building")
         land(criminal, middleBuildTwo)
     }
 
@@ -47,14 +47,19 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     // or building
 
     if (!collide(criminal, building) && !collide(criminal, buildingTwo) &&
-     !collide(criminal, platform) && !collide(criminal,middleBuild) && 
-     !collide(criminal,middleBuildTwo)) {
+        !collide(criminal, platform) && !collide(criminal, middleBuild) &&
+        !collide(criminal, middleBuildTwo) && criminal.floating) {
         criminal.inAir = true
-        console.log("Not in air!")
-        if (criminal.inAir && criminal.floating) {
-            console.log("freefalling")
-            fall(criminal);
-        }
+        criminal.ugh = true
+        console.log("Not in air!");
+
+    }
+
+    if (criminal.ugh) {
+
+        console.log("freefalling")
+        fall(criminal);
+
     }
 
     // Police
@@ -80,24 +85,28 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     }
 
     if (!collide(police, building) && !collide(police, buildingTwo) && !collide(police, platform)) {
-        police.inAir = true
+        police.inAir = true;
     }
 
     function touches(object1, object2) {
-        return ((Math.ceil(object1.y) + object1.height <= object2.y + 20) &&
+        return ((Math.ceil(object1.y) + object1.height <= object2.y + 10) &&
                 (object1.x >= object2.x || object1.x <= object2.x)) && collide(object1, object2) &&
             ((object1.gravity < 0) || object1.inAir)
     }
 
     function collide(object1, object2) {
-        return object2.x <= (object1.x + object1.width) && (object2.x + object2.width) >=
-            object1.x && (object2.y <= (object1.y + object1.height) && ((object2.y + object2.height) >= object1.y))
+        return object2.x <= (object1.x + object1.width) &&
+            (object2.x + object2.width) >= object1.x &&
+            (object2.y <= (object1.y + object1.height) &&
+                ((object2.y + object2.height) >= object1.y))
     }
 
     function land(object1, object2) {
         console.log("Landed!")
+        object1.ugh = false
         object1.y = object2.y - object1.height;
         object1.gravity = object1.originalGravity;
+        object1.floating = true;
         object1.upPressed = false;
         object1.updateUpPressed = true
         object1.inAir = false;
