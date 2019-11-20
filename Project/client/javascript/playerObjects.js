@@ -40,6 +40,22 @@ var buildingTwo = {
     color : "red",
 }
 
+var edgeOne = {
+    x: 0,
+    y: 0,
+    width : 10,
+    height : GAME_HEIGHT,
+    color : "black",
+}
+
+var edgeTwo = {
+    x: GAME_WIDTH - 10,
+    y: 0,
+    width : 10,
+    height : GAME_HEIGHT,
+    color : "black",
+}
+
 var criminal = {}
 
 var criminalSprites = {
@@ -85,6 +101,8 @@ var bulletTimer = 0;
 var bulletAvailable = "A bullet is ready"
 
 var bulletVSCriminal = false;
+
+var bulletVSCop = false;
 
 var newSpeed = criminal.xSpeed / 2
 
