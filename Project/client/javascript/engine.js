@@ -53,9 +53,9 @@ function drawPlayers() {
     dr.rectangle(ctx, platform)
 
     dr.rectangle(ctx, building)
-    dr.rectangle(ctx, middleBuil)
+    dr.rectangle(ctx, middleBuild)
     dr.rectangle(ctx, buildingTwo)
-    dr.rectangle(ctx, middleBuilTwo)
+    dr.rectangle(ctx, middleBuildTwo)
     dr.rectangle(ctx, bullet)
 
     dr.rectangle(ctx, edgeOne)

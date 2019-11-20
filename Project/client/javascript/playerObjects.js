@@ -24,7 +24,7 @@ var platform = {
 
 }
 
-var middleBuil = {
+var middleBuild = {
     x: (GAME_WIDTH / 2) - 70,
     y: -120 + platform.y,
     width : 140,
@@ -32,7 +32,7 @@ var middleBuil = {
     color : "black",
 }
 
-var middleBuilTwo = {
+var middleBuildTwo = {
     x: (GAME_WIDTH / 2) - 140,
     y: 120,
     width : 280,

@@ -1,4 +1,4 @@
-module.exports.collisions = function (criminal, police, platform, building, buildingTwo) {
+module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo) {
 
 
     // if (collide(criminal, bullet)) {
@@ -29,6 +29,16 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         land(criminal, buildingTwo)
     }
 
+    if (touches(criminal, middleBuild)) {
+        console.log("criminal touched the second red building")
+        land(criminal, middleBuild)
+    }
+
+    if (touches(criminal, middleBuildTwo)) {
+        console.log("criminal touched the second red building")
+        land(criminal, middleBuildTwo)
+    }
+
     if (!collide(criminal, building) && !collide(criminal, buildingTwo) && !collide(criminal, platform)) {
         criminal.inAir = true
         console.log("Not in air!")
@@ -50,6 +60,14 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     }
     if (touches(police, buildingTwo)) {
         land(police, buildingTwo)
+    }
+
+    if (touches(police, middleBuild)) {
+        land(police, middleBuild)
+    }
+
+    if (touches(police, middleBuildTwo)) {
+        land(police, middleBuildTwo)
     }
 
     if (!collide(police, building) && !collide(police, buildingTwo) && !collide(police, platform)) {
