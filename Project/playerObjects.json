@@ -11,18 +11,32 @@
     },
     "floating_platforms": [
         {
-            "x": 425,
-            "y": 330,
+            "x": 125,
+            "y": 220,
             "width": 300,
             "height": 60,
             "color": "red"
         },
         {
             "x": 725,
-            "y": 220,
+            "y": 120,
             "width": 300,
             "height": 60,
             "color": "red"
+        },
+        {
+            "x": 505,
+            "y": 280,
+            "width" : 140,
+            "height" : 120,
+            "color" : "black"
+        },
+        {
+            "x": 465,
+            "y": 120,
+            "width" : 280,
+            "height" : 30,
+            "color" : "red"
         }
     ],
     "criminal": {

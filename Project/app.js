@@ -8,6 +8,8 @@ var {
 
 var building = floating_platforms[0]
 var buildingTwo = floating_platforms[1]
+var middleBuild = floating_platforms[2]
+var middleBuildTwo = floating_platforms[3]
 
 console.log(police)
 
@@ -61,7 +63,7 @@ io.on('connection', function (socket) {
         
         }
         
-        col.collisions(criminal, police, platform, building, buildingTwo)
+        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
         if (criminal.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
             criminal.floating = true;
@@ -88,7 +90,7 @@ io.on('connection', function (socket) {
             
         }
         
-        col.collisions(criminal,police, platform, building, buildingTwo)
+        col.collisions(criminal,police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
         if (police.updateUpPressed) {
             io.sockets.emit('updateUpPressedPolice', false)
             police.floating = true;
