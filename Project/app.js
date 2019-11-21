@@ -44,35 +44,43 @@ var io = socket(server);
 io.on('connection', function (socket) {
     console.log(console.log("Made socket connection", socket.id))
 
-    // data contains the booleans used to check whether a key has been pressed for both players
+    /* data (the parameter inside function) contains the booleans used to check 
+       whether a key has been pressed for both players */ 
+
     socket.on('playersMove', function (data) {
 
         //Emits the police and the criminal to the client. So they can be drawn onto the canvas
+
         io.sockets.emit('send-criminalSpecs', criminal)
         io.sockets.emit('send-policeSpecs', police)
-        io.sockets.emit('send-bulletSpecs' , bullet)
+        io.sockets.emit('send-bulletSpecs', bullet)
 
         // Checks if any keys have been pressed, and moves the players accordingly
-        updater.update(data.criminal, criminal,bullet)
-        updater.update(data.police, police,bullet)
 
-        if(bullet.bulletTime) {
+        updater.update(data.criminal, criminal, bullet)
+        updater.update(data.police, police, bullet)
+
+        // If the cooldown period finishes, then player can shoot again!
+
+        if (bullet.bulletTime) {
             console.log("Bullet time")
-            io.sockets.emit('updateDownPressed' , false)
+            io.sockets.emit('updateDownPressed', false)
             bullet.bulletTime = false;
         }
 
         // Used to check if any collisions happen between everything
+
         col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
 
         /* This stops the players from bouncing, notifies the client that the player has completed their jump */
+        
         if (criminal.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
             criminal.inAir = false;
             criminal.floating = true;
             criminal.updateUpPressed = false;
 
-        } 
+        }
 
         if (police.updateUpPressed) {
             io.sockets.emit('updateUpPressedPolice', false)

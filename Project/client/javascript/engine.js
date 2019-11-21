@@ -31,7 +31,7 @@ function drawPlayers() {
         bullet = data
     })
 
-    // Sets criminal || police sprites to still when left nor right is pressed
+    // Sets criminal OR police sprites to still when left nor right is pressed
 
     if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
         criminalImageStatus = criminalSprites.imageS;
@@ -40,6 +40,8 @@ function drawPlayers() {
     if (!policeMove.leftPressed && !policeMove.rightPressed) {
         policeImageStatus = policeSprites.imageS;
     }
+
+    // Score , health and bullet availability here.
 
     score++;
 
@@ -63,7 +65,7 @@ function drawPlayers() {
     dr.image(ctx, criminalImageStatus, criminal)
     dr.image(ctx, policeImageStatus, police)
 
-    // Maps the platform images onto the floating platforms / base platform
+    // Maps the platform images onto the floating platforms and base platform
 
 
     for (let index = 0; index < platform.width; index += 89) {
@@ -91,6 +93,9 @@ function drawPlayers() {
         police: policeMove
     })
 
+    // Because we don't have a keyUpHandler for jumping / shooting , because these operations require just a press
+    // to be executed 
+
     socket.on('updateUpPressed', function (data) {
         criminalMove.upPressed = data;
     })
@@ -102,7 +107,5 @@ function drawPlayers() {
     socket.on('updateUpPressedPolice', function (data) {
         policeMove.upPressed = data
     })
-
-    // cd.bulletCooldown()
 
 }

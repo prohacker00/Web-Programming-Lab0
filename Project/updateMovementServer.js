@@ -1,3 +1,5 @@
+// This moves the players accordingly 
+
 module.exports.update = function (movement, object, bullet) {
     const cool = require('./cooldown.js')
 
@@ -22,7 +24,6 @@ module.exports.update = function (movement, object, bullet) {
     }
 
     if (movement.downPressed) {
-        console.log("A bullet has been launched")
         cool.cooldown(bullet , object);
 
     }

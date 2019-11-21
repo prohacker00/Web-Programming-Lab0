@@ -14,10 +14,10 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
     // Criminal 
 
-    // Check if the criminal touches ANY platform, then proceeds to land the criminal
-    // safely
+    // The code above is for bullet collision detection. Still a work in progress...
 
-    // The touches here ensure the player objects can land safely when they touch a platform
+    /* Check if the criminal touches ANY platform, then proceeds to land the criminal safely
+    The touches here ensure the player objects can land safely when they touch a platform */
 
     if (touches(criminal, platform)) {
         console.log("criminal touched the puuuurple platform")
@@ -44,9 +44,9 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         land(criminal, middleBuildTwo)
     }
 
-    // Checks if the criminal is not colliding with anything, this is to ensure that 
-    // the criminal can freefall safely when it exits the boundaries of any platform
-    // or building
+    /* Checks if the criminal is not colliding with anything, this is to ensure that 
+       the criminal can freefall safely when it exits the boundaries of any platform
+       or building */
 
     if (!collide(criminal, building) && !collide(criminal, buildingTwo) &&
         !collide(criminal, platform) && !collide(criminal, middleBuild) &&
@@ -64,7 +64,7 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
     }
 
-    // Police
+    // For the police
 
     if (touches(police, platform)) {
         land(police, platform)
@@ -91,8 +91,8 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     }
 
     /* This function tells you whether an object touches another object (Note: this is different than collide)
-    this will not return true if two objects are inside each other, this only tells you if an object is touching
-    the surface of another object */
+       this will not return true if two objects are inside each other, this only tells you if a player is touching
+       the top surface of another object (hence the name touches lmao) */
 
     function touches(object1, object2) {
         return ((Math.ceil(object1.y) + object1.height <= object2.y + 10) &&
@@ -100,7 +100,8 @@ module.exports.collisions = function (criminal, police, platform, building, buil
             ((object1.gravity < 0) || object1.inAir)
     }
 
-    // Collide tells you whether two objects are colliding. Will return true if two objects are inside each other
+    /* Collide tells you whether two objects are colliding. Will return true if two objects are inside each other.
+       Think of it like a car collision */
 
     function collide(object1, object2) {
         return object2.x <= (object1.x + object1.width) &&
@@ -123,7 +124,8 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         object1.falling = 0;
     }
 
-    // Enables the player to freefall once they have exited a platform WITHOUT jumping
+    /* Enables the player to freefall once they have exited a platform WITHOUT jumping. Note that once a player
+    freefalls, they cannot jump */
 
     function fall(object1) {
         object1.y += object1.falling;
