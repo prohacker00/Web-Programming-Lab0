@@ -6,20 +6,18 @@ var ctx = canvas.getContext("2d");
 var socket = io.connect('http://localhost:9999')
 
 const FPS = 60;
-
 const renderSpeed = 1000 / FPS;
 
 const dr = new drawRect();
-
 const cd = new cooldown();
 
 var score = 0;
 
-// Emits the platforms to the server for collision checking
-
 var gameStart = setInterval(drawPlayers, renderSpeed);
 
 function drawPlayers() {
+
+    // Recieves data from the server about the player objects, the police and the criminal
 
     socket.on('send-policeSpecs', function (data) {
         police = data
@@ -28,6 +26,8 @@ function drawPlayers() {
     socket.on('send-criminalSpecs', function (data) {
         criminal = data
     })
+
+    // Sets criminal / police sprites to still when left nor right is pressed
 
     if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
         criminalImageStatus = criminalSprites.imageS;
@@ -45,22 +45,21 @@ function drawPlayers() {
 
     document.getElementById("health").innerHTML = health
 
-    // myObjectSpeed.update();
+    // Draws the necessary objects, such as the players and the platforms
 
     dr.rectangle(ctx, background)
-
     dr.rectangle(ctx, building)
     dr.rectangle(ctx, middleBuild)
     dr.rectangle(ctx, buildingTwo)
     dr.rectangle(ctx, middleBuildTwo)
     dr.rectangle(ctx, bullet)
-
     dr.rectangle(ctx, edgeOne)
     dr.rectangle(ctx, edgeTwo)
 
-
     dr.image(ctx, criminalImageStatus, criminal)
     dr.image(ctx, policeImageStatus, police)
+
+    // Maps the platform images onto the floating platforms / base platform
 
 
     for (let index = 0; index < platform.width; index += 89) {
@@ -80,6 +79,8 @@ function drawPlayers() {
         floatPlatTwo.y = buildingTwo.y
         dr.image(ctx, floatPlatTwo.img, floatPlatTwo)
     }
+
+    // Tells the server if an input is detected
 
     socket.emit('playersMove', {
         criminal: criminalMove,

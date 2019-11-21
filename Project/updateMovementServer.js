@@ -12,7 +12,10 @@ module.exports.update = function (movement, object) {
     if (movement.upPressed) {
         object.inAir = true;
         object.floating = false
-        jump.jump(object);
+        if(object.ugh) {
+            // Do absolutely nothing because you can't jump when you are freefalling
+        } else {jump.jump(object);}
+        
 
     }
 }

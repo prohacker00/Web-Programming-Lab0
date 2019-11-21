@@ -5,7 +5,6 @@ let GAME_WIDTH = canvas.getAttribute('width');
 let GAME_HEIGHT = canvas.getAttribute('height');
 
 const heightAdjust = 50
-var lastUpdateTime = (new Date()).getTime();
 
 var background = {
     x: 0,
@@ -118,9 +117,7 @@ var policeMove = {
     spacePressed: false,
 }
 
-var police = {
-    // image: document.getElementById("poliR"),
-}
+var police = {}
 
 var bullet = {
     x: 0,

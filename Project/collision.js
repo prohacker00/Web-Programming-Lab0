@@ -17,6 +17,8 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     // Check if the criminal touches ANY platform, then proceeds to land the criminal
     // safely
 
+    // The touches here ensure the player objects can land safely when they touch a platform
+
     if (touches(criminal, platform)) {
         console.log("criminal touched the puuuurple platform")
         land(criminal, platform)
@@ -43,7 +45,7 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     }
 
     // Checks if the criminal is not colliding with anything, this is to ensure that 
-    // the criminal can freefall safely when it exists the boundaries of any platform
+    // the criminal can freefall safely when it exits the boundaries of any platform
     // or building
 
     if (!collide(criminal, building) && !collide(criminal, buildingTwo) &&
@@ -88,11 +90,17 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         police.inAir = true;
     }
 
+    /* This function tells you whether an object touches another object (Note: this is different than collide)
+    this will not return true if two objects are inside each other, this only tells you if an object is touching
+    the surface of another object */
+
     function touches(object1, object2) {
         return ((Math.ceil(object1.y) + object1.height <= object2.y + 10) &&
                 (object1.x >= object2.x || object1.x <= object2.x)) && collide(object1, object2) &&
             ((object1.gravity < 0) || object1.inAir)
     }
+
+    // Collide tells you whether two objects are colliding. Will return true if two objects are inside each other
 
     function collide(object1, object2) {
         return object2.x <= (object1.x + object1.width) &&
@@ -100,6 +108,8 @@ module.exports.collisions = function (criminal, police, platform, building, buil
             (object2.y <= (object1.y + object1.height) &&
                 ((object2.y + object2.height) >= object1.y))
     }
+
+    // Safely lands the player objects onto the desired platform, and disables some variables
 
     function land(object1, object2) {
         console.log("Landed!")
@@ -113,12 +123,10 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         object1.falling = 0;
     }
 
+    // Enables the player to freefall once they have exited a platform WITHOUT jumping
+
     function fall(object1) {
         object1.y += object1.falling;
         object1.falling += object1.ySpeed
     }
-}
-
-module.exports.b = function () {
-    console.log("No!")
 }
