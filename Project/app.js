@@ -63,7 +63,7 @@ io.on('connection', function (socket) {
         // If the cooldown period finishes, then player can shoot again!
 
         if (bullet.bulletTime) {
-            console.log("Bullet time")
+            console.log("A bullet is ready! Shoot, young hero!")
             io.sockets.emit('updateDownPressed', false)
             bullet.bulletTime = false;
         }
@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
         col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
 
         /* This stops the players from bouncing, notifies the client that the player has completed their jump */
-        
+
         if (criminal.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
             criminal.inAir = false;

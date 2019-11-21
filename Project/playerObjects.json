@@ -63,7 +63,8 @@
         "color": "black",
         "speed": 20,
         "bulletTime": false,
-        "bulletTimer" : 0
+        "bulletTimer" : 0,
+        "leftOrRight" : ""
     },
     "police": {
         "x": 15,

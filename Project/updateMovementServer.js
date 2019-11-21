@@ -7,10 +7,12 @@ module.exports.update = function (movement, object, bullet) {
     const jump = require('./jump')
     if (movement.rightPressed) {
         object.x += object.xSpeed
+        bullet.leftOrRight = "right"
     }
 
     if (movement.leftPressed) {
         object.x -= object.xSpeed;
+        bullet.leftOrRight = "left"
 
     }
 
