@@ -41,17 +41,17 @@ var middleBuildTwo = {
 }
 
 var building = {
-    x: (GAME_WIDTH / 2) - 450,
+    x: (GAME_WIDTH / 2) - 440,
     y: 220,
-    width: 300,
+    width: 276,
     height: 60,
     color: "brown",
 }
 
 var buildingTwo = {
-    x: (GAME_WIDTH / 2) + 150,
+    x: (GAME_WIDTH / 2) + 160,
     y: 220,
-    width: 300,
+    width: 276,
     height: 60,
     color: "yellow",
 }

@@ -11,16 +11,16 @@
     },
     "floating_platforms": [
         {
-            "x": 125,
+            "x": 135,
             "y": 220,
-            "width": 300,
+            "width": 276,
             "height": 60,
             "color": "brown"
         },
         {
-            "x": 725,
+            "x": 735,
             "y": 220,
-            "width": 300,
+            "width": 276,
             "height": 60,
             "color": "yellow"
         },

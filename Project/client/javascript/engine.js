@@ -68,14 +68,14 @@ function drawPlayers() {
         dr.image(ctx, platC.img, platC)
     }
 
-    for (let index = 0; index < building.width; index += 89) {
+    for (let index = 0; index < building.width - 50; index += 89) {
         floatPlat.x = building.x + index;
         floatPlat.y = building.y;
         dr.image(ctx, floatPlat.img, floatPlat)
 
     }
 
-    for (let index = 0; index < buildingTwo.width; index += 89) {
+    for (let index = 0; index < buildingTwo.width - 50; index += 89) {
         floatPlatTwo.x = buildingTwo.x + index;
         floatPlatTwo.y = buildingTwo.y
         dr.image(ctx, floatPlatTwo.img, floatPlatTwo)
