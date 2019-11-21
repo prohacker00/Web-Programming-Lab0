@@ -108,6 +108,7 @@ var criminalMove = {
     rightPressed: false,
     leftPressed: false,
     upPressed: false,
+    downPressed: false,
 }
 
 var policeMove = {

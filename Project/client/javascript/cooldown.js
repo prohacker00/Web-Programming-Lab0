@@ -1,15 +1,16 @@
 class cooldown {
 
     bulletCooldown() {
-        if (policeSpacePressed) {
+        if (criminalMove.downPressed) {
 
             bulletTimer += 1
+            bullet.x += bullet.speed
             bulletAvailable = "Not available"
             if (bulletTimer > 100) {
                 bulletAvailable = "Bullet is available!"
                 bulletTimer = 0
                 bulletTime = true;
-                policeSpacePressed = false
+                criminalMove.downPressed = false
 
             } 
         }
