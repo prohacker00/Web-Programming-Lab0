@@ -1,10 +1,12 @@
 // This is basically the function which shoots the bullet , moves it and disables shooting until the cooldown period
 // is completed
 
+// FYI the cooldown on the client is useless
+
 module.exports.cooldown = function (bullet, object) {
 
-    // Initialises the bullet. It only happens once per key press. Determines it's x and y coordinates and
-    // Whether it should travel left or right depe
+    /* Initialises the bullet. It only happens once per key press. Determines it's x and y coordinates and
+       Whether it should travel left or right depending on the last key that was pressed */
     var bulletMagnitude;
     if (bullet.bulletTimer <= 0) {
 
@@ -28,6 +30,9 @@ module.exports.cooldown = function (bullet, object) {
     bullet.bulletTimer++;
 
     bullet.x += bullet.speed
+
+    // When bullet.bulletTime becomes true, something is called in the app.js which basically stops the bullet
+    // Movement
 
     if (bullet.bulletTimer >= 100) {
         bullet.bulletTimer = 0
