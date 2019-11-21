@@ -120,14 +120,7 @@ var policeMove = {
 
 var police = {}
 
-var bullet = {
-    x: 0,
-    y: -400,
-    width: 45,
-    height: 6,
-    color: 'black',
-    speed: 20
-}
+var bullet = {}
 
 var bulletTimer = 0;
 

@@ -61,7 +61,9 @@
         "width": 45,
         "height": 6,
         "color": "black",
-        "speed": 20
+        "speed": 20,
+        "bulletTime": false,
+        "bulletTimer" : 0
     },
     "police": {
         "x": 15,

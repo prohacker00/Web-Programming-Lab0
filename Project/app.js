@@ -50,10 +50,17 @@ io.on('connection', function (socket) {
         //Emits the police and the criminal to the client. So they can be drawn onto the canvas
         io.sockets.emit('send-criminalSpecs', criminal)
         io.sockets.emit('send-policeSpecs', police)
+        io.sockets.emit('send-bulletSpecs' , bullet)
 
         // Checks if any keys have been pressed, and moves the players accordingly
-        updater.update(data.criminal, criminal)
-        updater.update(data.police, police)
+        updater.update(data.criminal, criminal,bullet)
+        updater.update(data.police, police,bullet)
+
+        if(bullet.bulletTime) {
+            console.log("Bullet time")
+            io.sockets.emit('updateDownPressed' , false)
+            bullet.bulletTime = false;
+        }
 
         // Used to check if any collisions happen between everything
         col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
@@ -64,7 +71,8 @@ io.on('connection', function (socket) {
             criminal.inAir = false;
             criminal.floating = true;
             criminal.updateUpPressed = false;
-        }
+
+        } 
 
         if (police.updateUpPressed) {
             io.sockets.emit('updateUpPressedPolice', false)

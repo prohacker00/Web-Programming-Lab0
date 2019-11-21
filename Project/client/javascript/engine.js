@@ -27,7 +27,11 @@ function drawPlayers() {
         criminal = data
     })
 
-    // Sets criminal / police sprites to still when left nor right is pressed
+    socket.on('send-bulletSpecs', function(data) {
+        bullet = data
+    })
+
+    // Sets criminal || police sprites to still when left nor right is pressed
 
     if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
         criminalImageStatus = criminalSprites.imageS;
@@ -91,10 +95,14 @@ function drawPlayers() {
         criminalMove.upPressed = data;
     })
 
+    socket.on('updateDownPressed', function (data) {
+        criminalMove.downPressed = data;
+    })
+
     socket.on('updateUpPressedPolice', function (data) {
         policeMove.upPressed = data
     })
 
-    cd.bulletCooldown()
+    // cd.bulletCooldown()
 
 }

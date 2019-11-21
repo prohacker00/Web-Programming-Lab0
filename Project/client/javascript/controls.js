@@ -29,11 +29,8 @@ function keyDownHandler(event) {
         criminalMove.upPressed = true;
     }
 
-    if(event.keyCode == 40 && bulletTime) {
-        bulletTime = false
+    if(event.keyCode == 40) {
         criminalMove.downPressed = true
-        bullet.x = criminal.x
-        bullet.y = criminal.y + (criminal.height / 2)
     }
 
 
