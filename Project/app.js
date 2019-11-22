@@ -11,6 +11,8 @@ var building = floating_platforms[0];
 var buildingTwo = floating_platforms[1];
 var middleBuild = floating_platforms[2];
 var middleBuildTwo = floating_platforms[3];
+var edgeone = floating_platforms[4];
+var edgetwo = floating_platforms[5];
 
 // Importing functions. Col is for collision detection
 const col = require('./collision')
@@ -70,7 +72,7 @@ io.on('connection', function (socket) {
 
         // Used to check if any collisions happen between everything
 
-        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo)
+        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeone, edgetwo)
 
         /* This stops the players from bouncing, notifies the client that the player has completed their jump */
 

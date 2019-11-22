@@ -83,5 +83,11 @@
         "updateUpPressed": false,
         "floating": false,
         "ugh": false
+    } , 
+    "edgeone" : {
+        "x": 0
+    },
+    "edgetwo": {
+        "x": 1000
     }
 }
