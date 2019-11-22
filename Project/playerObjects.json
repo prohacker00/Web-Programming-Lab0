@@ -40,6 +40,7 @@
         }
     ],
     "criminal": {
+        "maxHp": 5,
         "health": 5,
         "width": 50,
         "height": 50,
@@ -68,6 +69,7 @@
         "leftOrRight" : ""
     },
     "police": {
+        "maxHp": 5,
         "health": 5,
         "x": 120,
         "y": 350,
@@ -83,7 +85,7 @@
         "updateUpPressed": false,
         "floating": false,
         "ugh": false
-    } , 
+    } ,
     "edgeone" : {
         "x": 0
     },

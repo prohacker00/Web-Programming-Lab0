@@ -12,6 +12,8 @@ const dr = new drawRect();
 const cd = new cooldown();
 
 var score = 0;
+var policeHealth = 5;
+var criminalHeal = 5;
 
 var gameStart = setInterval(drawPlayers, renderSpeed);
 
@@ -49,21 +51,24 @@ function drawPlayers() {
 
     document.getElementById("bullets").innerHTML = bulletAvailable;
 
-    document.getElementById("health").innerHTML = health
+    document.getElementById("health").innerHTML = health;
 
     // Draws the necessary objects, such as the players and the platforms
 
-    dr.rectangle(ctx, background)
-    dr.rectangle(ctx, building)
-    dr.rectangle(ctx, middleBuild)
-    dr.rectangle(ctx, buildingTwo)
-    dr.rectangle(ctx, middleBuildTwo)
-    dr.rectangle(ctx, bullet)
-    dr.rectangle(ctx, edgeOne)
-    dr.rectangle(ctx, edgeTwo)
+    dr.rectangle(ctx, background);
+    dr.rectangle(ctx, building);
+    dr.rectangle(ctx, middleBuild);
+    dr.rectangle(ctx, buildingTwo);
+    dr.rectangle(ctx, middleBuildTwo);
+    dr.rectangle(ctx, bullet);
+    dr.rectangle(ctx, edgeOne);
+    dr.rectangle(ctx, edgeTwo);
 
-    dr.image(ctx, criminalImageStatus, criminal)
-    dr.image(ctx, policeImageStatus, police)
+    dr.image(ctx, criminalImageStatus, criminal);
+    dr.image(ctx, policeImageStatus, police);
+
+    dr.healthBarPol(ctx, policeHealth);
+    dr.healthBarCriminal(ctx, criminalHeal);
 
     // Maps the platform images onto the floating platforms and base platform
 

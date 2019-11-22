@@ -11,6 +11,18 @@ class drawRect {
     ctx.drawImage(img , model.x , model.y);
 
     }
+
+    healthBarPol(ctx, health) {
+        ctx.fillStyle="#FF0000";
+        ctx.fillRect(20, 20, health*80, 20);
+        
+        }
+
+    healthBarCriminal(ctx, health) {
+        ctx.fillStyle="#FF0000";
+        ctx.fillRect(730, 20, health*80, 20);
+        
+        }
 }
 
 
