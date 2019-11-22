@@ -58,15 +58,15 @@ var buildingTwo = {
 var edgeOne = {
     x: 0,
     y: 0,
-    width: 10,
+    width: 0,
     height: GAME_HEIGHT,
     color: "black",
 }
 
 var edgeTwo = {
-    x: GAME_WIDTH - 10,
+    x: GAME_WIDTH,
     y: 0,
-    width: 10,
+    width: 0,
     height: GAME_HEIGHT,
     color: "black",
 }
