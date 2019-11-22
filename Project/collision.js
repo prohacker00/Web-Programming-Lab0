@@ -86,8 +86,15 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         land(police, middleBuildTwo)
     }
 
-    if (!collide(police, building) && !collide(police, buildingTwo) && !collide(police, platform)) {
+    if (!collide(police, building) && !collide(police, buildingTwo) &&
+        !collide(police, platform) && !collide(police, middleBuild) &&
+        !collide(police, middleBuildTwo) && police.floating) {
         police.inAir = true;
+        police.ugh = true;
+    }
+
+    if (police.ugh) {
+        fall(police);
     }
 
     /* This function tells you whether an object touches another object (Note: this is different than collide)

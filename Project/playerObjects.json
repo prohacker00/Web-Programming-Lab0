@@ -79,6 +79,7 @@
         "inAir": false,
         "falling": 0,
         "updateUpPressed": false,
-        "floating": false
+        "floating": false,
+        "ugh": false
     }
 }
