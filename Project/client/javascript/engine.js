@@ -63,6 +63,7 @@ function drawPlayers() {
     dr.rectangle(ctx, edgeTwo);
     
     dr.image(ctx, boxcage, middleBuild);
+    dr.image(ctx, metalP, middleBuildTwo);
 
     dr.image(ctx, criminalImageStatus, criminal);
     dr.image(ctx, policeImageStatus, police);

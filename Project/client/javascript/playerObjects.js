@@ -36,7 +36,7 @@ var middleBuildTwo = {
     y: 120,
     width: 280,
     height: 30,
-    color: "blue",
+    color: "transparent"
 }
 
 var building = {
@@ -87,6 +87,7 @@ var policeSprites = {
     imageS: document.getElementById("poliS"),
 }
 
+var metalP = document.getElementById("metalpl");
  var boxcage = document.getElementById("cagee");
 
 
