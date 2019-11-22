@@ -1,4 +1,4 @@
-module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeone, edgetwo) {
+module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo) {
 
 
     // if (collide(criminal, bullet)) {
@@ -108,9 +108,7 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     }
 
     function horizontalTouches(object1, object2) {
-        return (object1.x == object2.x ||
-                (object1.x + object1.width) == object2.x ||
-                object1.x == (object2.width + object2.x))
+        return (object1.x == (object2.width + object2.x) || (object1.x + object1.width) == object2.x )
     }
 
     /* Collide tells you whether two objects are colliding. Will return true if two objects are inside each other.
