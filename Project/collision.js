@@ -1,4 +1,4 @@
-module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo) {
+module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo) {
 
 
     // if (collide(criminal, bullet)) {
@@ -94,6 +94,23 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
     if (police.ugh) {
         fall(police);
+    }
+
+
+    if (criminal.x <= edgeOne.x) {
+        criminal.x = 0;
+    }
+
+    if (police.x <= edgeOne.x) {
+        police.x = 0;
+    }
+
+    if ((police.x + police.width) >= edgeTwo.x) {
+        police.x = 1150 - (police.width)
+    }
+
+    if ((criminal.x + criminal.width) >= edgeTwo.x) {
+        criminal.x = 1150 - (criminal.width)
     }
 
     /* This function tells you whether an object touches another object (Note: this is different than collide)
