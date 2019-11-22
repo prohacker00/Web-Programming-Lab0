@@ -55,7 +55,9 @@ function drawPlayers() {
 
     // Draws the necessary objects, such as the players and the platforms
 
-    dr.rectangle(ctx, background);
+    
+    dr.imagecanvas(ctx, backgroundCanvas, 0, 0)
+    
     dr.rectangle(ctx, building);
     dr.rectangle(ctx, middleBuild);
     dr.rectangle(ctx, buildingTwo);

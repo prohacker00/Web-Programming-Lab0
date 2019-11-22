@@ -9,7 +9,10 @@ class drawRect {
 
     image(ctx,img,model) {
     ctx.drawImage(img , model.x , model.y);
+    }
 
+    imagecanvas(ctx,img,x,y) {
+        ctx.drawImage(img, x, y)
     }
 
     healthBarPol(ctx, health) {

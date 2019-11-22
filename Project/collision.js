@@ -22,7 +22,6 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     if (touches(criminal, platform)) {
         console.log("criminal touched the puuuurple platform")
         land(criminal, platform)
-
     }
     if (touches(criminal, building)) {
         console.log("criminal touched the brown building")
