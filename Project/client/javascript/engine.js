@@ -67,8 +67,8 @@ function drawPlayers() {
     dr.image(ctx, criminalImageStatus, criminal);
     dr.image(ctx, policeImageStatus, police);
 
-    dr.healthBarPol(ctx, policeHealth);
-    dr.healthBarCriminal(ctx, criminalHeal);
+    dr.healthBarPol(ctx, police.health);
+    dr.healthBarCriminal(ctx, criminal.health);
 
     // Maps the platform images onto the floating platforms and base platform
 
