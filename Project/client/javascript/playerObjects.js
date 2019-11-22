@@ -79,6 +79,8 @@ var criminalSprites = {
     imageS: document.getElementById("crimS"),
 }
 
+var backgroundCanvas = document.getElementById("back")
+
 var policeSprites = {
     imageR: document.getElementById("poliR"),
     imageL: document.getElementById("poliL"),
