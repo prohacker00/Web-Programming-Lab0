@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,6 +11,7 @@ body {
   background-size: cover;
   background-position: center;
   font-family: sans-serif;
+  padding-bottom: 40px;
 }
 
 .contact-title {
@@ -64,11 +70,6 @@ form .submit:hover {
   cursor: pointer;
   color: #000000;
   transition: 0.3s;
-}
-
-* {
-  margin: 0;
-  padding: 0;
 }
 
 .bigmain {}

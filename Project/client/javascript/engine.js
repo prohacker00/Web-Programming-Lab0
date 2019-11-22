@@ -47,11 +47,7 @@ function drawPlayers() {
 
     score++;
 
-    document.getElementById("score").innerHTML = Math.floor(score);
-
     document.getElementById("bullets").innerHTML = bulletAvailable;
-
-    document.getElementById("health").innerHTML = health;
 
     // Draws the necessary objects, such as the players and the platforms
 
