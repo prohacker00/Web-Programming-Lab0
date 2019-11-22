@@ -87,6 +87,8 @@ var policeSprites = {
     imageS: document.getElementById("poliS"),
 }
 
+ var boxcage = document.getElementById("cagee");
+
 
 var platC = {
     img: document.getElementById("plat"),
