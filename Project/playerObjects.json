@@ -40,9 +40,10 @@
         }
     ],
     "criminal": {
+        "health": 5,
         "width": 50,
         "height": 50,
-        "x": 300,
+        "x": 120,
         "y": 350,
         "color": "red",
         "xSpeed": 4.5,
@@ -67,7 +68,8 @@
         "leftOrRight" : ""
     },
     "police": {
-        "x": 15,
+        "health": 5,
+        "x": 1005,
         "y": 350,
         "width": 50,
         "height": 50,
