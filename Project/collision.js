@@ -5,7 +5,7 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
         police.health --;
         bullet.y = 4000
-        console.log("faggakro")
+        
 
     }
 

@@ -55,7 +55,8 @@ io.on('connection', function (socket) {
 
         io.sockets.emit('send-criminalSpecs', criminal)
         io.sockets.emit('send-policeSpecs', police)
-        io.sockets.emit('send-bulletSpecs', bullet, crimbullet)
+        io.sockets.emit('send-bulletSpecs', bullet)
+        io.sockets.emit('send-crimbulletSpecs', crimbullet)
 
         // Checks if any keys have been pressed, and moves the players accordingly
 

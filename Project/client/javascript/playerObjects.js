@@ -127,6 +127,8 @@ var police = {}
 
 var bullet = {}
 
+var crimbullet = {}
+
 var bulletTimer = 0;
 
 var bulletAvailable = "A bullet is ready"

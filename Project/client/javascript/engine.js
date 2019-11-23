@@ -33,6 +33,10 @@ function drawPlayers() {
         bullet = data
     })
 
+    socket.on('send-crimbulletSpecs', function(data) {
+        crimbullet = data
+    })
+
     // Sets criminal OR police sprites to still when left nor right is pressed
 
     if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
@@ -59,6 +63,7 @@ function drawPlayers() {
     dr.rectangle(ctx, buildingTwo);
     dr.rectangle(ctx, middleBuildTwo);
     dr.rectangle(ctx, bullet);
+    dr.rectangle(ctx, crimbullet);
     dr.rectangle(ctx, edgeOne);
     dr.rectangle(ctx, edgeTwo);
     
