@@ -10,7 +10,6 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
        criminal.health --;
         bullet.y = 2000
-
     }
 
     /* Check if the criminal touches ANY platform, then proceeds to land the criminal safely

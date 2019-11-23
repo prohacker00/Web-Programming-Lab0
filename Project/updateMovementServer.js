@@ -19,7 +19,7 @@ module.exports.update = function (movement, object, bullet) {
     if (movement.upPressed) {
         object.inAir = true;
         object.floating = false
-        if (!object.ugh) {
+        if (!object.isFreeFalling) {
             jump.jump(object);
         }
 
@@ -28,5 +28,9 @@ module.exports.update = function (movement, object, bullet) {
     if (movement.downPressed) {
         cool.cooldown(bullet , object);
 
+    } 
+
+    if(movement.spacePressed) {
+        console.log("U pressed space!")
     }
 }

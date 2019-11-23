@@ -47,7 +47,7 @@ io.on('connection', function (socket) {
     console.log(console.log("Made socket connection", socket.id))
 
     /* data (the parameter inside function) contains the booleans used to check 
-       whether a key has been pressed for both players */ 
+       whether a key has been pressed for both players */
 
     socket.on('playersMove', function (data) {
 
