@@ -1,20 +1,13 @@
-module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo) {
+module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet) {
 
 
-    // if (collide(criminal, bullet)) {
+    if (collide(police , bullet)) {
 
-    //     bullet.y = 4000
-    //     health--;
-    //     if (health <= 0) {
-    //         alert("You have been killed by the police! Refresh to play again!")
-    //         return true
-    //     }
+        police.health --;
+        bullet.y = 4000
+        console.log("faggakro")
 
-    // }
-
-    // Criminal 
-
-    // The code above is for bullet collision detection. Still a work in progress...
+    }
 
     /* Check if the criminal touches ANY platform, then proceeds to land the criminal safely
     The touches here ensure the player objects can land safely when they touch a platform */

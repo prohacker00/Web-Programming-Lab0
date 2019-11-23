@@ -3,7 +3,8 @@ var {
     floating_platforms,
     criminal,
     police,
-    bullet
+    bullet,
+    crimbullet
 } = require('./playerObjects.json')
 
 
@@ -23,7 +24,6 @@ const socket = require('socket.io')
 
 //App setup
 const app = express();
-
 
 // The port number in which our game will run
 let portNumber = 9999
@@ -55,7 +55,7 @@ io.on('connection', function (socket) {
 
         io.sockets.emit('send-criminalSpecs', criminal)
         io.sockets.emit('send-policeSpecs', police)
-        io.sockets.emit('send-bulletSpecs', bullet)
+        io.sockets.emit('send-bulletSpecs', bullet, crimbullet)
 
         // Checks if any keys have been pressed, and moves the players accordingly
 
@@ -72,7 +72,7 @@ io.on('connection', function (socket) {
 
         // Used to check if any collisions happen between everything
 
-        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo)
+        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet)
 
         /* This stops the players from bouncing, notifies the client that the player has completed their jump */
 

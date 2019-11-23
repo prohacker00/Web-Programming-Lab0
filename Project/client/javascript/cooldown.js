@@ -4,7 +4,7 @@ class cooldown {
         if (criminalMove.downPressed) {
 
             bulletTimer += 1
-            bullet.x += bullet.speed
+            crimbullet.x += bullet.speed
             bulletAvailable = "Not available"
             if (bulletTimer > 100) {
                 bulletAvailable = "Bullet is available!"

@@ -74,6 +74,17 @@
         "bulletTimer" : 0,
         "leftOrRight" : ""
     },
+    "crimbullet": {
+        "x": 990,
+        "y": -400,
+        "width": 45,
+        "height": 6,
+        "color": "black",
+        "speed": 20,
+        "bulletTime": false,
+        "bulletTimer" : 0,
+        "leftOrRight" : ""
+    },
     "police": {
         "maxHp": 5,
         "health": 5,
