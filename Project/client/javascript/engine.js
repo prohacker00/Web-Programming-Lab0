@@ -75,7 +75,6 @@ function drawPlayers() {
 
     // Maps the platform images onto the floating platforms and base platform
 
-
     for (let index = 0; index < platform.width; index += 89) {
         platC.x = index;
         dr.image(ctx, platC.img, platC)

@@ -47,10 +47,9 @@ io.on('connection', function (socket) {
     console.log(console.log("Made socket connection", socket.id))
 
     /* data (the parameter inside function) contains the booleans used to check 
-       whether a key has been pressed for both players */
+       whether a key has been pressed for both players */ 
 
     socket.on('playersMove', function (data) {
-
         //Emits the police and the criminal to the client. So they can be drawn onto the canvas
 
         io.sockets.emit('send-criminalSpecs', criminal)
@@ -66,9 +65,16 @@ io.on('connection', function (socket) {
         // If the cooldown period finishes, then player can shoot again!
 
         if (bullet.bulletTime) {
-            console.log("A bullet is ready! Shoot, young hero!")
+            console.log("A bullet is ready! Shoot, o evil criminal!")
             io.sockets.emit('updateDownPressed', false)
             bullet.bulletTime = false;
+            
+        }
+
+        if (crimbullet.bulletTime) {
+            console.log("A bullet is ready! Shoot, young hero!")
+            io.sockets.emit('updateSpacePressed', false)
+            crimbullet.bulletTime = false;
         }
 
         // Used to check if any collisions happen between everything

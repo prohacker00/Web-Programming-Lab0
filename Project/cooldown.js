@@ -36,6 +36,8 @@ module.exports.cooldown = function (bullet, object) {
 
     if (bullet.bulletTimer >= 100) {
         bullet.bulletTimer = 0
+        bullet.x = 4000
+        bullet.y = 4000
         bullet.bulletTime = true;
     }
 

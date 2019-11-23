@@ -22,15 +22,13 @@ module.exports.update = function (movement, object, bullet) {
         if (!object.isFreeFalling) {
             jump.jump(object);
         }
-
     }
 
     if (movement.downPressed) {
         cool.cooldown(bullet , object);
-
     } 
 
     if(movement.spacePressed) {
-        console.log("U pressed space!")
+        cool.cooldown(bullet , object)
     }
 }
