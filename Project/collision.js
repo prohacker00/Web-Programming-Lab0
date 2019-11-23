@@ -1,19 +1,19 @@
 module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet) {
 
 
-    if (collide(police , bullet)) { //the second parameter should be thecriminal bullet but for now it's not working fully
+    if (collide(police , bullet)) {
 
         police.health --;
         bullet.y = 4000
 
     }
 
-    //if (collide(criminal , bullet)) {
+    if (collide(criminal , crimbullet)) {
 
-      //  criminal.health --;
-        //bullet.y = 2000
+       criminal.health --;
+        bullet.y = 2000
 
-    //}
+    }
 
     /* Check if the criminal touches ANY platform, then proceeds to land the criminal safely
     The touches here ensure the player objects can land safely when they touch a platform */

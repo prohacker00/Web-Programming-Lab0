@@ -61,7 +61,7 @@ io.on('connection', function (socket) {
         // Checks if any keys have been pressed, and moves the players accordingly
 
         updater.update(data.criminal, criminal, bullet)
-        updater.update(data.police, police, bullet)
+        updater.update(data.police, police, crimbullet)
 
         // If the cooldown period finishes, then player can shoot again!
 
@@ -87,6 +87,7 @@ io.on('connection', function (socket) {
 
         if (police.updateUpPressed) {
             io.sockets.emit('updateUpPressedPolice', false)
+            police.inAir = false;
             police.floating = true;
             police.updateUpPressed = false
         }

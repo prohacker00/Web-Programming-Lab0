@@ -56,8 +56,8 @@ function keyDownHandler(event) {
     if (event.keyCode == 32 && bulletTime) {
         bulletTime = false;
         policeSpacePressed = true;
-        bullet.x = police.x
-        bullet.y = police.y + (police.height / 2)
+        crimbullet.x = police.x
+        crimbullet.y = police.y + (police.height / 2)
     }
 }
 
