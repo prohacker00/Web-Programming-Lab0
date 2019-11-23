@@ -88,7 +88,7 @@ var policeSprites = {
 }
 
 var metalP = document.getElementById("metalpl");
- var boxcage = document.getElementById("cagee");
+var boxcage = document.getElementById("cagee");
 
 
 var platC = {

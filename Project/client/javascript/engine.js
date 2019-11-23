@@ -70,9 +70,6 @@ function drawPlayers() {
     dr.image(ctx, boxcage, middleBuild);
     dr.image(ctx, metalP, middleBuildTwo);
 
-    dr.image(ctx, criminalImageStatus, criminal);
-    dr.image(ctx, policeImageStatus, police);
-
     dr.healthBarPol(ctx, police.health);
     dr.healthBarCriminal(ctx, criminal.health);
 
@@ -97,6 +94,9 @@ function drawPlayers() {
         dr.image(ctx, floatPlatTwo.img, floatPlatTwo)
     }
 
+    dr.image(ctx, criminalImageStatus, criminal);
+    dr.image(ctx, policeImageStatus, police);
+
     // Tells the server if an input is detected
 
     socket.emit('playersMove', {
@@ -115,8 +115,12 @@ function drawPlayers() {
         criminalMove.downPressed = data;
     })
 
+    socket.on('updateSpacePressed' , function(data) {
+        policeMove.spacePressed = data;
+    })
+
     socket.on('updateUpPressedPolice', function (data) {
-        policeMove.upPressed = data
+        policeMove.upPressed = data;
     })
 
 }
