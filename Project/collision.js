@@ -1,11 +1,9 @@
 module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet) {
 
-
     if (collide(police , bullet)) {
 
         police.health --;
         bullet.y = 4000
-
     }
 
     if (collide(criminal , crimbullet)) {
@@ -50,12 +48,12 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         !collide(criminal, platform) && !collide(criminal, middleBuild) &&
         !collide(criminal, middleBuildTwo) && criminal.floating) {
         criminal.inAir = true
-        criminal.ugh = true
+        criminal.isFreeFalling = true
         console.log("Not in air!");
 
     }
 
-    if (criminal.ugh) {
+    if (criminal.isFreeFalling) {
 
         console.log("freefalling")
         fall(criminal);
@@ -88,10 +86,10 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         !collide(police, platform) && !collide(police, middleBuild) &&
         !collide(police, middleBuildTwo) && police.floating) {
         police.inAir = true;
-        police.ugh = true;
+        police.isFreeFalling = true;
     }
 
-    if (police.ugh) {
+    if (police.isFreeFalling) {
         fall(police);
     }
 
@@ -140,7 +138,7 @@ module.exports.collisions = function (criminal, police, platform, building, buil
 
     function land(object1, object2) {
         console.log("Landed!")
-        object1.ugh = false
+        object1.isFreeFalling = false
         object1.y = object2.y - object1.height;
         object1.gravity = object1.originalGravity;
         object1.floating = true;

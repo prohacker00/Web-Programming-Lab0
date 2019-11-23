@@ -61,7 +61,7 @@
         "falling": 0,
         "updateUpPressed": false,
         "floating": false,
-        "ugh": false
+        "isFreeFalling": false
     },
     "bullet": {
         "x": 0,
@@ -101,6 +101,6 @@
         "falling": 0,
         "updateUpPressed": false,
         "floating": false,
-        "ugh": false
+        "isFreeFalling": false
     }
 }
