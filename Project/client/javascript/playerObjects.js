@@ -144,3 +144,5 @@ var health = 5;
 var criminalImageStatus;
 
 var policeImageStatus;
+
+var playerNumber

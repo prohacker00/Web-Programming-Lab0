@@ -7,13 +7,15 @@ var {
     crimbullet
 } = require('./playerObjects.json')
 
-
 var building = floating_platforms[0];
 var buildingTwo = floating_platforms[1];
 var middleBuild = floating_platforms[2];
 var middleBuildTwo = floating_platforms[3];
 var edgeOne = floating_platforms[4];
 var edgeTwo = floating_platforms[5];
+
+var players = {}
+var numberOfPlayers = 0
 
 // Importing functions. Col is for collision detection
 const col = require('./collision')
@@ -43,21 +45,29 @@ var io = socket(server);
 
 
 // Once a connection has been made, does something
+
 io.on('connection', function (socket) {
     console.log(console.log("Made socket connection", socket.id))
+    numberOfPlayers++;
+
+    if (numberOfPlayers === 1) {
+        io.sockets.emit('send-criminalPlayer' , 1)
+    } else if(numberOfPlayers == 2) {
+        io.sockets.emit('send-policePlayer' , 2)
+    }
+
 
     /* data (the parameter inside function) contains the booleans used to check 
-       whether a key has been pressed for both players */ 
+       whether a key has been pressed for both players */
 
     socket.on('playersMove', function (data) {
-        //Emits the police and the criminal to the client. So they can be drawn onto the canvas
-
         io.sockets.emit('send-criminalSpecs', criminal)
         io.sockets.emit('send-policeSpecs', police)
         io.sockets.emit('send-bulletSpecs', bullet)
         io.sockets.emit('send-crimbulletSpecs', crimbullet)
 
-        // Checks if any keys have been pressed, and moves the players accordingly
+
+        // Checks if any keys have been pressed, and moves the players accordingly.
 
         updater.update(data.criminal, criminal, bullet)
         updater.update(data.police, police, crimbullet)
@@ -68,7 +78,6 @@ io.on('connection', function (socket) {
             console.log("A bullet is ready! Shoot, o evil criminal!")
             io.sockets.emit('updateDownPressed', false)
             bullet.bulletTime = false;
-            
         }
 
         if (crimbullet.bulletTime) {
@@ -88,7 +97,6 @@ io.on('connection', function (socket) {
             criminal.inAir = false;
             criminal.floating = true;
             criminal.updateUpPressed = false;
-
         }
 
         if (police.updateUpPressed) {
@@ -97,6 +105,10 @@ io.on('connection', function (socket) {
             police.floating = true;
             police.updateUpPressed = false
         }
+
+        // Emits the police and the criminal to the client. So they can be drawn onto the canvas.
+
+
 
     });
 });

@@ -3,7 +3,6 @@
 module.exports.update = function (movement, object, bullet) {
     const cool = require('./cooldown.js')
 
-
     const jump = require('./jump')
     if (movement.rightPressed) {
         object.x += object.xSpeed

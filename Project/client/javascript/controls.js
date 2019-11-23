@@ -11,12 +11,13 @@ function keyDownHandler(event) {
 
     // Criminal keycodes
 
-
-    // Right
+    if(playerNumber === 1) {
+        // Right
     
     if (event.keyCode == 39) {
         criminalMove.rightPressed = true;
         criminalImageStatus = criminalSprites.imageR
+        console.log("You have moved right")
 
     // Left
 
@@ -37,6 +38,8 @@ function keyDownHandler(event) {
     if(event.keyCode == 40) {
         criminalMove.downPressed = true
     }
+    }
+
 
     // Police event keycodes
 

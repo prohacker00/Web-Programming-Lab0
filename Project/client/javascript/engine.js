@@ -21,6 +21,10 @@ function drawPlayers() {
 
     // Recieves data from the server about the player objects, the police and the criminal
 
+    socket.on('send-criminalPlayer', function(data) {
+        playerNumber = data
+    })
+
     socket.on('send-policeSpecs', function (data) {
         police = data
     })
