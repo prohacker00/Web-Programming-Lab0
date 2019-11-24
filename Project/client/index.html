@@ -74,4 +74,33 @@
 
 </body>
 
+<!-- Database Stuff -->
+
+<script>
+
+var socket = io();
+    
+var signDiv = document.getElementById('signDiv');
+var game = document.getElementById('canvas-content');
+var userName = document.getElementById('userName');
+var passWord = document.getElementById('passWord');
+var loginButton = document.getElementById('loginButton');
+var signupButton = document.getElementById('signupButton');
+
+loginButton.onclick = function() {
+    socket.emit('login', {username:userName.value, password:passWord.value})
+
+}
+
+socket.on('loginDetails' , function(data) {
+    if(data == 1) {
+        signDiv.style.display = 'none';
+        game.style.display = '';
+    } 
+});
+
+
+
+</script>
+
 </html>

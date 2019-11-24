@@ -20,12 +20,12 @@ var playerArray = []
 var currentPolice;
 var currentCriminal;
 var numberOfPlayers = 0
-var outside;
+
 
 // Importing functions. Col is for collision detection
 const col = require('./collision')
 const updater = require('./updateMovementServer.js')
-
+const mongojs = require("mongojs")
 const express = require('express')
 const socket = require('socket.io');
 
@@ -68,6 +68,15 @@ io.on('connection', function (socket) {
 
         lobbyArray.push(socket.id)
     }
+
+    /* login system */
+
+    socket.on('login', function(data) {
+        var testUsername = data.username;
+        var testPassword = data.password;
+        if (data.username == "gay") {
+        socket.emit('loginDetails', 1); }
+    })
 
     /* data (the parameter inside function) contains the booleans used to check 
        whether a key has been pressed for both players */
