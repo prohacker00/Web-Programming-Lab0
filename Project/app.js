@@ -22,7 +22,7 @@ const col = require('./collision')
 const updater = require('./updateMovementServer.js')
 
 const express = require('express')
-const socket = require('socket.io')
+const socket = require('socket.io');
 
 //App setup
 const app = express();
@@ -43,7 +43,7 @@ app.use(express.static('client'))
 // Socket setup
 var io = socket(server);
 
-
+var something = true
 // Once a connection has been made, does something
 
 io.on('connection', function (socket) {
@@ -51,26 +51,23 @@ io.on('connection', function (socket) {
     numberOfPlayers++;
 
     if (numberOfPlayers === 1) {
-        io.sockets.emit('send-criminalPlayer' , 1)
+        players[socket.id] = criminal
     } else if(numberOfPlayers == 2) {
-        io.sockets.emit('send-policePlayer' , 2)
-    }
+        players[socket.id] = police
 
+    }
 
     /* data (the parameter inside function) contains the booleans used to check 
        whether a key has been pressed for both players */
 
     socket.on('playersMove', function (data) {
-        io.sockets.emit('send-criminalSpecs', criminal)
-        io.sockets.emit('send-policeSpecs', police)
-        io.sockets.emit('send-bulletSpecs', bullet)
-        io.sockets.emit('send-crimbulletSpecs', crimbullet)
 
+        var player = players[socket.id] || {}        
 
         // Checks if any keys have been pressed, and moves the players accordingly.
 
-        updater.update(data.criminal, criminal, bullet)
-        updater.update(data.police, police, crimbullet)
+        updater.update(data.criminal, player, bullet)
+        updater.update(data.police, player, crimbullet)
 
         // If the cooldown period finishes, then player can shoot again!
 
@@ -88,27 +85,23 @@ io.on('connection', function (socket) {
 
         // Used to check if any collisions happen between everything
 
-        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet)
+        col.collisions(player, player, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet)
 
         /* This stops the players from bouncing, notifies the client that the player has completed their jump */
 
-        if (criminal.updateUpPressed) {
+        if (player.updateUpPressed) {
             io.sockets.emit('updateUpPressed', false)
-            criminal.inAir = false;
-            criminal.floating = true;
-            criminal.updateUpPressed = false;
-        }
-
-        if (police.updateUpPressed) {
-            io.sockets.emit('updateUpPressedPolice', false)
-            police.inAir = false;
-            police.floating = true;
-            police.updateUpPressed = false
+            player.inAir = false;
+            player.floating = true;
+            player.updateUpPressed = false;
         }
 
         // Emits the police and the criminal to the client. So they can be drawn onto the canvas.
-
-
-
     });
 });
+
+setInterval(() => {
+    io.sockets.emit('send-criminalSpecs', players)
+    io.sockets.emit('send-bulletSpecs', bullet)
+    io.sockets.emit('send-crimbulletSpecs', crimbullet)
+}, 1000/60);

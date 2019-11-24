@@ -11,56 +11,57 @@ function keyDownHandler(event) {
 
     // Criminal keycodes
 
-    if(playerNumber === 1) {
         // Right
+
+        if (event.keyCode == 39) {
+            criminalMove.rightPressed = true;
+            criminalImageStatus = criminalSprites.imageR
+            console.log("You have moved right")
+
+            // Left
+
+        } else if (event.keyCode == 37) {
+            criminalMove.leftPressed = true
+            criminalImageStatus = criminalSprites.imageL
+
+        }
+
+        // Up
+
+        if (event.keyCode == 38) {
+            criminalMove.upPressed = true;
+        }
+
+        // Down
+
+        if (event.keyCode == 40) {
+            criminalMove.downPressed = true
+        }
     
-    if (event.keyCode == 39) {
-        criminalMove.rightPressed = true;
-        criminalImageStatus = criminalSprites.imageR
-        console.log("You have moved right")
 
-    // Left
+    if (playerNumber === 2) {
 
-    } else if (event.keyCode == 37) {
-        criminalMove.leftPressed = true
-        criminalImageStatus = criminalSprites.imageL
+        // Police event keycodes
 
-    }
+        if (event.keyCode == 68) {
+            policeMove.rightPressed = true;
+            policeImageStatus = policeSprites.imageR
 
-    // Up
+        }
 
-    if (event.keyCode == 38) {
-        criminalMove.upPressed = true;
-    }
+        if (event.keyCode == 65) {
+            policeMove.leftPressed = true;
+            policeImageStatus = policeSprites.imageL
+        }
 
-    // Down
+        if (event.keyCode == 87) {
+            policeMove.upPressed = true;
 
-    if(event.keyCode == 40) {
-        criminalMove.downPressed = true
-    }
-    }
+        }
 
-
-    // Police event keycodes
-
-    if (event.keyCode == 68) {
-        policeMove.rightPressed = true;
-        policeImageStatus = policeSprites.imageR
-
-    }
-
-    if (event.keyCode == 65) {
-        policeMove.leftPressed = true;
-        policeImageStatus = policeSprites.imageL
-    }
-
-    if (event.keyCode == 87) {
-        policeMove.upPressed = true;
-
-    }
-
-    if (event.keyCode == 32) {
-        policeMove.spacePressed = true;
+        if (event.keyCode == 32) {
+            policeMove.spacePressed = true;
+        }
     }
 }
 

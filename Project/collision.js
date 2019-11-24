@@ -1,61 +1,61 @@
-module.exports.collisions = function (criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet) {
+module.exports.collisions = function (player, police , platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet) {
 
-    if (collide(police, bullet)) {
+    // if (collide(police, crimbullet)) {
 
-        police.health--;
-        bullet.y = 4000
-    }
+    //     police.health--;
+    //     bullet.y = 4000
+    // }
 
-    if (collide(criminal, crimbullet)) {
+    // if (collide(player, bullet)) {
 
-        criminal.health--;
-        crimbullet.y = 4000
-    }
+    //     player.health--;
+    //     crimbullet.y = 4000
+    // }
 
     /* Check if the criminal touches ANY platform, then proceeds to land the criminal safely
     The touches here ensure the player objects can land safely when they touch a platform */
 
-    if (touches(criminal, platform)) {
+    if (touches(player, platform)) {
         console.log("criminal touched the puuuurple platform")
-        land(criminal, platform)
+        land(player, platform)
     }
-    if (touches(criminal, building)) {
+    if (touches(player, building)) {
         console.log("criminal touched the brown building")
-        land(criminal, building)
+        land(player, building)
 
     }
-    if (touches(criminal, buildingTwo)) {
+    if (touches(player, buildingTwo)) {
         console.log("criminal touched the yellow building")
-        land(criminal, buildingTwo)
+        land(player, buildingTwo)
     }
 
-    if (touches(criminal, middleBuild)) {
+    if (touches(player, middleBuild)) {
         console.log("criminal touched the big black building")
-        land(criminal, middleBuild)
+        land(player, middleBuild)
     }
 
-    if (touches(criminal, middleBuildTwo)) {
+    if (touches(player, middleBuildTwo)) {
         console.log("criminal touched the thin blue building")
-        land(criminal, middleBuildTwo)
+        land(player, middleBuildTwo)
     }
 
     /* Checks if the criminal is not colliding with anything, this is to ensure that 
        the criminal can freefall safely when it exits the boundaries of any platform
        or building */
 
-    if (!collide(criminal, building) && !collide(criminal, buildingTwo) &&
-        !collide(criminal, platform) && !collide(criminal, middleBuild) &&
-        !collide(criminal, middleBuildTwo) && criminal.floating) {
-        criminal.inAir = true
-        criminal.isFreeFalling = true
+    if (!collide(player, building) && !collide(player, buildingTwo) &&
+        !collide(player, platform) && !collide(player, middleBuild) &&
+        !collide(player, middleBuildTwo) && player.floating) {
+        player.inAir = true
+        player.isFreeFalling = true
         console.log("Not in air!");
 
     }
 
-    if (criminal.isFreeFalling) {
+    if (player.isFreeFalling) {
 
         console.log("freefalling")
-        fall(criminal);
+        fall(player);
 
     }
 
@@ -93,8 +93,8 @@ module.exports.collisions = function (criminal, police, platform, building, buil
     }
 
 
-    if (criminal.x <= edgeOne.x) {
-        criminal.x = 0;
+    if (player.x <= edgeOne.x) {
+        player.x = 0;
     }
 
     if (police.x <= edgeOne.x) {
@@ -105,8 +105,8 @@ module.exports.collisions = function (criminal, police, platform, building, buil
         police.x = 1150 - (police.width)
     }
 
-    if ((criminal.x + criminal.width) >= edgeTwo.x) {
-        criminal.x = 1150 - (criminal.width)
+    if ((player.x + player.width) >= edgeTwo.x) {
+        player.x = 1150 - (player.width)
     }
 
     /* This function tells you whether an object touches another object (Note: this is different than collide)
