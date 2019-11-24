@@ -4,7 +4,7 @@
   <html>
 
   <title>Shadow Rise</title>
-  <link rel="stylesheet" href = "css/shadow_rise_style.css">
+  <link rel="stylesheet" href="shadow_rise_style.css">
 
   <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
 
@@ -18,12 +18,12 @@
 
   <div class="navbar">
       <a href=""> Contact</a>
-      <a class="active" href="./">Play!</a>
+      <a class="active" href="#">Play!</a>
       <a href="#">About</a>
   </div>
 
 <body>
-
+ <form action="contactus.php" method="POST">
   <div class="contact-title">
           <h1>We'd love to hear from you</h1>
           <br>
@@ -31,8 +31,8 @@
    </div>
     
     <div class="contact-form">
-    	<form id="contact-form" method="post" action="contact-us.php">
-        <input name="name" type="text" class="form-control" placeholder="Your Name" required>
+    	<form id="contact-form" method="post" action="contactus.php">
+        <input name="username" type="text" class="form-control" placeholder="Your Name" required>
         <br>
         <input name="email" type="email" class="form-control" placeholder="Your Email" required><br>
 
