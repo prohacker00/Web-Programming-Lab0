@@ -145,4 +145,4 @@ var criminalImageStatus;
 
 var policeImageStatus;
 
-var playerNumber
+var playerNumber = 1;

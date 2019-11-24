@@ -15,41 +15,39 @@ var score = 0;
 var policeHealth = 5;
 var criminalHeal = 5;
 
-var gameStart = setInterval(drawPlayers, renderSpeed);
+var picture;
+
+var playerOccupied = false;
+
+// var gameStart = setInterval(drawPlayers, renderSpeed);
 
 function drawPlayers() {
 
     // Recieves data from the server about the player objects, the police and the criminal
 
-    socket.on('send-criminalPlayer', function(data) {
-        playerNumber = data
-    })
+    // if (!playerOccupied) {
+    //     socket.on('send-criminalPlayer', (data) => {
+    //         playerNumber = data
+    //         playerOccupied = true
+    //     })
+    //     socket.on('send-policePlayer', (data) => {
+    //         playerNumber = data
+    //         playerOccupied = true
+    //     })
 
-    socket.on('send-policeSpecs', function (data) {
-        police = data
-    })
+    //     if(playerNumber === 1 || playerNumber === 2)
+    //     playerOccupied = true;
+    // }
 
-    socket.on('send-criminalSpecs', function (data) {
-        criminal = data
-    })
+    // socket.on('send-policeSpecs', function (data) {
+    //     police = data;
+    // })
 
-    socket.on('send-bulletSpecs', function(data) {
-        bullet = data
-    })
 
-    socket.on('send-crimbulletSpecs', function(data) {
-        crimbullet = data
-    })
 
     // Sets criminal OR police sprites to still when left nor right is pressed
 
-    if (!criminalMove.leftPressed && !criminalMove.rightPressed) {
-        criminalImageStatus = criminalSprites.imageS;
-    }
 
-    if (!policeMove.leftPressed && !policeMove.rightPressed) {
-        policeImageStatus = policeSprites.imageS;
-    }
 
     // Score , health and bullet availability here.
 
@@ -59,23 +57,82 @@ function drawPlayers() {
 
     // Draws the necessary objects, such as the players and the platforms
 
-    
+    // Tells the server if an input is detected
+
+    // Because we don't have a keyUpHandler for jumping / shooting , because these operations require just a press
+    // to be executed 
+
+
+    socket.on('updateSpacePressed', function (data) {
+        policeMove.spacePressed = data;
+    })
+
+    socket.on('updateUpPressedPolice', function (data) {
+        policeMove.upPressed = data;
+    })
+
+}
+
+socket.on('send-bulletSpecs', function (data) {
+    bullet = data
+})
+
+socket.on('send-crimbulletSpecs', function (data) {
+    crimbullet = data
+})
+
+socket.on('send-criminalSpecs', function (data) {
+
+    drawPlatforms();
+
+    for (var id in data) {
+        var player = data[id];
+
+        // If this is a criminal
+
+        if (player.color === "red") {
+            picture = criminalSprites.imageS
+            dr.rectangle(ctx, bullet)
+            dr.healthBarCriminal(ctx, player.health);
+
+            // If this is a policeman  
+
+        } else if (player.color === "blue") {
+            picture = policeSprites.imageS
+            dr.rectangle(ctx, crimbullet);
+            dr.healthBarPol(ctx, player.health);
+        }
+
+        dr.image(ctx, picture, player);
+
+        socket.on('updateUpPressed', function (data) {
+            criminalMove.upPressed = data;
+        })
+
+        socket.on('updateDownPressed', function (data) {
+            criminalMove.downPressed = data;
+        })
+    }
+})
+
+setInterval(() => {
+    socket.emit('playersMove', {
+        criminal: criminalMove,
+        police: policeMove
+    })
+}, 1000 / 60);
+
+function drawPlatforms() {
     dr.imagecanvas(ctx, backgroundCanvas, 0, 0)
-    
     dr.rectangle(ctx, building);
     dr.rectangle(ctx, middleBuild);
     dr.rectangle(ctx, buildingTwo);
     dr.rectangle(ctx, middleBuildTwo);
-    dr.rectangle(ctx, bullet);
-    dr.rectangle(ctx, crimbullet);
     dr.rectangle(ctx, edgeOne);
     dr.rectangle(ctx, edgeTwo);
-    
     dr.image(ctx, boxcage, middleBuild);
     dr.image(ctx, metalP, middleBuildTwo);
-
-    dr.healthBarPol(ctx, police.health);
-    dr.healthBarCriminal(ctx, criminal.health);
+    dr.rectangle(ctx, bullet);
 
     // Maps the platform images onto the floating platforms and base platform
 
@@ -96,34 +153,4 @@ function drawPlayers() {
         floatPlatTwo.y = buildingTwo.y
         dr.image(ctx, floatPlatTwo.img, floatPlatTwo)
     }
-
-    dr.image(ctx, criminalImageStatus, criminal);
-    dr.image(ctx, policeImageStatus, police);
-
-    // Tells the server if an input is detected
-
-    socket.emit('playersMove', {
-        criminal: criminalMove,
-        police: policeMove
-    })
-
-    // Because we don't have a keyUpHandler for jumping / shooting , because these operations require just a press
-    // to be executed 
-
-    socket.on('updateUpPressed', function (data) {
-        criminalMove.upPressed = data;
-    })
-
-    socket.on('updateDownPressed', function (data) {
-        criminalMove.downPressed = data;
-    })
-
-    socket.on('updateSpacePressed' , function(data) {
-        policeMove.spacePressed = data;
-    })
-
-    socket.on('updateUpPressedPolice', function (data) {
-        policeMove.upPressed = data;
-    })
-
 }
