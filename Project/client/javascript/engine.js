@@ -127,3 +127,14 @@ function drawPlayers() {
     })
 
 }
+
+function restartGame() {
+    police.health = 5;
+    criminal.health = 5;
+
+    police.x = 120;
+    criminal.x = 1005;
+
+    police.y = 350;
+    criminal.y = 350;
+}
