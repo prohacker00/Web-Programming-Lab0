@@ -1,0 +1,108 @@
+{
+    "GAME_WIDTH": 1150,
+    "GAME_HEIGHT": 450,
+    "heightAdjust": 50,
+    "platform": {
+        "x": 0,
+        "y": 400,
+        "width": 1150,
+        "height": 450,
+        "color": "lightgreen"
+    },
+    "floating_platforms": [
+        {
+            "x": 135,
+            "y": 220,
+            "width": 276,
+            "height": 60,
+            "color": "brown"
+        },
+        {
+            "x": 735,
+            "y": 220,
+            "width": 276,
+            "height": 60,
+            "color": "yellow"
+        },
+        {
+            "x": 505,
+            "y": 280,
+            "width": 140,
+            "height": 120,
+            "color": "black"
+        },
+        {
+            "x": 435,
+            "y": 120,
+            "width": 280,
+            "height": 30,
+            "color": "blue"
+        },
+        {
+            "x": 0
+        },
+        {
+            "x": 1150
+        }
+    ],
+    "criminal": {
+        "maxHp": 5,
+        "health": 5,
+        "width": 50,
+        "height": 50,
+        "x": 1005,
+        "y": 350,
+        "color": "red",
+        "xSpeed": 4.5,
+        "ySpeed": 0.25,
+        "originalGravity": 8,
+        "gravity": 8,
+        "inAir": false,
+        "falling": 0,
+        "updateUpPressed": false,
+        "floating": false,
+        "isFreeFalling": false,
+        "player" : 0
+    },
+    "bullet": {
+        "x": 0,
+        "y": -400,
+        "width": 45,
+        "height": 6,
+        "color": "purple",
+        "speed": 20,
+        "bulletTime": false,
+        "bulletTimer" : 0,
+        "leftOrRight" : ""
+    },
+    "crimbullet": {
+        "x": 0,
+        "y": -400,
+        "width": 45,
+        "height": 6,
+        "color": "yellow",
+        "speed": 20,
+        "bulletTime": false,
+        "bulletTimer" : 0,
+        "leftOrRight" : ""
+    },
+    "police": {
+        "maxHp": 5,
+        "health": 5,
+        "x": 120,
+        "y": 350,
+        "width": 50,
+        "height": 50,
+        "color": "blue",
+        "xSpeed": 4.5,
+        "ySpeed": 0.25,
+        "originalGravity": 8,
+        "gravity": 8,
+        "inAir": false,
+        "falling": 0,
+        "updateUpPressed": false,
+        "floating": false,
+        "isFreeFalling": false,
+        "player" : 0
+    }
+}
