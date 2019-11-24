@@ -15,11 +15,12 @@ var edgeOne = floating_platforms[4];
 var edgeTwo = floating_platforms[5];
 
 var players = {}
+var lobbyArray = []
 var playerArray = []
-var currentPolice = ""
-var currentCriminal = ""
+var currentPolice;
+var currentCriminal;
 var numberOfPlayers = 0
-var outside = " "
+var outside;
 
 // Importing functions. Col is for collision detection
 const col = require('./collision')
@@ -52,16 +53,20 @@ io.on('connection', function (socket) {
     numberOfPlayers++;
 
     if (numberOfPlayers == 1) {
+
         playerArray.push(socket.id)
         currentCriminal = playerArray[0]
         players[currentCriminal] = criminal
-    } else if(numberOfPlayers == 2) {
+
+    } else if (numberOfPlayers == 2) {
+
         playerArray.push(socket.id)
         currentPolice = playerArray[1]
         players[currentPolice] = police
-    }
-    else if(numberOfPlayers > 2) {
-        playerArray.push(socket.id)
+
+    } else if (numberOfPlayers > 2) {
+
+        lobbyArray.push(socket.id)
     }
 
     /* data (the parameter inside function) contains the booleans used to check 
@@ -69,7 +74,7 @@ io.on('connection', function (socket) {
 
     socket.on('playersMove', function (data) {
 
-        var player = players[socket.id] || {}        
+        var player = players[socket.id] || {}
 
         // Checks if any keys have been pressed, and moves the players accordingly.
 
@@ -105,8 +110,8 @@ io.on('connection', function (socket) {
 
         // Emits the police and the criminal to the client. So they can be drawn onto the canvas.
     });
-    socket.on('newGame', function(data) {
-        console.log("your mam les")
+    socket.on('newGame', function (data) {
+        console.log("Game Over!")
 
         police.health = 5;
         criminal.health = 5;
@@ -117,40 +122,48 @@ io.on('connection', function (socket) {
         police.y = 350;
         criminal.y = 350;
 
-        if (playerArray.length > 2) {
+        if (lobbyArray.length > 0) {
 
-            if(data == "police") {
+            // If data means police then police won. ;
 
-                outside = playerArray.pop()
-                playerArray.unshift(outside)
-                var removeIn = playerArray.indexOf(currentCriminal)
-                var spliced = playerArray.splice(removeIn, 1)
-                playerArray.push(spliced)
+            if (data == "police") {
 
-                currentCriminal = playerArray[1];
+                // outside = playerArray.pop()
+                // playerArray.unshift(outside)
+                // var removeIn = playerArray.indexOf(currentCriminal)
+                // var spliced = playerArray.splice(removeIn, 1)
+                // playerArray.push(spliced)
+
+                // currentCriminal = playerArray[1];
+                // players[currentCriminal] = criminal;
+
+                lobbyArray.push(playerArray.shift())
+                players[currentCriminal] = "";
+                currentCriminal = "";
+
+                currentCriminal = lobbyArray.shift();
+                playerArray[0] = currentCriminal
                 players[currentCriminal] = criminal;
-            }
 
-            else if (data == "criminal") {
+            } else if (data == "criminal") {
 
-                outside = playerArray.pop();
-                playerArray.unshift(outside);
-                var removeIn = playerArray.indexOf(currentPolice);
-                var spliced = playerArray.splice(removeIn, 1);
-                playerArray.push(spliced);
+                lobbyArray.push(playerArray.pop())
+                players[currentPolice] = ""
+                currentPolice = "";
 
-                currentPolice = playerArray[0];
+                currentPolice = lobbyArray.shift()
+                playerArray[1] = currentPolice
                 players[currentPolice] = police
             }
 
-            players[currentCriminal] = criminal
-            players[currentPolice] = police;
+            
+
+
+            // players[currentCriminal] = criminal
+            // players[currentPolice] = police;
 
 
         }
-        
-
-        
 
     })
 });
@@ -159,4 +172,4 @@ setInterval(() => {
     io.sockets.emit('send-criminalSpecs', players)
     io.sockets.emit('send-bulletSpecs', bullet)
     io.sockets.emit('send-crimbulletSpecs', crimbullet)
-}, 1000/60);
+}, 1000 / 60);

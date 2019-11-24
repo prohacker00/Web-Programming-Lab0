@@ -96,17 +96,18 @@ socket.on('send-criminalSpecs', function (data) {
             picture = criminalSprites.imageS
             dr.rectangle(ctx, bullet)
             dr.healthBarCriminal(ctx, player.health);
-            if(player.health === 0 )
-            socket.emit('newGame', "police")
-
-        // If this is a policeman  
+            if (player.health === 0) {
+                socket.emit('newGame', "police")
+            }
+            // If this is a policeman  
 
         } else if (player.color === "blue") {
             picture = policeSprites.imageS
             dr.rectangle(ctx, crimbullet);
             dr.healthBarPol(ctx, player.health);
-            if(player.health === 0 )
-        socket.emit('newGame', "criminal")
+            if (player.health === 0) {
+                socket.emit('newGame', "criminal")
+            }
         }
 
         dr.image(ctx, picture, player);
@@ -120,7 +121,7 @@ socket.on('send-criminalSpecs', function (data) {
         })
     }
 
-    
+
 })
 
 setInterval(() => {
