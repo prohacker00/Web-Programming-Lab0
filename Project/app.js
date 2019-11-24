@@ -15,7 +15,11 @@ var edgeOne = floating_platforms[4];
 var edgeTwo = floating_platforms[5];
 
 var players = {}
+var playerArray = []
+var currentPolice = ""
+var currentCriminal = ""
 var numberOfPlayers = 0
+var outside = " "
 
 // Importing functions. Col is for collision detection
 const col = require('./collision')
@@ -43,18 +47,21 @@ app.use(express.static('client'))
 // Socket setup
 var io = socket(server);
 
-var something = true
-// Once a connection has been made, does something
-
 io.on('connection', function (socket) {
     console.log(console.log("Made socket connection", socket.id))
     numberOfPlayers++;
 
-    if (numberOfPlayers === 1) {
-        players[socket.id] = criminal
+    if (numberOfPlayers == 1) {
+        playerArray.push(socket.id)
+        currentCriminal = playerArray[0]
+        players[currentCriminal] = criminal
     } else if(numberOfPlayers == 2) {
-        players[socket.id] = police
-
+        playerArray.push(socket.id)
+        currentPolice = playerArray[1]
+        players[currentPolice] = police
+    }
+    else if(numberOfPlayers > 2) {
+        playerArray.push(socket.id)
     }
 
     /* data (the parameter inside function) contains the booleans used to check 
@@ -98,6 +105,54 @@ io.on('connection', function (socket) {
 
         // Emits the police and the criminal to the client. So they can be drawn onto the canvas.
     });
+    socket.on('newGame', function(data) {
+        console.log("your mam les")
+
+        police.health = 5;
+        criminal.health = 5;
+
+        police.x = 120;
+        criminal.x = 1005;
+
+        police.y = 350;
+        criminal.y = 350;
+
+        if (playerArray.length > 2) {
+
+            if(data == "police") {
+
+                outside = playerArray.pop()
+                playerArray.unshift(outside)
+                var removeIn = playerArray.indexOf(currentCriminal)
+                var spliced = playerArray.splice(removeIn, 1)
+                playerArray.push(spliced)
+
+                currentCriminal = playerArray[1];
+                players[currentCriminal] = criminal;
+            }
+
+            else if (data == "criminal") {
+
+                outside = playerArray.pop();
+                playerArray.unshift(outside);
+                var removeIn = playerArray.indexOf(currentPolice);
+                var spliced = playerArray.splice(removeIn, 1);
+                playerArray.push(spliced);
+
+                currentPolice = playerArray[0];
+                players[currentPolice] = police
+            }
+
+            players[currentCriminal] = criminal
+            players[currentPolice] = police;
+
+
+        }
+        
+
+        
+
+    })
 });
 
 setInterval(() => {

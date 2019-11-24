@@ -81,6 +81,8 @@ socket.on('send-crimbulletSpecs', function (data) {
     crimbullet = data
 })
 
+// The main function
+
 socket.on('send-criminalSpecs', function (data) {
 
     drawPlatforms();
@@ -94,6 +96,8 @@ socket.on('send-criminalSpecs', function (data) {
             picture = criminalSprites.imageS
             dr.rectangle(ctx, bullet)
             dr.healthBarCriminal(ctx, player.health);
+            if(player.health === 0 )
+            socket.emit('newGame', "police")
 
         // If this is a policeman  
 
@@ -101,6 +105,8 @@ socket.on('send-criminalSpecs', function (data) {
             picture = policeSprites.imageS
             dr.rectangle(ctx, crimbullet);
             dr.healthBarPol(ctx, player.health);
+            if(player.health === 0 )
+        socket.emit('newGame', "criminal")
         }
 
         dr.image(ctx, picture, player);
@@ -113,6 +119,8 @@ socket.on('send-criminalSpecs', function (data) {
             criminalMove.downPressed = data;
         })
     }
+
+    
 })
 
 setInterval(() => {
