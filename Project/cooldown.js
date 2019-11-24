@@ -9,15 +9,16 @@ module.exports.cooldown = function (bullet, object) {
        Whether it should travel left or right depending on the last key that was pressed */
     var bulletMagnitude;
     if (bullet.bulletTimer <= 0) {
-
         bullet.x = object.x
         bullet.y = object.y + (object.height / 2)
         switch (bullet.leftOrRight) {
             case "left":
+                bullet.x = object.x - 35
                 console.log("Ur on the left!!!")
                 bullet.speed = -Math.abs(bullet.speed)
                 break;
             case "right":
+                    bullet.x = object.x + 35
                 console.log("Ur on the right!")
                 bullet.speed = Math.abs(bullet.speed)
                 break;
