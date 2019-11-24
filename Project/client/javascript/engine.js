@@ -21,57 +21,57 @@ var playerOccupied = false;
 
 // var gameStart = setInterval(drawPlayers, renderSpeed);
 
-function drawPlayers() {
+// function drawPlayers() {
 
-    // Recieves data from the server about the player objects, the police and the criminal
+//     // Recieves data from the server about the player objects, the police and the criminal
 
-    // if (!playerOccupied) {
-    //     socket.on('send-criminalPlayer', (data) => {
-    //         playerNumber = data
-    //         playerOccupied = true
-    //     })
-    //     socket.on('send-policePlayer', (data) => {
-    //         playerNumber = data
-    //         playerOccupied = true
-    //     })
+//     // if (!playerOccupied) {
+//     //     socket.on('send-criminalPlayer', (data) => {
+//     //         playerNumber = data
+//     //         playerOccupied = true
+//     //     })
+//     //     socket.on('send-policePlayer', (data) => {
+//     //         playerNumber = data
+//     //         playerOccupied = true
+//     //     })
 
-    //     if(playerNumber === 1 || playerNumber === 2)
-    //     playerOccupied = true;
-    // }
+//     //     if(playerNumber === 1 || playerNumber === 2)
+//     //     playerOccupied = true;
+//     // }
 
-    // socket.on('send-policeSpecs', function (data) {
-    //     police = data;
-    // })
-
-
-
-    // Sets criminal OR police sprites to still when left nor right is pressed
+//     // socket.on('send-policeSpecs', function (data) {
+//     //     police = data;
+//     // })
 
 
 
-    // Score , health and bullet availability here.
-
-    score++;
-
-    document.getElementById("bullets").innerHTML = bulletAvailable;
-
-    // Draws the necessary objects, such as the players and the platforms
-
-    // Tells the server if an input is detected
-
-    // Because we don't have a keyUpHandler for jumping / shooting , because these operations require just a press
-    // to be executed 
+//     // Sets criminal OR police sprites to still when left nor right is pressed
 
 
-    socket.on('updateSpacePressed', function (data) {
-        policeMove.spacePressed = data;
-    })
 
-    socket.on('updateUpPressedPolice', function (data) {
-        policeMove.upPressed = data;
-    })
+//     // Score , health and bullet availability here.
 
-}
+//     score++;
+
+//     document.getElementById("bullets").innerHTML = bulletAvailable;
+
+//     // Draws the necessary objects, such as the players and the platforms
+
+//     // Tells the server if an input is detected
+
+//     // Because we don't have a keyUpHandler for jumping / shooting , because these operations require just a press
+//     // to be executed 
+
+
+//     socket.on('updateSpacePressed', function (data) {
+//         policeMove.spacePressed = data;
+//     })
+
+//     socket.on('updateUpPressedPolice', function (data) {
+//         policeMove.upPressed = data;
+//     })
+
+// }
 
 socket.on('send-bulletSpecs', function (data) {
     bullet = data
@@ -95,7 +95,7 @@ socket.on('send-criminalSpecs', function (data) {
             dr.rectangle(ctx, bullet)
             dr.healthBarCriminal(ctx, player.health);
 
-            // If this is a policeman  
+        // If this is a policeman  
 
         } else if (player.color === "blue") {
             picture = policeSprites.imageS
