@@ -85,7 +85,7 @@ io.on('connection', function (socket) {
 
         // Used to check if any collisions happen between everything
 
-        col.collisions(player, player, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet)
+        col.collisions(criminal, police, platform, building, buildingTwo, middleBuild, middleBuildTwo, edgeOne, edgeTwo, bullet, crimbullet)
 
         /* This stops the players from bouncing, notifies the client that the player has completed their jump */
 
