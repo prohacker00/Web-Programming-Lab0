@@ -5,7 +5,7 @@
 
     <title>Shadow Rise</title>
     <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css" media = "screen" charset = "utf-8">
+    <link rel="stylesheet" href="css/signin_style.css" media = "screen" charset = "utf-8">
 
 </head>
 
@@ -23,7 +23,7 @@
 
 </header>
 
-<body class="MainBod">
+<body>
 
         <img id = "back" src="./img/back.png" hidden>
 
@@ -40,22 +40,25 @@
 
         <img id="cagee" src="./img/box.png" hidden>
         <img id="metalpl" src="./img/metalp.png" hidden>
-    
+
     <div id = "signDiv">
-        
-        <div class="loginbox">
-        Username:
-        </div>
-        
-        <div class = "textbox">
-        <input id ="userName" type = "text"></input><br>
+
+        <div class="login-box">
+                <h1>Welcome To Shadow Rise</h1>
+        <br>
+        <h3>Username:</h3>
         </div>
 
-        <div class="loginbox">
+
+        <div class = "text-box">
+        <input id ="userName" type = "text" ></input><br>
+        </div>
+
+        <div class="login-box">
         <h3>Password:</h3>
         </div>
 
-        <div class = "textbox">
+        <div class = "text-box">
         <input id ="passWord" type = "password"></input>
         </div>
 
@@ -69,18 +72,17 @@
 
     <br>
 
-    <div style="text-align: center"><img src="img/poster.png"/></div>
-
-
+    <p id="bullets"></p>
 
     <div id="javascript_sources">
 
         <script type="module" src="javascript/engine.js"></script>
-        
+
         <script src="javascript/controls.js"></script>        
         <script src="javascript/drawRect.js"></script>
         <script src="javascript/playerObjects.js"></script>
         <script src="javascript/cooldown.js"></script>
+
         <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
     </div>
@@ -88,16 +90,5 @@
 
 </body>
 
-<!-- Database Stuff -->
 
-<script>
-
-
-
-
-
-
-
-</script>
-
-</html>
+</html> 

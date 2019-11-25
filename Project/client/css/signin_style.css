@@ -1,28 +1,22 @@
-
-
-
 body{
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: rgb(29, 28, 28);  no-repeat center center fixed;
+  background-color: rgb(29, 28, 28); 
   background-size: cover;
+}
 
+#signDiv {
+  visibility: visible;
+  margin-left: 500px;
+  margin-right: 500px;
+  margin-top: 60px;
 }
 
 
-.login-box{
- width: 280px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  color: white;
-  margin-top: 50x;
-  color: 	#FFFFFF;
-   text-transform: uppercase;
- transition: all 4s ease-in-out;
 
+.login-box {
+  color: white;
 }
 
 .login-box h1{
@@ -33,7 +27,7 @@ body{
   padding: 13px 0;
 
 }
-.textbox {
+.text-box {
   width: 100%;
   overflow: hidden;
   font-size: 20px;
@@ -41,14 +35,14 @@ body{
   margin: 8px 0;
   border-bottom: 1px solid white;
   	transition: all 4s ease-in-out;
-  
+
 }
-.textbox i{
+.text-box i{
   width: 26px;
   float: left;
   text-align: center;
 }
-.textbox input{
+.text-box input{
   border: none;
   outline: none;
   background: none;
@@ -60,7 +54,7 @@ body{
 }
 
 
-.btn{
+#loginButton {
   width: 100%;
   background:   darkorchid;
   border: 2px solid darkorchid;
@@ -70,10 +64,30 @@ body{
   cursor: pointer;
   margin: 12px 0;
   font-weight: bold;
-  
+
 }
 
-.btn:hover{
+#loginButton:hover{
+  background-color: #fff;
+  cursor: pointer;
+  color: #000000;
+  transition: 0.3s;
+}
+
+#signupButton {
+  width: 100%;
+  background:   darkorchid;
+  border: 2px solid darkorchid;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+  font-weight: bold;
+
+}
+
+#signupButton:hover{
   background-color: #fff;
   cursor: pointer;
   color: #000000;
@@ -117,7 +131,7 @@ ul.breadcrumb li a {
   color: white;
   opacity: none;
   text-decoration: none;
-  
+
 }
 
 /* Add a color on mouse-over */
@@ -152,10 +166,7 @@ ul.breadcrumb li a:hover {
   text-align: center;
 }
 
-.mainbod {
-  /* background-image: url(back.png); */
-  background-color: rgb(29, 28, 28);
-}
+
 
 #MainHead {
   color: white;
@@ -171,7 +182,7 @@ ul.breadcrumb li a:hover {
   overflow: auto;
   background-color: black;
   text-align: center;
-  padding: 5px;;
+  padding: 5px;
 
 }
 
@@ -179,11 +190,12 @@ ul.breadcrumb li a:hover {
 .navbar a {
   float: center;
   text-align: center;
-  padding-left: 50;
-  padding-right: 50;
+  padding-left: 100;
+  padding-right: 100;
   color: white;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 24px;
+  margin: 20px;
 }
 
 /* Navbar links on mouse-over */
@@ -198,6 +210,3 @@ ul.breadcrumb li a:hover {
   background-color: darkorchid;
   font-size: 30px;
 }
-
-
-
