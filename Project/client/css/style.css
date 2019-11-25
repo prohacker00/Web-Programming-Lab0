@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+#helperFun {
+  align: middle;
+  float: middle;
+}
+
 #canvas {
   /* visibility: hidden; */
   display: inline;
