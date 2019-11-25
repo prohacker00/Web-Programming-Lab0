@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Shadow Rise</title>
+    <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="signin_style.css" media = "screen" charset = "utf-8">
+
+</head>
+
+<header class="bigmain">
+
+    <div id="MainHead">
+        <h1>Shadow Rise</h1>
+    </div>
+
+    <div class="navbar">
+        <a href="./contactUs.html"> Contact</a>
+        <a class="active" href="#">Play!</a>
+        <a href="./about.html">About</a>    
+    </div>
+
+</header>
+
+<body>
+
+        <img id = "back" src="./img/back.png" hidden>
+
+        <img id="crimR" src="./img/crimRight.png" hidden>
+        <img id="crimL" src="./img/crimLeft.png" hidden>
+        <img id="crimS" src="./img/crimStill.png" hidden>
+
+        <img id="poliR" src="./img/polRight.png" hidden>
+        <img id="poliL" src="./img/polLeft.png" hidden>
+        <img id="poliS" src="./img/polStill.png" hidden>
+
+        <img id="floating" src="./img/Floating Platform.png" hidden>
+        <img id="plat" src="./img/Goop_Tile_Center.png" hidden>
+
+        <img id="cagee" src="./img/box.png" hidden>
+        <img id="metalpl" src="./img/metalp.png" hidden>
+    
+    <div id = "signDiv">
+
+        <div class="login-box">
+                <h1>Welcome To Shadow Rise</h1>
+        <br>
+        <h3>Username:</h3>
+        </div>
+        
+        
+        <div class = "text-box">
+        <input id ="userName" type = "text" ></input><br>
+        </div>
+
+        <div class="login-box">
+        <h3>Password:</h3>
+        </div>
+
+        <div class = "text-box">
+        <input id ="passWord" type = "password"></input>
+        </div>
+
+         <button id = "loginButton">Login</button>
+         <button id = "signupButton">Sign Up</button>
+    </div>
+
+    <div id="canvas-content" style="display: none;">
+        <canvas id="canvas" width="1150" height= "450" style="border: 10px solid black" style="background: springgreen;"></canvas>
+    </div>
+
+    <br>
+    
+    <p id="bullets"></p>
+
+    <div id="javascript_sources">
+
+        <script type="module" src="javascript/engine.js"></script>
+        
+        <script src="javascript/controls.js"></script>        
+        <script src="javascript/drawRect.js"></script>
+        <script src="javascript/playerObjects.js"></script>
+        <script src="javascript/cooldown.js"></script>
+
+        <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+    </div>
+
+
+</body>
+
+
+</html>
