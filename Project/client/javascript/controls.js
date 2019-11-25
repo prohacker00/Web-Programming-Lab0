@@ -27,7 +27,7 @@ function keyDownHandler(event) {
 
     // Down
 
-    if (event.keyCode == 32) {
+    if (event.keyCode == 13) {
         // criminalMove.downPressed = true
         playersMove.downPressed = true;
     }
