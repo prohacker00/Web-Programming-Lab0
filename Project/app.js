@@ -25,6 +25,7 @@ var currentPolice;
 var currentCriminal;
 var numberOfPlayers = 0
 
+var playerMap = new Map();
 
 // Importing functions. Col is for collision detection
 const col = require('./collision')
@@ -97,11 +98,13 @@ io.on('connection', function (socket) {
             password: data.password,
             score: 0
         });
+        
     })
 
-    socket.on('login', function (data) {
+    socket.on('login', function (data) {  
         correctDetails(data, function (res) {
             if (res) {
+                playerMap.set(socket.id, data.username)
                 socket.emit('loginDetails', {
                     success: true
                 });
@@ -110,16 +113,19 @@ io.on('connection', function (socket) {
                 socket.emit('loginDetails', {
                     success: false
                 });
-                console.log("wronggggggggg")
+                console.log("wrong")
             }
         });
     });
 
     socket.on('loggedIn', function () {
         if (numberOfPlayers == 1) {
+
             currentCriminal = playerArray[2]
             players[currentCriminal] = criminal;
+
         } else if (numberOfPlayers == 2) {
+
             currentPolice = playerArray[1];
             players[currentPolice] = police;
         }
@@ -166,6 +172,15 @@ io.on('connection', function (socket) {
         if (lobbyArray.length > 0) {
 
             if (data == "police") {
+                var winnerSocket = currentPolice;
+                var userNameWinner = playerMap.get(winnerSocket)
+                db.player.update(
+                    {
+                    username: userNameWinner},
+                    {
+                        $inc: {score: 1}
+                    },
+                    )
                 lobbyArray.push(playerArray.shift());
                 players[currentCriminal] = "";
                 currentCriminal = "";

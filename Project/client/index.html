@@ -66,8 +66,7 @@
          <button id = "signupButton">Sign Up</button>
     </div>
 
-    <div id="canvas-content">  
-
+    <div id="canvas-content" style="display: none;">
         <canvas id="canvas" width="1150" height= "450" style="border: 10px solid black" style="background: springgreen;"></canvas>
     </div>
 
@@ -76,6 +75,10 @@
     <p id="bullets"></p>
 
     <div id="javascript_sources">
+
+        <audio controls>
+            <source id="shoot" src="./audio/GunShooting.ogg" type="audio/ogg">
+        </audio>
 
         <script type="module" src="javascript/engine.js"></script>
 
