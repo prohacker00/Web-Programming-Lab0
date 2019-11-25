@@ -150,22 +150,11 @@ io.on('connection', function (socket) {
 
         // Emits the police and the criminal to the client. So they can be drawn onto the canvas.
     });
-    socket.on('newGame', function (data) {
-        console.log("Game Over!")
 
-        police.health = 5;
-        criminal.health = 5;
-
-        police.x = 120;
-        criminal.x = 1005;
-
-        police.y = 350;
-        criminal.y = 350;
+    // This is our game over function
+    socket.on('newGame', async function (data) {
 
         if (lobbyArray.length > 0) {
-
-
-
 
             if (data == "police") {
                 lobbyArray.push(playerArray.shift())
@@ -186,9 +175,19 @@ io.on('connection', function (socket) {
                 playerArray[1] = currentPolice
                 players[currentPolice] = police
             }
-
         }
-
+        
+        setTimeout(() => {
+            police.health = 5;
+            criminal.health = 5;
+    
+            police.x = 120;
+            criminal.x = 1005;
+    
+            police.y = 350;
+            criminal.y = 350;
+    
+            }, 1000);
     })
 });
 
