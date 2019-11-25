@@ -50,7 +50,11 @@ socket.on('loginDetails', function (data) {
     if (data.success) {
         signDiv.style.display = 'none';
         game.style.display = '';
+        alert("Successful sign in.");
         socket.emit('loggedIn');
+    }
+    else {
+        alert("Incorrect Details");
     }
 
 });
@@ -63,6 +67,16 @@ signupButton.onclick = function () {
     })
 
 }
+
+socket.on('uniqueError', function (data) {
+    if(data.success == true) {
+        alert("New account created");
+    }
+    else {
+        alert("User is already in the database");
+    }
+
+});
 
 socket.on('send-bulletSpecs', function (data) {
     bullet = data
@@ -157,6 +171,8 @@ socket.on('send-criminalSpecs', function (data) {
         socket.on('updateUpPressed', function (data) {
             playersMove.upPressed = data;
         })
+
+        
 
         socket.on('updateDownPressed', function (data) {
             playersMove.downPressed = data;

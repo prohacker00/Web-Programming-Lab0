@@ -87,15 +87,33 @@ io.on('connection', function (socket) {
         });
     }
 
+    var uniqueUsername = function (data, cb) {
+        db.player.find({
+            username: data.username,
+        }, function (err, res) {
+            if (res.length > 0)
+                cb(true);
+            else
+                cb(false);
+        });
+    }
+
 
     socket.on('signup', function (data) {
-        db.player.insert({
-            username: data.username,
-            password: data.password,
-            score: 0
-        });
+       uniqueUsername(data, function (res){
+           if (!res){
+            db.player.insert({
+                username: data.username,
+                password: data.password,
+                score: 0
+            });
+            socket.emit('uniqueError', {success: true})
+           }
+           else {
+               socket.emit('uniqueError', {success: false})
+           }
         
-    })
+    }) })
 
     socket.on('login', function (data) {  
         correctDetails(data, function (res) {
