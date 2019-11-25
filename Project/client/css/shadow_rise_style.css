@@ -18,7 +18,7 @@ body {
   margin-top: 100px;
   color: #FFFFFF;
   text-transform: uppercase;
-  transition: all 4s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .contact-title h1 {
@@ -34,7 +34,7 @@ body {
 
 form {
   margin-top: 50px;
-  transition: all 4s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .form-control {

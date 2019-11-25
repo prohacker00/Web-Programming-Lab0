@@ -5,6 +5,7 @@ body{
   text-align: center;
   background-color: rgb(29, 28, 28);
   background-size: cover;
+  padding-bottom: 40px;
   background-position: center;
   font-family:sans-serif;
   overflow: scroll;
@@ -15,7 +16,7 @@ body{
 {
   margin-top: 20px;
   color:    #FFFFFF;
-  transition: all 4s ease-in-out;
+  transition: all 1s ease-in-out;
   
 }
 

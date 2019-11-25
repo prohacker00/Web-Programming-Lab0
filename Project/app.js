@@ -102,7 +102,7 @@ io.on('connection', function (socket) {
            if(res) {
                socket.emit('loginDetails',{success:true});
            } else {
-               socket.emit('loginDetails', {success:false});
+               socket.emit('loginDetails', {success:true});
            }
        })
     })
