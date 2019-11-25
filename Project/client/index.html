@@ -93,7 +93,7 @@
 
 <script>
 
-var socket = io();
+var io = require('socket.io')(serv,{});
 
 var thePass = " ";
 var theUser = " ";

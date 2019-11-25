@@ -29,7 +29,7 @@ var numberOfPlayers = 0
 // Importing functions. Col is for collision detection
 const col = require('./collision')
 const updater = require('./updateMovementServer.js')
-const mongojs = require("mongojs")
+const mongojs = require('mongojs')
 const express = require('express')
 const socket = require('socket.io');
 
@@ -78,15 +78,14 @@ io.on('connection', function (socket) {
 
     /* login system */
 
-    var correctDetails = function(data, cb) {
-        db.player.find({username: data.username, password: data.password}, function(err, res) {
-            console.log(res.length)
+    var correctDetails = function(data,cb){
+        db.player.find({username:data.username,password:data.password}, function(err,res){
             if(res.length > 0)
                 cb(true);
             else
                 cb(false);
-            });
-        }
+        });
+    }
 
 
     socket.on('signup', function(data) {
@@ -96,16 +95,15 @@ io.on('connection', function (socket) {
         db.player.insert({username: newUser, password: newPassword, score: newScore});
     })
 
-    socket.on('login', function(data) {
-        theDetails = data;
-        correctDetails(theDetails, function(res){
-           if(res) {
-               socket.emit('loginDetails',{success:true});
-           } else {
-               socket.emit('loginDetails', {success:true});
-           }
-       })
-    })
+    socket.on('login',function(data){
+        correctDetails(data,function(res){
+            if(res){
+                socket.emit('loginDetails',{success:true});
+            } else {
+                socket.emit('loginDetails',{success:false});         
+            }
+        });
+    });
 
     /* data (the parameter inside function) contains the booleans used to check 
        whether a key has been pressed for both players */
