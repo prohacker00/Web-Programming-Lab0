@@ -93,7 +93,7 @@ io.on('connection', function (socket) {
     })
 
     socket.on('login',function(data){
-        correctDetails(data,function(res){
+        correctDetails(data,function(res) {
             if(res) {
                 socket.emit('loginDetails',{success:true});
                 console.log("yay")
