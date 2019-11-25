@@ -45,7 +45,7 @@ let portNumber = 9999
 then a function is fired back */
 
 var server = app.listen(portNumber, () => {
-    console.log("Listening to requests at port " + portNumber)
+    console.log("Listening to requests at port", portNumber)
 });
 
 
@@ -78,9 +78,12 @@ io.on('connection', function (socket) {
 
     /* login system */
 
-    var correctDetails = function(data,cb){
-        db.player.find({username:data.username,password:data.password}, function(err,res){
-            if(res.length > 0)
+    var correctDetails = function (data, cb) {
+        db.player.find({
+            username: data.username,
+            password: data.password
+        }, function (err, res) {
+            if (res.length > 0)
                 cb(true);
             else
                 cb(false);
@@ -88,29 +91,35 @@ io.on('connection', function (socket) {
     }
 
 
-    socket.on('signup', function(data) {
-        db.player.insert({username: data.username, password: data.password, score: 0});
+    socket.on('signup', function (data) {
+        db.player.insert({
+            username: data.username,
+            password: data.password,
+            score: 0
+        });
     })
 
-    socket.on('login',function(data){
-        correctDetails(data,function(res) {
-            if(res) {
-                socket.emit('loginDetails',{success:true});
+    socket.on('login', function (data) {
+        correctDetails(data, function (res) {
+            if (res) {
+                socket.emit('loginDetails', {
+                    success: true
+                });
                 console.log("yay")
             } else {
-                socket.emit('loginDetails',{success:false});
+                socket.emit('loginDetails', {
+                    success: false
+                });
                 console.log("wronggggggggg")
             }
         });
     });
 
-    socket.on('loggedIn',function(){
+    socket.on('loggedIn', function () {
         if (numberOfPlayers == 1) {
             currentCriminal = playerArray[2]
             players[currentCriminal] = criminal;
-        }
-
-        else if (numberOfPlayers == 2) {
+        } else if (numberOfPlayers == 2) {
             currentPolice = playerArray[1];
             players[currentPolice] = police;
         }
@@ -157,7 +166,7 @@ io.on('connection', function (socket) {
         if (lobbyArray.length > 0) {
 
             if (data == "police") {
-                lobbyArray.push(playerArray.shift())
+                lobbyArray.push(playerArray.shift());
                 players[currentCriminal] = "";
                 currentCriminal = "";
 
@@ -176,20 +185,36 @@ io.on('connection', function (socket) {
                 players[currentPolice] = police
             }
         }
-        
+
         setTimeout(() => {
             police.health = 5;
             criminal.health = 5;
-    
+
             police.x = 120;
             criminal.x = 1005;
-    
+
             police.y = 350;
             criminal.y = 350;
-    
-            }, 1000);
+
+        }, 1000);
+    })
+
+    socket.on('disconnect', () => {
+        for (let i = 0; i < playerArray.length; i++) {
+            if (socket.id === playerArray[i]) {
+                if (currentCriminal === playerArray[i]) {
+                    playerArray[currentCriminal] = ""
+                    currentCriminal = ""
+                    currentCriminal = lobbyArray.shift();
+                    playerArray[i] = currentCriminal
+                    players[currentCriminal] = criminal;
+                }
+
+            }
+        }
     })
 });
+
 
 setInterval(() => {
     io.sockets.emit('send-criminalSpecs', players)
