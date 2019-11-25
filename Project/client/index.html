@@ -41,8 +41,29 @@
         <img id="cagee" src="./img/box.png" hidden>
         <img id="metalpl" src="./img/metalp.png" hidden>
     
+    <div id = "signDiv">
+        
+        <div class="loginbox">
+        Username:
+        </div>
+        
+        <div class = "textbox">
+        <input id ="userName" type = "text"></input><br>
+        </div>
 
-    <div id="canvas-content">
+        <div class="loginbox">
+        <h3>Password:</h3>
+        </div>
+
+        <div class = "textbox">
+        <input id ="passWord" type = "password"></input>
+        </div>
+
+         <button id = "loginButton">Login</button>
+         <button id = "signupButton">Sign Up</button>
+    </div>
+
+    <div id="canvas-content" style="display: none;">
         <canvas id="canvas" width="1150" height= "450" style="border: 10px solid black" style="background: springgreen;"></canvas>
     </div>
 
@@ -57,8 +78,6 @@
         <script src="javascript/controls.js"></script>        
         <script src="javascript/drawRect.js"></script>
         <script src="javascript/playerObjects.js"></script>
-        <script src="javascript/collision.js"></script>
-        <script src="javascript/updateMovement.js"></script>
         <script src="javascript/cooldown.js"></script>
 
         <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -67,5 +86,49 @@
 
 
 </body>
+
+<!-- Database Stuff -->
+
+<script>
+
+var socket = io();
+
+var thePass = " ";
+var theUser = " ";
+    
+var signDiv = document.getElementById('signDiv');
+var game = document.getElementById('canvas-content');
+var userName = document.getElementById('userName');
+var passWord = document.getElementById('passWord');
+var loginButton = document.getElementById('loginButton');
+var signupButton = document.getElementById('signupButton');
+
+loginButton.onclick = function() {
+    
+    socket.emit('login', {username: userName.value, password: passWord.value})
+
+}
+
+socket.on('loginDetails' , function(data) {
+    
+    if(data.success) {
+        signDiv.style.display = 'none';
+        game.style.display = '';
+        socket.emit('loggedIn');
+    }
+
+});
+
+signupButton.onclick = function() {
+    console.log(passWord.value + userName.value)
+    socket.emit('signup', {username: userName.value, password: passWord.value})
+
+}
+
+
+
+
+
+</script>
 
 </html>
