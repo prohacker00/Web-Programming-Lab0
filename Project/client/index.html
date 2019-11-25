@@ -79,6 +79,9 @@
 <script>
 
 var socket = io();
+
+var thePass = " ";
+var theUser = " ";
     
 var signDiv = document.getElementById('signDiv');
 var game = document.getElementById('canvas-content');
@@ -87,17 +90,32 @@ var passWord = document.getElementById('passWord');
 var loginButton = document.getElementById('loginButton');
 var signupButton = document.getElementById('signupButton');
 
+thePass = passWord.value
+theUser = userName.value
+
 loginButton.onclick = function() {
-    socket.emit('login', {username:userName.value, password:passWord.value})
+    
+    console.log(theUser)
+    socket.emit('login', {username: theUser, password: thePass})
 
 }
 
 socket.on('loginDetails' , function(data) {
-    if(data == 1) {
+    if(data.success) {
         signDiv.style.display = 'none';
         game.style.display = '';
-    } 
+    }
+    
+    socket.emit('loggedIn');
+
 });
+
+signupButton.onclick = function() {
+    socket.emit('signup', {username: theUser, password: thePass})
+
+}
+
+
 
 
 

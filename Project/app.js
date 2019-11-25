@@ -14,6 +14,10 @@ var middleBuildTwo = floating_platforms[3];
 var edgeOne = floating_platforms[4];
 var edgeTwo = floating_platforms[5];
 
+var newUser = " "
+var newPassword = " "
+var newScore = 0
+
 var players = {}
 var lobbyArray = []
 var playerArray = []
@@ -29,6 +33,8 @@ const mongojs = require("mongojs")
 const express = require('express')
 const socket = require('socket.io');
 
+const db = mongojs('localhost:27017/shadowRiseDB', ['player'])
+
 //App setup
 const app = express();
 
@@ -41,6 +47,7 @@ then a function is fired back */
 var server = app.listen(portNumber, () => {
     console.log("Listening to requests at port " + portNumber)
 });
+
 
 //Static files
 app.use(express.static('client'))
@@ -71,11 +78,33 @@ io.on('connection', function (socket) {
 
     /* login system */
 
+    var correctDetails = function(data, cb) {
+        db.player.find({username: data.username, password: data.password}, function(err, res) {
+            console.log(res.length)
+            if(res.length > 0)
+                cb(true);
+            else
+                cb(false);
+            });
+        }
+
+
+    socket.on('signup', function(data) {
+        newUser = data.username;
+        newPassword = data.password;
+        newScore = 0;
+        db.player.insert({username: newUser, password: newPassword, score: newScore});
+    })
+
     socket.on('login', function(data) {
-        var testUsername = data.username;
-        var testPassword = data.password;
-        if (data.username == "gay") {
-        socket.emit('loginDetails', 1); }
+        theDetails = data;
+        correctDetails(theDetails, function(res){
+           if(res) {
+               socket.emit('loginDetails',{success:true});
+           } else {
+               socket.emit('loginDetails', {success:false});
+           }
+       })
     })
 
     /* data (the parameter inside function) contains the booleans used to check 
