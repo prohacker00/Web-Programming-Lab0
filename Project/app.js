@@ -49,7 +49,7 @@ app.use(express.static('client'))
 var io = socket(server);
 
 io.on('connection', function (socket) {
-    console.log(console.log("Made socket connection", socket.id))
+    console.log("Made socket connection", socket.id)
     numberOfPlayers++;
 
     if (numberOfPlayers == 1) {
@@ -78,21 +78,14 @@ io.on('connection', function (socket) {
 
         // Checks if any keys have been pressed, and moves the players accordingly.
 
-        updater.update(data.criminal, player, bullet)
-        updater.update(data.police, player, crimbullet)
+        updater.update(data, player, bullet)
 
         // If the cooldown period finishes, then player can shoot again!
 
         if (bullet.bulletTime) {
-            console.log("A bullet is ready! Shoot, o evil criminal!")
+            console.log("A bullet is ready! Shoot!")
             io.sockets.emit('updateDownPressed', false)
             bullet.bulletTime = false;
-        }
-
-        if (crimbullet.bulletTime) {
-            console.log("A bullet is ready! Shoot, young hero!")
-            io.sockets.emit('updateSpacePressed', false)
-            crimbullet.bulletTime = false;
         }
 
         // Used to check if any collisions happen between everything
@@ -128,15 +121,6 @@ io.on('connection', function (socket) {
 
             if (data == "police") {
 
-                // outside = playerArray.pop()
-                // playerArray.unshift(outside)
-                // var removeIn = playerArray.indexOf(currentCriminal)
-                // var spliced = playerArray.splice(removeIn, 1)
-                // playerArray.push(spliced)
-
-                // currentCriminal = playerArray[1];
-                // players[currentCriminal] = criminal;
-
                 lobbyArray.push(playerArray.shift())
                 players[currentCriminal] = "";
                 currentCriminal = "";
@@ -155,13 +139,6 @@ io.on('connection', function (socket) {
                 playerArray[1] = currentPolice
                 players[currentPolice] = police
             }
-
-            
-
-
-            // players[currentCriminal] = criminal
-            // players[currentPolice] = police;
-
 
         }
 

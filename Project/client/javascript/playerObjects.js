@@ -77,7 +77,7 @@ var criminalSprites = {
     imageR: document.getElementById("crimR"),
     imageL: document.getElementById("crimL"),
     imageS: document.getElementById("crimS"),
-}
+};
 
 var backgroundCanvas = document.getElementById("back")
 
@@ -117,6 +117,13 @@ var criminalMove = {
 }
 
 var policeMove = {
+    rightPressed: false,
+    leftPressed: false,
+    upPressed: false,
+    spacePressed: false,
+}
+
+var playersMove = {
     rightPressed: false,
     leftPressed: false,
     upPressed: false,
