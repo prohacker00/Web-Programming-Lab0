@@ -19,6 +19,35 @@ var picture;
 var picture2;
 
 var playerOccupied = false;
+    
+var signDiv = document.getElementById('signDiv');
+var game = document.getElementById('canvas-content');
+var userName = document.getElementById('userName');
+var passWord = document.getElementById('passWord');
+var loginButton = document.getElementById('loginButton');
+var signupButton = document.getElementById('signupButton');
+
+loginButton.onclick = function() {
+    
+    socket.emit('login', {username: userName.value, password: passWord.value})
+
+}
+
+socket.on('loginDetails' , function(data) {
+    
+    if(data.success) {
+        signDiv.style.display = 'none';
+        game.style.display = '';
+        socket.emit('loggedIn');
+    }
+
+});
+
+signupButton.onclick = function() {
+    console.log(passWord.value + userName.value)
+    socket.emit('signup', {username: userName.value, password: passWord.value})
+
+}
 
 socket.on('send-bulletSpecs', function (data) {
     bullet = data
