@@ -209,6 +209,13 @@ io.on('connection', function (socket) {
                     playerArray[i] = currentCriminal
                     players[currentCriminal] = criminal;
                 }
+                else if (currentPolice === playerArray[i]) {
+                    playerArray[currentPolice] = ""
+                    currentPolice = ""
+                    currentPolice = lobbyArray.shift();
+                    playerArray[i] = currentPolice;
+                    players[currentPolice] = police;
+                }
 
             }
         }
