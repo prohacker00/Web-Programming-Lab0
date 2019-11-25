@@ -108,7 +108,6 @@ theUser = userName.value
 
 loginButton.onclick = function() {
     
-    console.log(passWord.value)
     socket.emit('login', {username: userName.value, password: passWord.value})
 
 }
