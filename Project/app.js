@@ -107,6 +107,12 @@ io.on('connection', function (socket) {
         });
     });
 
+    socket.on('loggedIn',function(){
+        if (numberOfPlayers >= 2) {
+            
+        }
+    });
+
     /* data (the parameter inside function) contains the booleans used to check 
        whether a key has been pressed for both players */
 
@@ -162,18 +168,9 @@ io.on('connection', function (socket) {
 
         if (lobbyArray.length > 0) {
 
-            // If data means police then police won. ;
+
 
             if (data == "police") {
-
-                // outside = playerArray.pop()
-                // playerArray.unshift(outside)
-                // var removeIn = playerArray.indexOf(currentCriminal)
-                // var spliced = playerArray.splice(removeIn, 1)
-                // playerArray.push(spliced)
-
-                // currentCriminal = playerArray[1];
-                // players[currentCriminal] = criminal;
 
                 lobbyArray.push(playerArray.shift())
                 players[currentCriminal] = "";
@@ -193,13 +190,6 @@ io.on('connection', function (socket) {
                 playerArray[1] = currentPolice
                 players[currentPolice] = police
             }
-
-            
-
-
-            // players[currentCriminal] = criminal
-            // players[currentPolice] = police;
-
 
         }
 
