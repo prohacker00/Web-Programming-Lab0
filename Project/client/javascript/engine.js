@@ -19,7 +19,7 @@ var picture;
 var picture2;
 
 var playerOccupied = false;
-    
+
 var signDiv = document.getElementById('signDiv');
 var game = document.getElementById('canvas-content');
 var userName = document.getElementById('userName');
@@ -27,15 +27,27 @@ var passWord = document.getElementById('passWord');
 var loginButton = document.getElementById('loginButton');
 var signupButton = document.getElementById('signupButton');
 
-loginButton.onclick = function() {
-    
-    socket.emit('login', {username: userName.value, password: passWord.value})
+loginButton.onclick = function () {
+
+    socket.emit('login', {
+        username: userName.value,
+        password: passWord.value
+    })
 
 }
 
-socket.on('loginDetails' , function(data) {
-    
-    if(data.success) {
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds) {
+            break;
+        }
+    }
+}
+
+socket.on('loginDetails', function (data) {
+
+    if (data.success) {
         signDiv.style.display = 'none';
         game.style.display = '';
         socket.emit('loggedIn');
@@ -43,9 +55,12 @@ socket.on('loginDetails' , function(data) {
 
 });
 
-signupButton.onclick = function() {
+signupButton.onclick = function () {
     console.log(passWord.value + userName.value)
-    socket.emit('signup', {username: userName.value, password: passWord.value})
+    socket.emit('signup', {
+        username: userName.value,
+        password: passWord.value
+    })
 
 }
 
@@ -92,7 +107,10 @@ socket.on('send-criminalSpecs', function (data) {
             dr.image(ctx, picture, player);
             dr.healthBarCriminal(ctx, player.health);
 
+            // Game over for criminal
+
             if (player.health === 0) {
+                dr.text(ctx, "Police won!")
                 socket.emit('newGame', "police")
             }
 
@@ -121,11 +139,18 @@ socket.on('send-criminalSpecs', function (data) {
 
             dr.rectangle(ctx, crimbullet);
             dr.healthBarPol(ctx, player.health);
-            if (player.health === 0) {
-                socket.emit('newGame', "criminal")
-            }
-            dr.image(ctx, picture2, player);
 
+            // Game over for police
+
+            if (player.health === 0) {
+                dr.text(ctx, "Criminals won!")
+                socket.emit('newGame', "criminal")
+
+
+
+            }
+
+            dr.image(ctx, picture2, player);
 
         }
 

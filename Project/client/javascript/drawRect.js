@@ -7,6 +7,12 @@ class drawRect {
         ctx.fillRect(model.x , model.y  ,model.width , model.height);
     }
 
+    text(ctx, string) {
+        ctx.font = "35px Arial";
+        ctx.fillText(string, 525, 450/2);
+
+    }
+
     image(ctx,img,model) {
     ctx.drawImage(img , model.x , model.y);
     }
