@@ -103,9 +103,6 @@ var passWord = document.getElementById('passWord');
 var loginButton = document.getElementById('loginButton');
 var signupButton = document.getElementById('signupButton');
 
-thePass = passWord.value
-theUser = userName.value
-
 loginButton.onclick = function() {
     
     socket.emit('login', {username: userName.value, password: passWord.value})
@@ -123,7 +120,8 @@ socket.on('loginDetails' , function(data) {
 });
 
 signupButton.onclick = function() {
-    socket.emit('signup', {username: theUser, password: thePass})
+    console.log(passWord.value + userName.value)
+    socket.emit('signup', {username: userName.value, password: passWord.value})
 
 }
 

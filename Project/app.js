@@ -89,15 +89,12 @@ io.on('connection', function (socket) {
 
 
     socket.on('signup', function(data) {
-        newUser = data.username;
-        newPassword = data.password;
-        newScore = 0;
-        db.player.insert({username: newUser, password: newPassword, score: newScore});
+        db.player.insert({username: data.username, password: data.password, score: 0});
     })
 
     socket.on('login',function(data){
         correctDetails(data,function(res){
-            if(res){
+            if(res) {
                 socket.emit('loginDetails',{success:true});
                 console.log("yay")
             } else {
@@ -108,8 +105,14 @@ io.on('connection', function (socket) {
     });
 
     socket.on('loggedIn',function(){
-        if (numberOfPlayers >= 2) {
-            
+        if (numberOfPlayers == 1) {
+            currentCriminal = playerArray[2]
+            players[currentCriminal] = criminal;
+        }
+
+        else if (numberOfPlayers == 2) {
+            currentPolice = playerArray[1];
+            players[currentPolice] = police;
         }
     });
 
@@ -118,7 +121,7 @@ io.on('connection', function (socket) {
 
     socket.on('playersMove', function (data) {
 
-        var player = players[socket.id] || {}
+        var player = players[socket.id] || {};
 
         // Checks if any keys have been pressed, and moves the players accordingly.
 
