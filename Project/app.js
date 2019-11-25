@@ -186,32 +186,16 @@ io.on('connection', function (socket) {
         if (lobbyArray.length > 0) {
 
             if (data == "police") {
-                var theWinner ;
-                 db.player.find({username: playerMap.get(currentPolice)}).then(doc => {
-                     theWinner = doc;
-                }).catch(err => {
-                    console.error(err);
-                });
-                theWinner.score += 1;
-                theWinner.save();
-
+                
                 lobbyArray.push(playerArray.shift());
                 players[currentCriminal] = "";
                 currentCriminal = "";
 
                 currentCriminal = lobbyArray.shift();
-                playerArray[0] = currentCriminal;
+                playerArray[0] = currentCriminal
                 players[currentCriminal] = criminal;
 
             } else if (data == "criminal") {
-                var theWinner ;
-                 db.player.find({username: playerMap.get(currentCriminal)}).then(doc => {
-                     theWinner = doc;
-                }).catch(err => {
-                    console.error(err);
-                });
-                theWinner.score += 1;
-                theWinner.save();
 
                 lobbyArray.push(playerArray.pop())
                 players[currentPolice] = ""
