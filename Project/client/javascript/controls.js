@@ -1,88 +1,50 @@
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 
-var bulletTime = true;
-
-var policeSpacePressed;
-
-var criminalImageStatus;
 
 function keyDownHandler(event) {
 
-    // Criminal keycodes
+    // Right
 
-        // Right
+    if (event.keyCode == 68) {
+        // criminalMove.rightPressed = true;
+        playersMove.rightPressed = true
 
-        if (event.keyCode == 39) {
-            criminalMove.rightPressed = true;
-            criminalImageStatus = criminalSprites.imageR
-            console.log("You have moved right")
+        // Left
 
-            // Left
+    } else if (event.keyCode == 65) {
+        // criminalMove.leftPressed = true
+        playersMove.leftPressed = true;
 
-        } else if (event.keyCode == 37) {
-            criminalMove.leftPressed = true
-            criminalImageStatus = criminalSprites.imageL
-
-        }
-
-        // Up
-
-        if (event.keyCode == 38) {
-            criminalMove.upPressed = true;
-        }
-
-        // Down
-
-        if (event.keyCode == 40) {
-            criminalMove.downPressed = true
-        }
-    
-
-    if (playerNumber === 2) {
-
-        // Police event keycodes
-
-        if (event.keyCode == 68) {
-            policeMove.rightPressed = true;
-            policeImageStatus = policeSprites.imageR
-
-        }
-
-        if (event.keyCode == 65) {
-            policeMove.leftPressed = true;
-            policeImageStatus = policeSprites.imageL
-        }
-
-        if (event.keyCode == 87) {
-            policeMove.upPressed = true;
-
-        }
-
-        if (event.keyCode == 32) {
-            policeMove.spacePressed = true;
-        }
     }
+
+    // Up
+
+    if (event.keyCode == 87) {
+        // criminalMove.upPressed = true;
+        playersMove.upPressed = true
+    }
+
+    // Down
+
+    if (event.keyCode == 32) {
+        // criminalMove.downPressed = true
+        playersMove.downPressed = true;
+    }
+
 }
 
 function keyUpHandler(event) {
 
     // Criminal
 
-    if (event.keyCode == 39) {
-        criminalMove.rightPressed = false
-
-    } else if (event.keyCode == 37) {
-        criminalMove.leftPressed = false;
-    }
-
-    // Police
-
     if (event.keyCode == 68) {
-        policeMove.rightPressed = false;
+        criminalMove.rightPressed = false
+        playersMove.rightPressed = false
+
+    } else if (event.keyCode == 65) {
+        criminalMove.leftPressed = false;
+        playersMove.leftPressed = false;
     }
 
-    if (event.keyCode == 65) {
-        policeMove.leftPressed = false;
-    }
 }

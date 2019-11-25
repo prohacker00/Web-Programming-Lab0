@@ -4,14 +4,20 @@ module.exports.update = function (movement, object, bullet) {
     const cool = require('./cooldown.js')
 
     const jump = require('./jump')
+
+    if(!movement.rightPressed && !movement.leftPressed) {
+        object.direction = "still"
+    }
     if (movement.rightPressed) {
         object.x += object.xSpeed
-        bullet.leftOrRight = "right"
+        bullet.leftOrRight = "right";
+        object.direction = "right";
     }
 
     if (movement.leftPressed) {
         object.x -= object.xSpeed;
         bullet.leftOrRight = "left"
+        object.direction = "left";
 
     }
 
@@ -26,8 +32,4 @@ module.exports.update = function (movement, object, bullet) {
     if (movement.downPressed) {
         cool.cooldown(bullet , object);
     } 
-
-    if(movement.spacePressed) {
-        cool.cooldown(bullet , object)
-    }
 }

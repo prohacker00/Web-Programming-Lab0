@@ -62,7 +62,9 @@
         "updateUpPressed": false,
         "floating": false,
         "isFreeFalling": false,
-        "player" : 0
+        "player" : 0,
+        "direction" : "right"
+        
     },
     "bullet": {
         "x": 0,
@@ -103,6 +105,7 @@
         "updateUpPressed": false,
         "floating": false,
         "isFreeFalling": false,
-        "player" : 0
+        "player" : 0,
+        "direction":"still"
     }
 }
