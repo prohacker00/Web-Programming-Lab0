@@ -23,6 +23,7 @@ function keyDownHandler(event) {
     if (event.keyCode == 87) {
         // criminalMove.upPressed = true;
         playersMove.upPressed = true
+        
     }
 
     // Down
@@ -30,7 +31,9 @@ function keyDownHandler(event) {
     if (event.keyCode == 13) {
         // criminalMove.downPressed = true
         playersMove.downPressed = true;
-    }
+        
+    } if(playersMove.downPressed)
+    shoot.play();
 
 }
 

@@ -6,6 +6,9 @@ let GAME_HEIGHT = canvas.getAttribute('height');
 
 const heightAdjust = 50
 
+var shoot = new Audio("../audio/GunShooting.ogg")
+var jump = new Audio("../audio/Jumping.ogg")
+
 var background = {
     x: 0,
     y: 0,
