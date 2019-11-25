@@ -14,10 +14,6 @@ var middleBuildTwo = floating_platforms[3];
 var edgeOne = floating_platforms[4];
 var edgeTwo = floating_platforms[5];
 
-var newUser = " "
-var newPassword = " "
-var newScore = 0
-
 var players = {}
 var lobbyArray = []
 var playerArray = []
@@ -145,7 +141,7 @@ io.on('connection', function (socket) {
         // If the cooldown period finishes, then player can shoot again!
 
         if (bullet.bulletTime) {
-            console.log("A bullet is ready! Shoot!")
+            console.log("A bullet is ready! Shoot!");
             io.sockets.emit('updateDownPressed', false)
             bullet.bulletTime = false;
         }
@@ -172,24 +168,32 @@ io.on('connection', function (socket) {
         if (lobbyArray.length > 0) {
 
             if (data == "police") {
-                var winnerSocket = currentPolice;
-                var userNameWinner = playerMap.get(winnerSocket)
-                db.player.update(
-                    {
-                    username: userNameWinner},
-                    {
-                        $inc: {score: 1}
-                    },
-                    )
+                var theWinner ;
+                 db.player.find({username: playerMap.get(currentPolice)}).then(doc => {
+                     theWinner = doc;
+                }).catch(err => {
+                    console.error(err);
+                });
+                theWinner.score += 1;
+                theWinner.save();
+
                 lobbyArray.push(playerArray.shift());
                 players[currentCriminal] = "";
                 currentCriminal = "";
 
                 currentCriminal = lobbyArray.shift();
-                playerArray[0] = currentCriminal
+                playerArray[0] = currentCriminal;
                 players[currentCriminal] = criminal;
 
             } else if (data == "criminal") {
+                var theWinner ;
+                 db.player.find({username: playerMap.get(currentCriminal)}).then(doc => {
+                     theWinner = doc;
+                }).catch(err => {
+                    console.error(err);
+                });
+                theWinner.score += 1;
+                theWinner.save();
 
                 lobbyArray.push(playerArray.pop())
                 players[currentPolice] = ""
