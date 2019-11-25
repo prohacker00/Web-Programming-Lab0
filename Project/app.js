@@ -99,8 +99,10 @@ io.on('connection', function (socket) {
         correctDetails(data,function(res){
             if(res){
                 socket.emit('loginDetails',{success:true});
+                console.log("yay")
             } else {
-                socket.emit('loginDetails',{success:false});         
+                socket.emit('loginDetails',{success:false});
+                console.log("wronggggggggg")
             }
         });
     });

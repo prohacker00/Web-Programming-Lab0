@@ -56,7 +56,7 @@
         </div>
 
         <div class = "textbox">
-        <input id ="passWord" type = "text"></input><br>
+        <input id ="passWord" type = "password"></input>
         </div>
 
          <button id = "loginButton">Login</button>
@@ -78,8 +78,6 @@
         <script src="javascript/controls.js"></script>        
         <script src="javascript/drawRect.js"></script>
         <script src="javascript/playerObjects.js"></script>
-        <script src="javascript/collision.js"></script>
-        <script src="javascript/updateMovement.js"></script>
         <script src="javascript/cooldown.js"></script>
 
         <script src = "https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -93,7 +91,7 @@
 
 <script>
 
-var io = require('socket.io')(serv,{});
+var socket = io();
 
 var thePass = " ";
 var theUser = " ";
@@ -110,8 +108,8 @@ theUser = userName.value
 
 loginButton.onclick = function() {
     
-    console.log(theUser)
-    socket.emit('login', {username: theUser, password: thePass})
+    console.log(passWord.value)
+    socket.emit('login', {username: userName.value, password: passWord.value})
 
 }
 
