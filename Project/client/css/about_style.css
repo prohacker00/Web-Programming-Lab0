@@ -34,6 +34,28 @@ body{
   position: absolute;
 }
 
+/* Style the navigation bar */
+.navbar {
+  width: auto;
+  overflow: auto;
+  background-color: black;
+  text-align: center;
+  padding: 5px;
+  
+
+}
+
+/* Navbar links */
+.navbar a {
+  float: center;
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+}
+
 
 
 
